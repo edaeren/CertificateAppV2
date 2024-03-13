@@ -6,3 +6,17 @@
 //
 
 import Foundation
+import SwiftUI
+extension Color{
+    struct MyTheme{
+        static var pinkColor: Color{
+            return Color ("ColorPink")
+        }
+        static var blueColor: Color{
+            return Color ("ColorBlue")
+        }
+        static var YellowColor: Color{
+            return Color ("ColorYellow")
+        }
+    }
+}
