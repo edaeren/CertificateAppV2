@@ -10,7 +10,10 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            Text("Home Certificates")
+            //feed view yazisinin gozukmesi icin navigation view icine aldik feed view u
+            NavigationView{
+                FeedView()
+            }
                 .tabItem {
                     Image(systemName: "rosette")
                     Text("Home Page")

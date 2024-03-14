@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C062F772BA3856E00EF6784 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C062F762BA3856E00EF6784 /* FeedView.swift */; };
+		3C062F792BA387B700EF6784 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C062F782BA387B700EF6784 /* PostView.swift */; };
 		3C3E0C0A2BA1BA470087500C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E0C092BA1BA470087500C /* Extensions.swift */; };
 		3CDD1FAA2BA1A155009549E7 /* CertificateAppV2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD1FA92BA1A155009549E7 /* CertificateAppV2App.swift */; };
 		3CDD1FAC2BA1A155009549E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD1FAB2BA1A155009549E7 /* ContentView.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C062F762BA3856E00EF6784 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		3C062F782BA387B700EF6784 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		3C3E0C092BA1BA470087500C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3CDD1FA62BA1A155009549E7 /* CertificateAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CertificateAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CDD1FA92BA1A155009549E7 /* CertificateAppV2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateAppV2App.swift; sourceTree = "<group>"; };
@@ -44,6 +48,13 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		3C4D144A2BA3983E004DB7D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		3CDD1F9D2BA1A155009549E7 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +74,7 @@
 		3CDD1FA82BA1A155009549E7 /* CertificateAppV2 */ = {
 			isa = PBXGroup;
 			children = (
+				3C4D144A2BA3983E004DB7D8 /* Model */,
 				3C3E0C082BA1BA280087500C /* Helpers */,
 				3CDD1FF42BA1B64F009549E7 /* Views */,
 				3CDD1FAD2BA1A156009549E7 /* Assets.xcassets */,
@@ -94,6 +106,7 @@
 			children = (
 				3CDD1FA92BA1A155009549E7 /* CertificateAppV2App.swift */,
 				3CDD1FAB2BA1A155009549E7 /* ContentView.swift */,
+				3C062F762BA3856E00EF6784 /* FeedView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -101,6 +114,7 @@
 		3CDD1FF62BA1B66A009549E7 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				3C062F782BA387B700EF6784 /* PostView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -176,8 +190,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C062F772BA3856E00EF6784 /* FeedView.swift in Sources */,
 				3CDD1FAC2BA1A155009549E7 /* ContentView.swift in Sources */,
 				3C3E0C0A2BA1BA470087500C /* Extensions.swift in Sources */,
+				3C062F792BA387B700EF6784 /* PostView.swift in Sources */,
 				3CDD1FAA2BA1A155009549E7 /* CertificateAppV2App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
