@@ -1,5 +1,5 @@
 //
-//  PostView.swift
+//  SectionView.swift
 //  CertificateAppV2
 //
 //  Created by Eda Eren on 14.03.2024.
@@ -7,18 +7,15 @@
 
 import SwiftUI
 
-struct PostView: View {
+struct SectionView: View {
+    @State var section: CertificateModel
+    
     var body: some View {
         VStack(alignment: .center, spacing: 0, content: {
             // MARK: HEADER
             HStack {
-                /* user kullanici fotosu bize lazim degil
-                Image("dog1")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 30, height: 30, alignment: .center)
-                    .cornerRadius(15)*/
-                Text("FOOD RELATED CERTIFICATES")
+               
+                Text(section.sectionName)
                     .font(.subheadline)
                     .fontWeight(.heavy)
                     .foregroundColor(.primary) //changes the color depenging of the mode(dark mode or light mode)
@@ -36,9 +33,13 @@ struct PostView: View {
                             Image("food"+String(index))
                             .resizable()
                             .scaledToFit()
+                            Text(section.certificateName)
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.primary)
                         }
-                            
-                       // Text("View \(index)")
+                        
+                        //Text("View \(index)")
                     }.frame(width: 240,height: 180)
                         .background(.primary)
                         .foregroundColor(.white)
@@ -60,10 +61,12 @@ struct PostView: View {
     }
 }
 
-struct PostView_Previews: PreviewProvider{
+struct SectionView_Previews: PreviewProvider{
+    
+    static var section: CertificateModel = CertificateModel(certificateID:"", certificateName: "Yemek", sectionID: "", sectionName: "FOOD RELATED CERTIFICATES")
     
     static var previews: some View{
-      PostView()
+        SectionView(section: section)
             .previewLayout(.sizeThatFits)
     }
 }
