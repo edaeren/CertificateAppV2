@@ -8,31 +8,99 @@
 import SwiftUI
 
 struct CertificateView: View {
+    
+    @State var certificates : CertificateModel
+    
+    //bunu fotograf icin olan haline degistiricez ki o foto gelsin sadece
+   // @State var submissionText: String = ""
+    
     var body: some View {
         VStack{
             ScrollView{
+             /* Text("CERTIFICATE 1")
+                    .font(.title)
+                    .fontDesign(.monospaced)
+                    .fontWeight(.bold)
+                   // .padding(.horizontal,10)
+                    .frame(width: 300, height: 30, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)*/
+                
+               
+                //MARK: - IMAGE
                 Image("food1")
                     .resizable()
                     .scaledToFill()
                     //.frame(width: 390, height: 250, alignment: .center)
                     .frame(width: 295, height: 250, alignment: .center)
                     .padding(.all,50) .padding(.horizontal,106)
-                Text("Placeholder")
-                Text("Placeholder")
-                Text("Placeholder")
-                Text("Placeholder")
+               
+                // MARK: - DESCRIPTION
+                Text(certificates.description ?? "").padding(.horizontal,150)
+                
+                // MARK: - REQUIREMENTS
+                //sola daya bunu
+                Text("REQUIREMENTS")
+                    .frame(width: 200, alignment: .leading)
+                    .fontWeight(.bold)
+                    .padding(.leading,5)
+                Text(certificates.requirements ?? "")
+                //Text("Placeholder")
             }
         }
-        /*HStack{
+        
+        
+        .navigationBarTitle(certificates.certificateName)
+        .navigationBarTitleDisplayMode(.inline)
+        /*.onAppear(perform: {
+            getCertificates()
+        })*/
+        
+        // MARK: FUNCTIONS
+       
+        
+        /*
+        HStack{
+            Button(action: {
+               
+            }) {
+                Text("BAŞVUR")
+                //.background(Color.MyTheme.pinkColor)
+                //.foregroundColor(.white)
+                // .font(.title)
+                //.fontWeight(.medium)
+                //.fontDesign(.rounded)
+                // .padding(.all,6)
+            
+                    
+            }
+            .accentColor(Color.MyTheme.pinkColor)*/
+            /*
             Image("certificate1")
                 .resizable()
                 .scaledToFill()
                 .frame(width: 40, height: 40, alignment: .center)
-                .cornerRadius(20)
-        }*/
+                .cornerRadius(20)*/
+        }
+    /*
+    func getCertificates(){
+        print("get certificates from database")
+        let certificate1 = CertificateModel(certificateID: "", certificateName: "sertif1", sectionID: "", sectionName: "")
+    }*/
+    
+    
     }
-}
+
+
+/*
+#Preview {
+    ContentView()
+}*/
 
 #Preview {
-    CertificateView()
+    NavigationView{
+        var certificate : CertificateModel = CertificateModel(certificateID: "", certificateName: "Sertifika1", sectionID: "",sectionName: "", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat varius elementum. In volutpat ligula ornare erat lacinia, non finibus odio vestibulum. Donec eu euismod turpis.", requirements: "gereklilikler")
+    
+        CertificateView(certificates: certificate)
+    }
+    
+   
 }

@@ -12,7 +12,7 @@ struct ContentView: View {
         TabView {
             //feed view yazisinin gozukmesi icin navigation view icine aldik feed view u
             NavigationView{
-                FeedView(sections: SectionArrayObject())
+                FeedView(datas: DataArrayObject(),section1: DataArrayObject())
             }
                 .tabItem {
                     Image(systemName: "rosette")

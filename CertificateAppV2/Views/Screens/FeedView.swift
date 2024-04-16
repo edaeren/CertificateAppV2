@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct FeedView: View {
-    
-    @ObservedObject var sections: SectionArrayObject
+
+    @ObservedObject var datas: DataArrayObject
+    @ObservedObject var section1 : DataArrayObject
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false, content: {
             LazyVStack{
-                ForEach(sections.SectionArray, id: \.self){section in
-                    SectionView(section: section)
-                }
+                SectionView(datas: DataArrayObject(),section1: DataArrayObject())
+                /*
+                ForEach(datas.dataArray, id: \.self){data in
+                    SectionView(datas: DataArrayObject())  //???
+                }*/
             }
             
         })
@@ -31,7 +34,7 @@ struct FeedView_Previews: PreviewProvider{
     
     static var previews: some View{
         NavigationView {
-            FeedView(sections: SectionArrayObject())
+            FeedView(datas: DataArrayObject(),section1: DataArrayObject())
         }
     }
 }

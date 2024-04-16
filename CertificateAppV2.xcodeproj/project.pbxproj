@@ -11,9 +11,10 @@
 		3C062F792BA387B700EF6784 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C062F782BA387B700EF6784 /* SectionView.swift */; };
 		3C2853B72BA484FF007E93D9 /* CertificateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2853B62BA484FF007E93D9 /* CertificateModel.swift */; };
 		3C2853B92BA48D26007E93D9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2853B82BA48D26007E93D9 /* UserModel.swift */; };
-		3C2853BB2BA496D7007E93D9 /* SectionArrayObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2853BA2BA496D7007E93D9 /* SectionArrayObject.swift */; };
+		3C2853BB2BA496D7007E93D9 /* DataArrayObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2853BA2BA496D7007E93D9 /* DataArrayObject.swift */; };
 		3C2853BD2BA49B13007E93D9 /* CertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2853BC2BA49B13007E93D9 /* CertificateView.swift */; };
 		3C3E0C0A2BA1BA470087500C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E0C092BA1BA470087500C /* Extensions.swift */; };
+		3C68BA502BCE9ED800E1093B /* MiniCertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68BA4F2BCE9ED800E1093B /* MiniCertificateView.swift */; };
 		3CDD1FAA2BA1A155009549E7 /* CertificateAppV2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD1FA92BA1A155009549E7 /* CertificateAppV2App.swift */; };
 		3CDD1FAC2BA1A155009549E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD1FAB2BA1A155009549E7 /* ContentView.swift */; };
 		3CDD1FAE2BA1A156009549E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CDD1FAD2BA1A156009549E7 /* Assets.xcassets */; };
@@ -26,9 +27,10 @@
 		3C062F782BA387B700EF6784 /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		3C2853B62BA484FF007E93D9 /* CertificateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateModel.swift; sourceTree = "<group>"; };
 		3C2853B82BA48D26007E93D9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		3C2853BA2BA496D7007E93D9 /* SectionArrayObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionArrayObject.swift; sourceTree = "<group>"; };
+		3C2853BA2BA496D7007E93D9 /* DataArrayObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataArrayObject.swift; sourceTree = "<group>"; };
 		3C2853BC2BA49B13007E93D9 /* CertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateView.swift; sourceTree = "<group>"; };
 		3C3E0C092BA1BA470087500C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3C68BA4F2BCE9ED800E1093B /* MiniCertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCertificateView.swift; sourceTree = "<group>"; };
 		3CDD1FA62BA1A155009549E7 /* CertificateAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CertificateAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CDD1FA92BA1A155009549E7 /* CertificateAppV2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateAppV2App.swift; sourceTree = "<group>"; };
 		3CDD1FAB2BA1A155009549E7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,7 +63,7 @@
 			children = (
 				3C2853B62BA484FF007E93D9 /* CertificateModel.swift */,
 				3C2853B82BA48D26007E93D9 /* UserModel.swift */,
-				3C2853BA2BA496D7007E93D9 /* SectionArrayObject.swift */,
+				3C2853BA2BA496D7007E93D9 /* DataArrayObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				3C062F782BA387B700EF6784 /* SectionView.swift */,
+				3C68BA4F2BCE9ED800E1093B /* MiniCertificateView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -209,8 +212,9 @@
 				3C3E0C0A2BA1BA470087500C /* Extensions.swift in Sources */,
 				3C2853BD2BA49B13007E93D9 /* CertificateView.swift in Sources */,
 				3C062F792BA387B700EF6784 /* SectionView.swift in Sources */,
-				3C2853BB2BA496D7007E93D9 /* SectionArrayObject.swift in Sources */,
+				3C2853BB2BA496D7007E93D9 /* DataArrayObject.swift in Sources */,
 				3CDD1FAA2BA1A155009549E7 /* CertificateAppV2App.swift in Sources */,
+				3C68BA502BCE9ED800E1093B /* MiniCertificateView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
