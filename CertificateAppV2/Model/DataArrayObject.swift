@@ -11,6 +11,8 @@ class DataArrayObject: ObservableObject{
     //blank array of certificatemodel
     @Published var dataArray = [CertificateModel]()
     @Published var section1Array = [CertificateModel]()
+    @Published var section2Array = [CertificateModel]()
+//    @Published var sectionsArray = [CertificateModel]()
     
     init(){
         print("fetch from database here")
@@ -28,7 +30,7 @@ class DataArrayObject: ObservableObject{
         self.dataArray.append(data5)
         self.dataArray.append(data6)
         
-        /*
+    /*
         if(data1.sectionID=="1"){
             self.section1Array.append(data1)
         }
@@ -36,6 +38,7 @@ class DataArrayObject: ObservableObject{
             self.section1Array.append(data6)
         }*/
         
+        /*
         let sectionedData = dataArray.filter{ section in
             if section.sectionID == "1"{
                 self.section1Array.append(section)
@@ -44,7 +47,29 @@ class DataArrayObject: ObservableObject{
             else{
                 return false
             }
+        }*/
+        
+        _ = dataArray.filter { section in
+            if section.sectionID == "1" {
+                self.section1Array.append(section)
+            }
+            return section.sectionID == "1"
         }
+        _ = dataArray.filter { section in
+            if section.sectionID == "2" {
+                self.section2Array.append(section)
+            }
+            return section.sectionID == "2"
+        }
+        /*
+        let sectioned2Data = dataArray.filter { section in
+            if section.sectionID == "2" {
+                self.section2Array.append(section)
+            }
+            return section.sectionID == "2"
+        }*/
+        
+      
         
         
     }

@@ -14,6 +14,11 @@
 		3C2853BB2BA496D7007E93D9 /* DataArrayObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2853BA2BA496D7007E93D9 /* DataArrayObject.swift */; };
 		3C2853BD2BA49B13007E93D9 /* CertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2853BC2BA49B13007E93D9 /* CertificateView.swift */; };
 		3C3E0C0A2BA1BA470087500C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E0C092BA1BA470087500C /* Extensions.swift */; };
+		3C5691152BD2B57C008BA524 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5691142BD2B57C008BA524 /* ProfileView.swift */; };
+		3C5691172BD2B716008BA524 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5691162BD2B716008BA524 /* ProfileHeaderView.swift */; };
+		3C5691192BD2D03A008BA524 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5691182BD2D03A008BA524 /* SettingsView.swift */; };
+		3C56911B2BD2D27A008BA524 /* SettingsLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56911A2BD2D27A008BA524 /* SettingsLabelView.swift */; };
+		3C56911D2BD2E3E6008BA524 /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56911C2BD2E3E6008BA524 /* SettingsRowView.swift */; };
 		3C68BA502BCE9ED800E1093B /* MiniCertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68BA4F2BCE9ED800E1093B /* MiniCertificateView.swift */; };
 		3CDD1FAA2BA1A155009549E7 /* CertificateAppV2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD1FA92BA1A155009549E7 /* CertificateAppV2App.swift */; };
 		3CDD1FAC2BA1A155009549E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD1FAB2BA1A155009549E7 /* ContentView.swift */; };
@@ -30,6 +35,11 @@
 		3C2853BA2BA496D7007E93D9 /* DataArrayObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataArrayObject.swift; sourceTree = "<group>"; };
 		3C2853BC2BA49B13007E93D9 /* CertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateView.swift; sourceTree = "<group>"; };
 		3C3E0C092BA1BA470087500C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3C5691142BD2B57C008BA524 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		3C5691162BD2B716008BA524 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		3C5691182BD2D03A008BA524 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		3C56911A2BD2D27A008BA524 /* SettingsLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLabelView.swift; sourceTree = "<group>"; };
+		3C56911C2BD2E3E6008BA524 /* SettingsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
 		3C68BA4F2BCE9ED800E1093B /* MiniCertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCertificateView.swift; sourceTree = "<group>"; };
 		3CDD1FA62BA1A155009549E7 /* CertificateAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CertificateAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CDD1FA92BA1A155009549E7 /* CertificateAppV2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateAppV2App.swift; sourceTree = "<group>"; };
@@ -121,6 +131,8 @@
 				3CDD1FAB2BA1A155009549E7 /* ContentView.swift */,
 				3C062F762BA3856E00EF6784 /* FeedView.swift */,
 				3C2853BC2BA49B13007E93D9 /* CertificateView.swift */,
+				3C5691142BD2B57C008BA524 /* ProfileView.swift */,
+				3C5691182BD2D03A008BA524 /* SettingsView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -130,6 +142,9 @@
 			children = (
 				3C062F782BA387B700EF6784 /* SectionView.swift */,
 				3C68BA4F2BCE9ED800E1093B /* MiniCertificateView.swift */,
+				3C5691162BD2B716008BA524 /* ProfileHeaderView.swift */,
+				3C56911A2BD2D27A008BA524 /* SettingsLabelView.swift */,
+				3C56911C2BD2E3E6008BA524 /* SettingsRowView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -207,14 +222,19 @@
 			files = (
 				3C062F772BA3856E00EF6784 /* FeedView.swift in Sources */,
 				3C2853B92BA48D26007E93D9 /* UserModel.swift in Sources */,
+				3C56911D2BD2E3E6008BA524 /* SettingsRowView.swift in Sources */,
 				3C2853B72BA484FF007E93D9 /* CertificateModel.swift in Sources */,
 				3CDD1FAC2BA1A155009549E7 /* ContentView.swift in Sources */,
 				3C3E0C0A2BA1BA470087500C /* Extensions.swift in Sources */,
 				3C2853BD2BA49B13007E93D9 /* CertificateView.swift in Sources */,
 				3C062F792BA387B700EF6784 /* SectionView.swift in Sources */,
+				3C5691172BD2B716008BA524 /* ProfileHeaderView.swift in Sources */,
 				3C2853BB2BA496D7007E93D9 /* DataArrayObject.swift in Sources */,
 				3CDD1FAA2BA1A155009549E7 /* CertificateAppV2App.swift in Sources */,
+				3C56911B2BD2D27A008BA524 /* SettingsLabelView.swift in Sources */,
+				3C5691152BD2B57C008BA524 /* ProfileView.swift in Sources */,
 				3C68BA502BCE9ED800E1093B /* MiniCertificateView.swift in Sources */,
+				3C5691192BD2D03A008BA524 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

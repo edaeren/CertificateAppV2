@@ -9,8 +9,10 @@ import SwiftUI
 
 struct SectionView: View {
     //  @State var section: CertificateModel
-    @ObservedObject var datas : DataArrayObject
+    //@ObservedObject var datas : DataArrayObject
     @ObservedObject var section1 : DataArrayObject
+    @ObservedObject var section2 : DataArrayObject
+//    @ObservedObject var sections : DataArrayObject
     
     
     var body: some View {
@@ -33,17 +35,35 @@ struct SectionView: View {
         
         ScrollView(.horizontal) {
             
-            
-            HStack{
-                
-                ForEach(section1.section1Array, id : \.self){data in
-                    MiniCertificateView(data : data)
+            VStack{
+                HStack{
+    //                ForEach(sections)  sectionlari icinde tutan arrayi gezerek tek bir baslik saglama
+                    ForEach(section1.section1Array, id : \.self){data in
+                        NavigationLink(
+                            destination: CertificateView(certificates: data),
+                            label: {
+                             MiniCertificateView(data : data, showHeader: true)
+                            })
+                    }.fixedSize()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    /*
+                     ForEach(datas.dataArray, id : \.self){data in
+                     MiniCertificateView(data : data)
+                     }*/
                 }
-                /*
-                 ForEach(datas.dataArray, id : \.self){data in
-                 MiniCertificateView(data : data)
-                 }*/
+                HStack{
+                    ForEach(section2.section2Array, id : \.self){data in
+                        NavigationLink(
+                            destination: CertificateView(certificates: data),
+                            label: {
+                             MiniCertificateView(data : data, showHeader: true)
+                            })
+                    }.fixedSize()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
+            
             
             
             /*
@@ -87,7 +107,8 @@ struct SectionView_Previews: PreviewProvider{
     
     static var previews: some View{
 //        SectionView(section: <#T##CertificateModel#>, datas: DataArrayObject())
-          SectionView(datas: DataArrayObject(), section1: DataArrayObject())
+      //    SectionView(datas: DataArrayObject(), section1: DataArrayObject())
+        SectionView(section1: DataArrayObject(), section2: DataArrayObject())
             .previewLayout(.sizeThatFits)
     }
 }

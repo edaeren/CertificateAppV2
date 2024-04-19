@@ -12,7 +12,8 @@ struct ContentView: View {
         TabView {
             //feed view yazisinin gozukmesi icin navigation view icine aldik feed view u
             NavigationView{
-                FeedView(datas: DataArrayObject(),section1: DataArrayObject())
+              //  FeedView(datas: DataArrayObject(),section1: DataArrayObject())
+                FeedView(section1: DataArrayObject(), section2: DataArrayObject())
             }
                 .tabItem {
                     Image(systemName: "rosette")
@@ -28,7 +29,9 @@ struct ContentView: View {
                     Image(systemName: "book.pages")
                     Text("Form")
                 }
-            Text("Profile")
+            NavigationView{
+                ProfileView()
+            }
                 .tabItem {
                     Image(systemName: "person")
                     Text("Profile")
