@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    var currentUserId: String? = nil
+    
     var body: some View {
         TabView {
             //feed view yazisinin gozukmesi icin navigation view icine aldik feed view u
@@ -29,8 +32,18 @@ struct ContentView: View {
                     Image(systemName: "book.pages")
                     Text("Form")
                 }
-            NavigationView{
-                ProfileView()
+            
+            //ztack is for showing the page if the user is signed in
+            //tab item should follow the zstack for not getting a crush
+            ZStack{
+                if currentUserId != nil {
+                    NavigationView{
+                        ProfileView()
+                    }
+                } else {
+                    SignUpView()
+                }
+               
             }
                 .tabItem {
                     Image(systemName: "person")

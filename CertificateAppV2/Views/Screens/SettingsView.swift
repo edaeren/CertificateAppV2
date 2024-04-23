@@ -30,8 +30,20 @@ struct SettingsView: View {
                 
                 // MARK: SECTION2: PROFILE
                 GroupBox(label: SettingsLabelView(labelText: "Profile", labelImage: "person.fill"), content: {
-                    SettingsRowView(leftIcon: "pencil", text: "Display Name", color: Color.MyTheme.blueColor)
-                    SettingsRowView(leftIcon: "text.quote", text: "Bio", color: Color.MyTheme.blueColor)
+                    
+                    NavigationLink(
+                        destination:SettingsEditTextView(submissionText: "Current Display Name", title: "Display Name", description: "You can edit your display name here.", placeholder: "Your display name here.."),
+                        label: {
+                            SettingsRowView(leftIcon: "pencil", text: "Display Name", color: Color.MyTheme.blueColor)
+                        }
+                    )
+                    
+                    NavigationLink(
+                        destination: SettingsEditTextView(submissionText: "Current bio here", title: "Profile Bio", description: "Let other users know about you.", placeholder: "Your bio here.."),
+                        label:{
+                            SettingsRowView(leftIcon: "text.quote", text: "Bio", color: Color.MyTheme.blueColor)
+                        })
+                  
                     SettingsRowView(leftIcon: "photo", text: "Profile Picture", color: Color.MyTheme.blueColor)
                     SettingsRowView(leftIcon: "figure.walk", text: "Sign Out", color: Color.MyTheme.blueColor)
                 })
