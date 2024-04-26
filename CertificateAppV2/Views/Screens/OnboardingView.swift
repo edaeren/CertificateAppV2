@@ -11,6 +11,7 @@ struct OnboardingView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @State var showOnboardingPart2: Bool = false
+    @State var showError: Bool = false
     
     var body: some View {
         VStack(spacing: 10){
@@ -32,14 +33,16 @@ struct OnboardingView: View {
                 .foregroundColor(Color.black)
                 .padding()
             
+            //MARK: SIGN IN WITH APPLE
             Button(action: {
-                showOnboardingPart2.toggle()
+                SignInWithApple.instance.startSignInWithAppleFlow(view: self)
             }, label: {
                 SignInWithAppleButtonCustom()
                     .frame(height: 60)
                     .frame(maxWidth: .infinity)
             })
             
+            //MARK: SIGN IN WITH APPLE
             Button(action: {
                 showOnboardingPart2.toggle()
             }, label: {
@@ -75,6 +78,10 @@ struct OnboardingView: View {
         .edgesIgnoringSafeArea(.all)
         .fullScreenCover(isPresented: $showOnboardingPart2, content: {
             OnboardingViewPart2()
+        })
+        
+        .alert(isPresented: $showError, content: {
+            return Alert(title: Text("Error signin in 😭"))
         })
     }
 }
