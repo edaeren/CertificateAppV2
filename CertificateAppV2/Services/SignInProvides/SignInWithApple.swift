@@ -101,7 +101,7 @@ class SignInWithApple: NSObject , ASAuthorizationControllerDelegate{
             
          
             
-          print("SIGN IN TO FIREBASE NOW: with email: \(email) and with name: \(name)")
+            self.onboardingView.connectToFirebase(name: name, email: email, provider: "apple", credential: credential)
          
         }
       }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
-    
+    @State var showSignOutError: Bool = false
     var body: some View {
         NavigationView{
             ScrollView(.vertical, showsIndicators: false, content: {
@@ -45,7 +45,15 @@ struct SettingsView: View {
                         })
                   
                     SettingsRowView(leftIcon: "photo", text: "Profile Picture", color: Color.MyTheme.blueColor)
-                    SettingsRowView(leftIcon: "figure.walk", text: "Sign Out", color: Color.MyTheme.blueColor)
+                    
+                    Button(action: {
+                       signOut()
+                    }, label: {
+                        SettingsRowView(leftIcon: "figure.walk", text: "Sign Out", color: Color.MyTheme.blueColor)
+                    }).alert(isPresented: $showSignOutError, content: {
+                        return Alert(title: Text("Error signing out"))
+                    })
+                   
                 })
                 .padding()
                 
@@ -80,6 +88,32 @@ struct SettingsView: View {
             )
         }
        
+    }
+    
+    func signOut(){
+        AuthService.instance.logOutUser { (success) in
+            if success {
+                print("Successfully logged out")
+                
+                //Dismiss setting view
+                self.presentationMode.wrappedValue.dismiss()
+                
+                //Update userdefaults
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+                    
+                    //kaydedilmiş bütün bilgileri getirir
+                    let defaulsDictionary = UserDefaults.standard.dictionaryRepresentation()
+                    //tek tek hepsini siler
+                    defaulsDictionary.keys.forEach {(key) in
+                        UserDefaults.standard.removeObject(forKey: key)
+                    }
+                    
+                }
+            } else {
+                print("Error login out")
+                self.showSignOutError.toggle()
+            }
+        }
     }
 }
 

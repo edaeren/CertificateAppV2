@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct OnboardingView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @State var showOnboardingPart2: Bool = false
     @State var showError: Bool = false
+    
+    @State var displayName: String = ""
+    @State var email :String = ""
+    @State var providerID: String = ""
+    @State var provider : String = ""
     
     var body: some View {
         VStack(spacing: 10){
@@ -76,13 +82,35 @@ struct OnboardingView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.MyTheme.blueColor)
         .edgesIgnoringSafeArea(.all)
-        .fullScreenCover(isPresented: $showOnboardingPart2, content: {
-            OnboardingViewPart2()
+        .fullScreenCover(isPresented: $showOnboardingPart2, onDismiss: {
+            self.presentationMode.wrappedValue.dismiss()
+        }, content: {
+            OnboardingViewPart2(displayName: $displayName, email: $email, providerID: $providerID, provider: $provider)
         })
         
         .alert(isPresented: $showError, content: {
             return Alert(title: Text("Error signin in 😭"))
         })
+    }
+    
+    // MARK: FUNCTIONS
+    func connectToFirebase(name: String,email: String, provider: String, credential: AuthCredential){
+        AuthService.instance.logInUserToFirebase(credential: credential) { returnedProviderId, isError in
+                
+            if let provierID = returnedProviderId, !isError {
+                
+                self.displayName = name
+                self.email = email
+                self.providerID = provierID
+                self.provider = provider
+                
+                self.showOnboardingPart2.toggle()
+                
+            } else{
+                print("Error getting in to from log in user Firebase")
+                self.showError.toggle()
+            }
+        }
     }
 }
 

@@ -7,8 +7,12 @@
 
 import SwiftUI
 
+
 struct ProfileHeaderView: View {
     var body: some View {
+        
+        let user_name:String? = UserDefaults.standard.string(forKey: CurrentUserDefaults.displayName)
+        
         VStack(alignment: .center, spacing: 10, content: {
             // MARK: PROFILE PICTURE
            Image("food1")
@@ -17,7 +21,7 @@ struct ProfileHeaderView: View {
                 .frame(width: 120, height: 120, alignment: .center)
                 .cornerRadius(60)
             // MARK: USERNAME
-            Text("USERNAME HERE")
+            Text(user_name!)
                 .font(.largeTitle)
                 .fontWeight(.bold)
             // MARK: BIO
