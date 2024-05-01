@@ -38,12 +38,16 @@ struct CertificateView: View {
                 
                 // MARK: - REQUIREMENTS
                 //sola daya bunu
+                Spacer()
+                Spacer()
                 Text("REQUIREMENTS")
-                    .frame(width: 200, alignment: .leading)
+                    .frame(width: 200)
                     .fontWeight(.bold)
                     .padding(.leading,5)
+                Spacer()
                 Text(certificates.requirements ?? "")
-                //Text("Placeholder")
+                    .frame(width: 300, alignment: .leading)
+                    .padding(.leading,1)
             }
         }
         

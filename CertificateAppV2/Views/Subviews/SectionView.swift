@@ -8,91 +8,114 @@
 import SwiftUI
 
 struct SectionView: View {
-    //  @State var section: CertificateModel
-    //@ObservedObject var datas : DataArrayObject
     @ObservedObject var section1 : DataArrayObject
     @ObservedObject var section2 : DataArrayObject
-//    @ObservedObject var sections : DataArrayObject
-    
-    
+    @ObservedObject var section3 : DataArrayObject
+
     var body: some View {
-        //        VStack(alignment: .center, spacing: 0, content: {
-        // MARK: HEADER
-        /*
-         HStack {
-         
-         Text(section.sectionName)
-         .font(.subheadline)
-         .fontWeight(.heavy)
-         .foregroundColor(.primary) //changes the color depenging of the mode(dark mode or light mode)
-         Spacer() //sola dayadik
-         Image(systemName: "ellipsis") //sagdaki uc nokta
-         .font(.headline) //belki buraya tiklayarak geri kalan sertifikalara bakilabilir. tumunu gor gibi
-         }
-         .padding(.all, 6)*/
         
         // MARK: IMAGE/SERTİFİKALAR
         
-        ScrollView(.horizontal) {
+        ScrollView(.vertical) {
             
             VStack{
-                HStack{
-    //                ForEach(sections)  sectionlari icinde tutan arrayi gezerek tek bir baslik saglama
-                    ForEach(section1.section1Array, id : \.self){data in
-                        NavigationLink(
-                            destination: CertificateView(certificates: data),
-                            label: {
-                             MiniCertificateView(data : data, showHeader: true)
-                            })
-                    }.fixedSize()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    /*
-                     ForEach(datas.dataArray, id : \.self){data in
-                     MiniCertificateView(data : data)
-                     }*/
+                // MARK: YEMEKLE ILGILI SERTIFIKALAR
+                HStack {
+                 Text("Yemekle ilgili Sertifikalar")
+                      .font(.title3)
+                      .fontWeight(.heavy)
+                       .foregroundColor(.primary)
+                       .padding(.leading,5)
+//                       .fontDesign(.)
+                    Spacer()
+                Image(systemName: "ellipsis") //sagdaki uc nokta
+                        .font(.headline) //belki buraya tiklayarak geri kalan sertifikalara bakilabilir. tumunu gor gibi
+                    }
+                    .padding(.all, 6)
+                // MARK: YEMEK SERTIFIKALARI SCROLLVIEWI
+                ScrollView(.horizontal){
+                    HStack{
+        //                ForEach(sections)  sectionlari icinde tutan arrayi gezerek tek bir baslik saglama
+                        ForEach(section1.section1Array, id : \.self){data in
+                            NavigationLink(
+                                destination: CertificateView(certificates: data),
+                                label: {
+                                 MiniCertificateView(data : data)
+//                                 MiniCertificateView(data : data, showHeader: true)
+                                })
+                        }.fixedSize()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        /*
+                         ForEach(datas.dataArray, id : \.self){data in
+                         MiniCertificateView(data : data)
+                         }*/
+                    }
                 }
-                HStack{
-                    ForEach(section2.section2Array, id : \.self){data in
-                        NavigationLink(
-                            destination: CertificateView(certificates: data),
-                            label: {
-                             MiniCertificateView(data : data, showHeader: true)
-                            })
-                    }.fixedSize()
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                // MARK: CİZİM SERTİFİKALAR
+                VStack{
+                    HStack {
+                     Text("Çizimle ilgili Sertifikalar")
+                          .font(.title3)
+                          .fontWeight(.heavy)
+                           .foregroundColor(.primary)
+                           .padding(.leading,5)
+    //                       .fontDesign(.)
+                        Spacer()
+                    Image(systemName: "ellipsis") //sagdaki uc nokta
+                            .font(.headline) //belki buraya tiklayarak geri kalan sertifikalara bakilabilir. tumunu gor gibi
+                        }
+                        .padding(.all, 6)
                 }
-            }
+                ScrollView(.horizontal){
+                    HStack{
+                        ForEach(section2.section2Array, id : \.self){data in
+                            NavigationLink(
+                                destination: CertificateView(certificates: data),
+                                label: {
+                                 MiniCertificateView(data : data)
+//                                 MiniCertificateView(data : data, showHeader: true)
+                                })
+                        }.fixedSize()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+                
+                // MARK: BILGISAYAR SERTİFİKALAR
+                VStack{
+                    HStack {
+                     Text("Bilgisayarla ilgili Sertifikalar")
+                          .font(.title3)
+                          .fontWeight(.heavy)
+                           .foregroundColor(.primary)
+                           .padding(.leading,5)
+    //                       .fontDesign(.)
+                        Spacer()
+                    Image(systemName: "ellipsis") //sagdaki uc nokta
+                            .font(.headline) //belki buraya tiklayarak geri kalan sertifikalara bakilabilir. tumunu gor gibi
+                        }
+                        .padding(.all, 6)
+                }
+                ScrollView(.horizontal){
+                    HStack{
+                        ForEach(section3.section3Array, id : \.self){data in
+                            NavigationLink(
+                                destination: CertificateView(certificates: data),
+                                label: {
+                                 MiniCertificateView(data : data)
+//                                 MiniCertificateView(data : data, showHeader: true)
+                                })
+                        }.fixedSize()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+                
+                
+                
+                
+            }//ven ust stack?
             
-            
-            
-            /*
-             ForEach(datas.dataArray, id : \.self){ section in
-             
-                 if (section.sectionID=="1") {
-                     section1.section1Array.append(section)
-                     HStack{
-                         
-                         ForEach(section1.section1Array, id : \.self){data in
-                             MiniCertificateView(data : data)
-                         }
-             /*
-              ForEach(datas.dataArray, id : \.self){data in
-              MiniCertificateView(data : data)
-              }*/
-             
-                     }
-                 }//ifin
-             /*
-              if (section.sectionID=="2") {
-              HStack{
-              MiniCertificateView(data : data)
-              }
-              }//ifin*/
-             
-             }//foreachin*/
-            
-        }//scrollviewin
+        }//en ust scrollviewin
         
         //MARK: FOOTER
         //                .padding(.all,6)
@@ -108,7 +131,7 @@ struct SectionView_Previews: PreviewProvider{
     static var previews: some View{
 //        SectionView(section: <#T##CertificateModel#>, datas: DataArrayObject())
       //    SectionView(datas: DataArrayObject(), section1: DataArrayObject())
-        SectionView(section1: DataArrayObject(), section2: DataArrayObject())
+        SectionView(section1: DataArrayObject(), section2: DataArrayObject(), section3: DataArrayObject())
             .previewLayout(.sizeThatFits)
     }
 }

@@ -45,6 +45,7 @@
 		3CDD1FAE2BA1A156009549E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CDD1FAD2BA1A156009549E7 /* Assets.xcassets */; };
 		3CDD1FB12BA1A156009549E7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CDD1FB02BA1A156009549E7 /* Preview Assets.xcassets */; };
 		3CDD1FF32BA1B1FD009549E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CDD1FF22BA1B1FD009549E7 /* LaunchScreen.storyboard */; };
+		3CF1233E2BE2733700694DE0 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF1233D2BE2733700694DE0 /* SearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		3CDD1FAD2BA1A156009549E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3CDD1FB02BA1A156009549E7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3CDD1FF22BA1B1FD009549E7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3CF1233D2BE2733700694DE0 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +243,7 @@
 				3C56911C2BD2E3E6008BA524 /* SettingsRowView.swift */,
 				3C5E2A752BD82BC4003F82F4 /* SignInWithAppleButtonCustom.swift */,
 				3C4C1B562BDB03B90041E802 /* ImagePicker.swift */,
+				3CF1233D2BE2733700694DE0 /* SearchView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				3CDD1FAA2BA1A155009549E7 /* CertificateAppV2App.swift in Sources */,
 				3C56911B2BD2D27A008BA524 /* SettingsLabelView.swift in Sources */,
 				3C5E2A6E2BD812A4003F82F4 /* SettingsEditTextView.swift in Sources */,
+				3CF1233E2BE2733700694DE0 /* SearchView.swift in Sources */,
 				3C5691152BD2B57C008BA524 /* ProfileView.swift in Sources */,
 				3C68BA502BCE9ED800E1093B /* MiniCertificateView.swift in Sources */,
 				3C5E2A722BD81CB2003F82F4 /* SignUpView.swift in Sources */,

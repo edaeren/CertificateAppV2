@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
     var currentUserId: String? = nil
     
     var body: some View {
@@ -17,13 +16,15 @@ struct ContentView: View {
             //feed view yazisinin gozukmesi icin navigation view icine aldik feed view u
             NavigationView{
               //  FeedView(datas: DataArrayObject(),section1: DataArrayObject())
-                FeedView(section1: DataArrayObject(), section2: DataArrayObject())
+                FeedView(section1: DataArrayObject(), section2: DataArrayObject(), section3: DataArrayObject())
             }
                 .tabItem {
                     Image(systemName: "rosette")
                     Text("Home Page")
                 }
-            Text("Search")
+            NavigationView{
+                SearchView(listOfCertificates: DataArrayObject())
+            }
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
@@ -37,7 +38,7 @@ struct ContentView: View {
             //ztack is for showing the page if the user is signed in
             //tab item should follow the zstack for not getting a crush
             ZStack{
-                if currentUserID != nil {
+                if currentUserId != nil {
                     NavigationView{
                         ProfileView()
                     }
