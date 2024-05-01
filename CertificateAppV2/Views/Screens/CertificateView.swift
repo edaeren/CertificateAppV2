@@ -27,7 +27,8 @@ struct CertificateView: View {
                 
                
                 //MARK: - IMAGE
-                Image("food1")
+                Image(certificates.photoName)
+//                Image("food1")
                     .resizable()
                     .scaledToFill()
                     //.frame(width: 390, height: 250, alignment: .center)
@@ -120,7 +121,7 @@ struct CertificateView: View {
 
 #Preview {
     NavigationView{
-        var certificate : CertificateModel = CertificateModel(certificateID: "", certificateName: "Sertifika1", sectionID: "",sectionName: "", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat varius elementum. In volutpat ligula ornare erat lacinia, non finibus odio vestibulum. Donec eu euismod turpis.", requirements: "gereklilikler")
+        var certificate : CertificateModel = CertificateModel(certificateID: "", certificateName: "Sertifika1", sectionID: "",sectionName: "", photoName: "food2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat varius elementum. In volutpat ligula ornare erat lacinia, non finibus odio vestibulum. Donec eu euismod turpis.", requirements: "gereklilikler")
     
         CertificateView(certificates: certificate)
     }

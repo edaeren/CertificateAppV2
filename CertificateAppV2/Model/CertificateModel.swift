@@ -16,6 +16,7 @@ struct CertificateModel: Identifiable, Hashable{
     var sectionID: String
     var sectionName: String
 
+    var photoName: String
     var description: String?
     var requirements: String?
     

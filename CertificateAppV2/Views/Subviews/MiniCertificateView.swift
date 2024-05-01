@@ -31,7 +31,8 @@ struct MiniCertificateView: View {
                 
                
                 VStack{
-                    Image("food1")
+                    Image(data.photoName)
+//                    Image("food1")
                     .resizable()
                     .scaledToFit()
                     Text(data.certificateName)
@@ -50,7 +51,7 @@ struct MiniCertificateView: View {
 
 struct MiniCertificateView_Previews: PreviewProvider{
     
-    static var data: CertificateModel = CertificateModel(certificateID:"", certificateName: "Yemek Sertifikası", sectionID: "1", sectionName: "FOOD RELATED CERTIFICATES")
+    static var data: CertificateModel = CertificateModel(certificateID:"", certificateName: "Yemek Sertifikası", sectionID: "1", sectionName: "FOOD RELATED CERTIFICATES", photoName: "food1")
     
     static var previews: some View{
 //        MiniCertificateView(data: data, showHeader: true)

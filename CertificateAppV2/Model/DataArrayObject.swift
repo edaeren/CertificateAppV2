@@ -17,12 +17,12 @@ class DataArrayObject: ObservableObject{
     
     init(){
         print("fetch from database here")
-        let data1 = CertificateModel(certificateID: "", certificateName: "yemekk", sectionID: "1", sectionName: "Yemekle İlgili",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat varius elementum. In volutpat ligula ornare erat lacinia, non finibus odio vestibulum. Donec eu euismod turpis.", requirements: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat varius elementum. In volutpat ligula ornare erat lacinia, non finibus odio vestibulum. Donec eu euismod turpis.")
-        let data2 = CertificateModel(certificateID: "", certificateName: "cizim", sectionID: "2", sectionName: "Çizimle İlgili")
-        let data3 = CertificateModel(certificateID: "", certificateName: "bilgisayar", sectionID: "3", sectionName: "Bilgisayarla İlgili")
-        let data4 = CertificateModel(certificateID: "", certificateName: "yemekk4", sectionID: "4", sectionName: "Uzayla İlgili")
-        let data5 = CertificateModel(certificateID: "", certificateName: "yemekk5", sectionID: "5", sectionName: "Camla İlgili")
-        let data6 = CertificateModel(certificateID: "", certificateName: "yemekk6", sectionID: "1", sectionName: "Yemekle İlgili")
+        let data1 = CertificateModel(certificateID: "", certificateName: "yemekk", sectionID: "1", sectionName: "Yemekle İlgili",photoName: "food1", description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat varius elementum. In volutpat ligula ornare erat lacinia, non finibus odio vestibulum. Donec eu euismod turpis.", requirements: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat varius elementum. In volutpat ligula ornare erat lacinia, non finibus odio vestibulum. Donec eu euismod turpis.")
+        let data2 = CertificateModel(certificateID: "", certificateName: "cizim", sectionID: "2", sectionName: "Çizimle İlgili", photoName: "food2")
+        let data3 = CertificateModel(certificateID: "", certificateName: "bilgisayar", sectionID: "3", sectionName: "Bilgisayarla İlgili", photoName: "food3")
+        let data4 = CertificateModel(certificateID: "", certificateName: "yemekk4", sectionID: "4", sectionName: "Uzayla İlgili", photoName: "food4")
+        let data5 = CertificateModel(certificateID: "", certificateName: "yemekk5", sectionID: "5", sectionName: "Camla İlgili", photoName: "food5")
+        let data6 = CertificateModel(certificateID: "", certificateName: "yemekk7", sectionID: "1", sectionName: "Yemekle İlgili", photoName: "food7")
         
         self.dataArray.append(data1)
         self.dataArray.append(data2)
