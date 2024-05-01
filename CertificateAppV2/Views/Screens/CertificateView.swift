@@ -10,6 +10,7 @@ import SwiftUI
 struct CertificateView: View {
     
     @State var certificates : CertificateModel
+    @State var showShortForm: Bool = false
     
     //bunu fotograf icin olan haline degistiricez ki o foto gelsin sadece
    // @State var submissionText: String = ""
@@ -49,11 +50,29 @@ struct CertificateView: View {
                     .frame(width: 300, alignment: .leading)
                     .padding(.leading,1)
             }
+            
+            
+            Button(action:{
+                showShortForm.toggle()
+            }  , label: {
+                Text("Başvur".uppercased())
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .padding()
+                    .frame(height: 60)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.MyTheme.blueColor)
+                    .cornerRadius(12)
+                    .shadow(radius: 12)
+            })
+            .accentColor(.black)
+            .padding()
         }
-        
-        
         .navigationBarTitle(certificates.certificateName)
         .navigationBarTitleDisplayMode(.inline)
+        .fullScreenCover(isPresented: $showShortForm, content: {
+           ShortFormView()
+        })
         /*.onAppear(perform: {
             getCertificates()
         })*/
@@ -91,7 +110,7 @@ struct CertificateView: View {
     }*/
     
     
-    }
+    } //en dis viewın parantezi
 
 
 /*

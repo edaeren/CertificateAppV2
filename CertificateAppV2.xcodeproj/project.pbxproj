@@ -46,6 +46,7 @@
 		3CDD1FB12BA1A156009549E7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CDD1FB02BA1A156009549E7 /* Preview Assets.xcassets */; };
 		3CDD1FF32BA1B1FD009549E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CDD1FF22BA1B1FD009549E7 /* LaunchScreen.storyboard */; };
 		3CF1233E2BE2733700694DE0 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF1233D2BE2733700694DE0 /* SearchView.swift */; };
+		3CF123402BE2DBCF00694DE0 /* ShortFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF1233F2BE2DBCF00694DE0 /* ShortFormView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		3CDD1FB02BA1A156009549E7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3CDD1FF22BA1B1FD009549E7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3CF1233D2BE2733700694DE0 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		3CF1233F2BE2DBCF00694DE0 /* ShortFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortFormView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 				3C5E2A752BD82BC4003F82F4 /* SignInWithAppleButtonCustom.swift */,
 				3C4C1B562BDB03B90041E802 /* ImagePicker.swift */,
 				3CF1233D2BE2733700694DE0 /* SearchView.swift */,
+				3CF1233F2BE2DBCF00694DE0 /* ShortFormView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				3C2853BD2BA49B13007E93D9 /* CertificateView.swift in Sources */,
 				3C062F792BA387B700EF6784 /* SectionView.swift in Sources */,
 				3C5691172BD2B716008BA524 /* ProfileHeaderView.swift in Sources */,
+				3CF123402BE2DBCF00694DE0 /* ShortFormView.swift in Sources */,
 				3C2853BB2BA496D7007E93D9 /* DataArrayObject.swift in Sources */,
 				3C5E2A742BD82904003F82F4 /* OnboardingView.swift in Sources */,
 				3C4C1B552BDAF9180041E802 /* OnboardingViewPart2.swift in Sources */,

@@ -40,6 +40,8 @@ struct ProfileView: View {
                     HStack{
                         ForEach(section1.section1Array, id : \.self){data in
                             NavigationLink(
+                                //EGER KULLANICI KENDI PROFILINE BAKACAKSA BASVUR BUTONU GOZUKMEYECEK
+                                //BASKASI BAKIYORSA GOZUKECEK
                                 destination: CertificateView(certificates: data),
                                 label: {
                                  MiniCertificateView(data : data)
