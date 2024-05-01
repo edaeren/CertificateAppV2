@@ -1,0 +1,94 @@
+//
+//  ImageManager.swift
+//  CertificateAppV2
+//
+//  Created by Taha  Adıgüzel on 29.04.2024.
+//
+
+import Foundation
+import FirebaseStorage // resimleri ve videoları tutar
+import UIKit
+
+class ImageManager{
+    
+    //MARK : PROPERTIES
+    
+    static let instance = ImageManager()
+    
+    private var REF_STOR = Storage.storage()
+    
+    //MARK: PUBLIC FUNCTIONS
+    
+        
+    func uploadProfileImage(userID:String, image: UIImage){
+        
+        //get the path where we will save the image
+        let path = getProfileImagePath(userID: userID)
+        
+        //Save image to path
+        uploadImage(path: path, image: image) {(_) in }
+        
+    }
+    
+    //MARK: PRIVATE FUNCTIONS
+    
+    private func getProfileImagePath(userID:String)->StorageReference{
+        let userPath = "users/\(userID)/profile"
+        
+        let storagePath = REF_STOR.reference(withPath: userPath)
+        return storagePath
+    }
+    
+    private func uploadImage(path:StorageReference, image: UIImage, handler: @escaping(_ success: Bool) -> ()){
+        
+        var compression : CGFloat = 1.0 //loops down by 0.05
+        let maxFileSize: Int = 240 * 240 // max file size that we want to save // resmin max büyüklüğü
+        let maxCompression: CGFloat = 0.05 // max comp. we allowed //bundan daha alağıya artık sıkıştırılmasın
+        
+        //Get image data
+        guard var originalData = image.jpegData(compressionQuality: compression) else{
+            print("Error hetting data from image")
+            handler(false)
+            return
+        }
+
+        //Check max file size
+        //resmin boyutu istediğimiz boyuta inene kadar devam eder
+        while (originalData.count > maxFileSize) && (compression > maxCompression){
+            compression -= 0.05
+            if let compressedData = image.jpegData(compressionQuality: compression){
+                originalData = compressedData
+            }
+            print(compression)
+        }
+        
+        //Get image data
+        guard let finalData = image.jpegData(compressionQuality: compression) else{
+            print("Error hetting data from image")
+            handler(false)
+            return
+        }
+        
+        //get photo metadata
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        path.putData(finalData,metadata: metadata){(_,error) in
+        
+            if let error = error{
+                //Error
+                print("Error uploading image. \(error)")
+                handler(false)
+                return
+            } else {
+                //Success
+                print("Photo uploaded successfully")
+                handler(true)
+                return
+            }
+        }
+    }
+    
+    func getImage(path:StorageReference){
+        
+    }
+}
