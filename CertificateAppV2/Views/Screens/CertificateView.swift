@@ -72,7 +72,7 @@ struct CertificateView: View {
         .navigationBarTitle(certificates.certificateName)
         .navigationBarTitleDisplayMode(.inline)
         .fullScreenCover(isPresented: $showShortForm, content: {
-           ShortFormView()
+            ShortFormView()
         })
         /*.onAppear(perform: {
             getCertificates()
