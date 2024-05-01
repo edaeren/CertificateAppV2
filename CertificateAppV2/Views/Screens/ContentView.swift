@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
+    @AppStorage(CurrentUserDefaults.displayName) var currentDisplayName :String?
     var currentUserId: String? = nil
     
     var body: some View {
@@ -38,9 +40,9 @@ struct ContentView: View {
             //ztack is for showing the page if the user is signed in
             //tab item should follow the zstack for not getting a crush
             ZStack{
-                if currentUserId != nil {
+                if let userID = currentUserID, let displayName = currentDisplayName {
                     NavigationView{
-                        ProfileView()
+                        ProfileView(profileDisplayName: displayName,profileUserID: userID)
                     }
                 } else {
                     SignUpView()

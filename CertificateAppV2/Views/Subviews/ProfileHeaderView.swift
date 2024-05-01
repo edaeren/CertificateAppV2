@@ -9,21 +9,24 @@ import SwiftUI
 
 
 struct ProfileHeaderView: View {
+    @Binding var profileDisplayName:String
+    @Binding var profileImage : UIImage
     var body: some View {
         
-        let user_name:String? = UserDefaults.standard.string(forKey: CurrentUserDefaults.displayName)
-        
         VStack(alignment: .center, spacing: 10, content: {
+            
             // MARK: PROFILE PICTURE
-           Image("food1")
+           Image(uiImage: profileImage)
                 .resizable()
                 .scaledToFill()
                 .frame(width: 120, height: 120, alignment: .center)
                 .cornerRadius(60)
+            
             // MARK: USERNAME
-            Text(user_name!)
+            Text(profileDisplayName)
                 .font(.largeTitle)
                 .fontWeight(.bold)
+            
             // MARK: BIO
             Text("user can add a bio here")
                 .font(.body)
@@ -52,7 +55,14 @@ struct ProfileHeaderView: View {
     }
 }
 
-#Preview {
-    ProfileHeaderView()
-        .previewLayout(.sizeThatFits)
+struct ProfileHeaderView_Previews :PreviewProvider{
+    
+    @State static var name: String = "Joe"
+    @State static var image: UIImage = UIImage(named:"food1")!
+    
+    static var previews: some View{
+        ProfileHeaderView(profileDisplayName: $name, profileImage: $image)
+            .previewLayout(.sizeThatFits)
+    }
 }
+

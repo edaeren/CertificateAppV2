@@ -9,6 +9,9 @@ import Foundation
 import FirebaseStorage // resimleri ve videoları tutar
 import UIKit
 
+//Resmi cache kaydediyoruz ki her seferinde indirmesin
+let imageCache = NSCache<AnyObject, UIImage>()
+
 class ImageManager{
     
     //MARK : PROPERTIES
@@ -28,6 +31,17 @@ class ImageManager{
         //Save image to path
         uploadImage(path: path, image: image) {(_) in }
         
+    }
+    
+    func downloadProfileImage(userID: String, handler: @escaping (_ image : UIImage?) -> ()){
+        
+        //Get Path
+        let path  = getProfileImagePath(userID: userID)
+        
+        //Download image
+        downloadImage(path: path){ (returnedImage) in
+            handler(returnedImage)
+        }
     }
     
     //MARK: PRIVATE FUNCTIONS
@@ -88,7 +102,25 @@ class ImageManager{
         }
     }
     
-    func getImage(path:StorageReference){
+    private func downloadImage(path: StorageReference, handler: @escaping (_ image : UIImage?) -> () ){
         
+        if let cachedImage = imageCache.object(forKey: path){
+            print("image found in cache")
+            handler(cachedImage)
+        } else {
+            path.getData(maxSize: 27 * 1024 * 1024) { (returnedImageData, error) in
+                if let data = returnedImageData , let image  = UIImage(data: data){
+                    //success
+                    imageCache.setObject(image, forKey: path)
+                    handler(image)
+                    return
+                } else {
+                    print("Error getting image from path")
+                    handler(nil)
+                    return
+                }
+            }
+        }
     }
+    
 }
