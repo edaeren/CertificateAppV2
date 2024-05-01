@@ -12,10 +12,12 @@ struct OnboardingView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @State var showOnboardingPart2: Bool = false
+    @State var showOnboardingMail: Bool = false
     @State var showError: Bool = false
     
     @State var displayName: String = ""
     @State var email :String = ""
+    @State var password :String = ""
     @State var providerID: String = ""
     @State var provider : String = ""
     
@@ -48,7 +50,7 @@ struct OnboardingView: View {
                     .frame(maxWidth: .infinity)
             })
             
-            //MARK: SIGN IN WITH APPLE
+            //MARK: SIGN IN WITH GOOGLE
             Button(action: {
                 showOnboardingPart2.toggle()
             }, label: {
@@ -64,6 +66,22 @@ struct OnboardingView: View {
             })
             .accentColor(Color.white)
             
+            
+            //MARK: SIGN IN WITH MAIL
+            Button(action: {
+                showOnboardingMail.toggle()
+            }, label: {
+                HStack{
+                    Image(systemName: "mail")
+                    Text("Sign in with Mail")
+                }
+                .frame(height: 60)
+                .frame(maxWidth: .infinity)
+                .background(Color(.sRGB, red:100/255, green: 200/255, blue: 100/255, opacity: 1.0))
+                .cornerRadius(4)
+                .font(.system(size: 23, weight: .medium, design: .default))
+            })
+            .accentColor(Color.white)
             Button(action: {
                 presentationMode.wrappedValue.dismiss()
             },
@@ -85,7 +103,12 @@ struct OnboardingView: View {
         .fullScreenCover(isPresented: $showOnboardingPart2, onDismiss: {
             self.presentationMode.wrappedValue.dismiss()
         }, content: {
-            OnboardingViewPart2(displayName: $displayName, email: $email, providerID: $providerID, provider: $provider)
+            OnboardingViewPart2(displayName: $displayName, email: $email,password: $password, providerID: $providerID, provider: $provider)
+        })
+        .fullScreenCover(isPresented: $showOnboardingMail, onDismiss: {
+            self.presentationMode.wrappedValue.dismiss()
+        }, content: {
+            OnboardingViewMail(displayName: $displayName, email: $email,password: $password, providerID: $providerID, provider: $provider)
         })
         
         .alert(isPresented: $showError, content: {

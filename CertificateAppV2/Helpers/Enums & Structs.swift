@@ -13,6 +13,7 @@ struct DatabaseUserField{
     
     static let displayName = "display_name"
     static let email = "email"
+    static let password = "password"
     static let providerID = "provider_id"
     static let provider = "provider"
     static let userID = "user_id"

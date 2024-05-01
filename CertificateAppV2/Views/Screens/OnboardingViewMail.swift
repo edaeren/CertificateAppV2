@@ -1,20 +1,20 @@
 //
-//  OnboardingViewPart2.swift
+//  OnboardingViewMail.swift
 //  CertificateAppV2
 //
-//  Created by Eda Eren on 25.04.2024.
+//  Created by Taha  Adıgüzel on 2.05.2024.
 //
 
+import Foundation
 import SwiftUI
 
-struct OnboardingViewPart2: View {
+struct OnboardingViewMail: View {
     
     @Binding var displayName: String
     @Binding var email :String
-    @Binding var password :String
+    @Binding var password : String 
     @Binding var providerID: String
     @Binding var provider : String
-    
     @State var showImagePicker: Bool = false
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var colorScheme
@@ -31,7 +31,6 @@ struct OnboardingViewPart2: View {
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(Color.black)
-            
             TextField("Add your name here...", text: $displayName)
                 .padding()
                 .frame(height: 60)
@@ -40,6 +39,24 @@ struct OnboardingViewPart2: View {
                 .cornerRadius(12)
                 .font(.headline)
                 .autocapitalization(.sentences)
+                .padding(.horizontal)
+            
+            TextField("Add your mail here...", text: $email)
+                .padding()
+                .frame(height: 60)
+                .frame(maxWidth: .infinity)
+                .background(Color.white)
+                .cornerRadius(12)
+                .font(.headline)
+                .padding(.horizontal)
+            
+            TextField("Add your pasword here...", text: $password)
+                .padding()
+                .frame(height: 60)
+                .frame(maxWidth: .infinity)
+                .background(Color.white)
+                .cornerRadius(12)
+                .font(.headline)
                 .padding(.horizontal)
             
             Button(action: {
@@ -87,7 +104,7 @@ struct OnboardingViewPart2: View {
     
     func createProfile(){
         print("CREATE PROFILE NOW")
-        AuthService.instance.createNewUserInDatabase(name: displayName, email: email,password: password, providerID: providerID, provider: provider, profileImage: imageSelected) { (returnedUserId) in
+        AuthService.instance.createNewUserInDatabase(name: displayName, email: email, password: password, providerID: providerID, provider: "mail", profileImage: imageSelected) { (returnedUserId) in
             
             if let userID = returnedUserId{
                 //Success
@@ -117,11 +134,11 @@ struct OnboardingViewPart2: View {
     
 }
 
-struct OnboardingViewPart2_Previews: PreviewProvider {
+struct OnboardingViewMails_Previews: PreviewProvider {
     
     @State static var testString: String = "Test"
     
     static var previews: some View {
-        OnboardingViewPart2(displayName: $testString, email: $testString,password: $testString, providerID: $testString, provider: $testString)
+        OnboardingViewMail(displayName: $testString, email: $testString, password: $testString ,providerID: $testString, provider: $testString)
     }
 }

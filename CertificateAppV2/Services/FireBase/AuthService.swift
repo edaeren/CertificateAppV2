@@ -83,7 +83,7 @@ class AuthService{
     }
     
     //database'de yeni kullanıcı oluşturmak
-    func createNewUserInDatabase(name: String, email: String, providerID: String, provider: String, profileImage: UIImage,handler: @escaping(_ userID: String?)->()){
+    func createNewUserInDatabase(name: String, email: String, password: String ,providerID: String, provider: String, profileImage: UIImage,handler: @escaping(_ userID: String?)->()){
         
         //set up a user document with user collection
         
@@ -97,6 +97,7 @@ class AuthService{
         let userData: [String: Any] = [
             DatabaseUserField.displayName: name,
             DatabaseUserField.email: email,
+            DatabaseUserField.password: password,
             DatabaseUserField.providerID: providerID,
             DatabaseUserField.provider: provider,
             DatabaseUserField.userID: userID,
