@@ -31,22 +31,36 @@ struct ShortFormView: View {
         }//hstack
         ScrollView(.vertical){
             Text("FORM PAGE")
-            
+                .font(.title)
+                .padding(.bottom,50)
+            Spacer()
+            Spacer()
+            Text("Please enter the link to your video (which shows us that you provide all the required things to get this certificate!) to the text field for our jury to evaluate your request.")
+                .padding(.bottom,30)
+                .frame(maxWidth: 350)
+            Spacer()
             TextField(placeholder, text: $submissionText)
                 .padding()
-                .frame(height: 60)
-                .frame(maxWidth: .infinity)
-                .background(Color.secondary)
+                .frame(height: 50)
+                .frame(maxWidth: 350)
+                .background(Color.MyTheme.pinkColor)
+//                .background(Color.white)
+//                .border(Color.black)
                 .cornerRadius(12)
                 .font(.headline)
                 .autocapitalization(.sentences)
             
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                Text("Save".uppercased())
+            Spacer()
+            Button(action: {
+                //eger butona basildiysa istek listesine kisinin istegi dusmeli
+                
+                
+            }, label: {
+                Text("Apply!".uppercased())
                     .font(.title3)
-                    .fontWeight(.bold)
+                    .fontWeight(.medium)
                     .padding()
-                    .frame(height: 45)
+                    .frame(height: 40)
                     .frame(maxWidth: 100)
                     .background(Color.gray)
                     .cornerRadius(12)

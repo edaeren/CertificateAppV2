@@ -37,6 +37,19 @@ struct ContentView: View {
                     Image(systemName: "book.pages")
                     Text("Form")
                 }*/
+        //------------------------------------------------------------------------------------------------
+            
+            //burasi yalnizca admine gorunmeli
+            NavigationView{
+               JuryAssignmentView()
+            }
+                .tabItem {
+                    Image(systemName: "book.pages")
+                    Text("Assignment")
+                }
+            
+            //------------------------------------------------------------------------------------------------
+            
             
             //ztack is for showing the page if the user is signed in
             //tab item should follow the zstack for not getting a crush
@@ -54,6 +67,8 @@ struct ContentView: View {
                     Image(systemName: "person")
                     Text("Profile")
                 }
+            
+           
         }
         .accentColor(Color.MyTheme.pinkColor)
     }

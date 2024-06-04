@@ -40,6 +40,7 @@
 		3C5E2A742BD82904003F82F4 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E2A732BD82904003F82F4 /* OnboardingView.swift */; };
 		3C5E2A762BD82BC4003F82F4 /* SignInWithAppleButtonCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E2A752BD82BC4003F82F4 /* SignInWithAppleButtonCustom.swift */; };
 		3C68BA502BCE9ED800E1093B /* MiniCertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68BA4F2BCE9ED800E1093B /* MiniCertificateView.swift */; };
+		3C8067912C0F54E000B548DE /* JuryAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8067902C0F54E000B548DE /* JuryAssignmentView.swift */; };
 		3CDD1FAA2BA1A155009549E7 /* CertificateAppV2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD1FA92BA1A155009549E7 /* CertificateAppV2App.swift */; };
 		3CDD1FAC2BA1A155009549E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD1FAB2BA1A155009549E7 /* ContentView.swift */; };
 		3CDD1FAE2BA1A156009549E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CDD1FAD2BA1A156009549E7 /* Assets.xcassets */; };
@@ -78,6 +79,7 @@
 		3C5E2A732BD82904003F82F4 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		3C5E2A752BD82BC4003F82F4 /* SignInWithAppleButtonCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButtonCustom.swift; sourceTree = "<group>"; };
 		3C68BA4F2BCE9ED800E1093B /* MiniCertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCertificateView.swift; sourceTree = "<group>"; };
+		3C8067902C0F54E000B548DE /* JuryAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuryAssignmentView.swift; sourceTree = "<group>"; };
 		3CDD1FA62BA1A155009549E7 /* CertificateAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CertificateAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CDD1FA92BA1A155009549E7 /* CertificateAppV2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateAppV2App.swift; sourceTree = "<group>"; };
 		3CDD1FAB2BA1A155009549E7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				3C5E2A712BD81CB2003F82F4 /* SignUpView.swift */,
 				3C5E2A732BD82904003F82F4 /* OnboardingView.swift */,
 				3C4C1B542BDAF9180041E802 /* OnboardingViewPart2.swift */,
+				3C8067902C0F54E000B548DE /* JuryAssignmentView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				3C5E2A762BD82BC4003F82F4 /* SignInWithAppleButtonCustom.swift in Sources */,
 				3C5E2A702BD819C4003F82F4 /* SettingsEditImageView.swift in Sources */,
 				3C2853B72BA484FF007E93D9 /* CertificateModel.swift in Sources */,
+				3C8067912C0F54E000B548DE /* JuryAssignmentView.swift in Sources */,
 				3CDD1FAC2BA1A155009549E7 /* ContentView.swift in Sources */,
 				3C4C1B572BDB03B90041E802 /* ImagePicker.swift in Sources */,
 				3C3E0C0A2BA1BA470087500C /* Extensions.swift in Sources */,

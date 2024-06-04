@@ -76,7 +76,7 @@ struct CertificateView: View {
                      
                            
                     }  , label: {
-                        Text("Başvur".uppercased())
+                        Text("Apply".uppercased())
                             .font(.headline)
                             .fontWeight(.bold)
                             .padding()
