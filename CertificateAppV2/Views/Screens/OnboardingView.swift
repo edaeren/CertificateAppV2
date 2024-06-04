@@ -67,13 +67,13 @@ struct OnboardingView: View {
             .accentColor(Color.white)
             
             
-            //MARK: SIGN IN WITH MAIL
+            //MARK: SIGN UP WITH MAIL
             Button(action: {
                 showOnboardingMail.toggle()
             }, label: {
                 HStack{
                     Image(systemName: "mail")
-                    Text("Sign in with Mail")
+                    Text("Sign Up")
                 }
                 .frame(height: 60)
                 .frame(maxWidth: .infinity)
@@ -82,6 +82,45 @@ struct OnboardingView: View {
                 .font(.system(size: 23, weight: .medium, design: .default))
             })
             .accentColor(Color.white)
+            
+            
+            //MARK: LOGIN
+            TextField("Email", text: $displayName)
+                .padding()
+                .frame(height: 60)
+                .frame(maxWidth: .infinity)
+                .background(Color.white)
+                .cornerRadius(12)
+                .font(.headline)
+                .autocapitalization(.sentences)
+                .padding(.horizontal)
+            TextField("Password", text: $displayName)
+                .padding()
+                .frame(height: 60)
+                .frame(maxWidth: .infinity)
+                .background(Color.white)
+                .cornerRadius(12)
+                .font(.headline)
+                .autocapitalization(.sentences)
+                .padding(.horizontal)
+            
+            Button(action: {
+                showOnboardingMail.toggle()
+            }, label: {
+                HStack{
+                    //Image(systemName: "mail")
+                    Text("Login")
+                }
+                .frame(height: 60)
+                .frame(maxWidth: .infinity)
+                .background(Color.gray)
+                .cornerRadius(4)
+                .font(.system(size: 23, weight: .medium, design: .default))
+            })
+            .accentColor(Color.white)
+            
+            
+            Text("or")
             Button(action: {
                 presentationMode.wrappedValue.dismiss()
             },
@@ -92,7 +131,6 @@ struct OnboardingView: View {
                     .padding()
             })
             .accentColor(.black)
-            
             
             
         }
@@ -135,7 +173,39 @@ struct OnboardingView: View {
             }
         }
     }
-}
+    
+    /*
+    func cpenProfile(){
+     //   AuthService.instance.logInUserToApp(userID: String, handler: <#T##(Bool) -> ()##(Bool) -> ()##(_ success: Bool) -> ()#>) { //(returnedUserId) in
+            
+           // if let userID = returnedUserId{
+                //Success
+              //  print("Successfully found user in database")
+                AuthService.instance.logInUserToApp(userID: userID) {(success) in
+                    if success{
+                        print("User logged in!")
+                        //return to app
+                        self.presentationMode.wrappedValue.dismiss()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                    }else{
+                        print("Error logging in")
+                        self.showError.toggle()
+                    }
+                }
+            }else{
+                //Error
+                print("Error matching user in Database")
+                self.showError.toggle()
+            }
+        }*/
+    }
+    
+    
+    
+    
+
 
 #Preview {
     OnboardingView()

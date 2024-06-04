@@ -11,6 +11,8 @@ struct CertificateView: View {
     
     @State var certificates : CertificateModel
     @State var showShortForm: Bool = false
+    @State var showSignUpPage: Bool = false
+    @State var isLoggedIn: Bool = false
     
     //bunu fotograf icin olan haline degistiricez ki o foto gelsin sadece
    // @State var submissionText: String = ""
@@ -53,27 +55,48 @@ struct CertificateView: View {
             }
             
             
-            Button(action:{
-                showShortForm.toggle()
-            }  , label: {
-                Text("Başvur".uppercased())
-                    .font(.headline)
-                    .fontWeight(.bold)
+            NavigationStack{
+                VStack{
+                    Button(action:{
+                       checkIfLoggedIn()
+                        if isLoggedIn == true {
+                          //  showShortForm.toggle()
+                            showShortForm.toggle()
+                           
+                          /*  NavigationLink(destination: ShortFormView(), isActive: $showShortForm) {
+                                 EmptyView()
+                             }*/
+                        }
+                        else{
+                            showSignUpPage = true
+                            NavigationLink(destination: SignUpView(), isActive: $showSignUpPage) {
+                                  EmptyView()
+                            }
+                        }
+                     
+                           
+                    }  , label: {
+                        Text("Başvur".uppercased())
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .padding()
+                            .frame(height: 60)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.MyTheme.blueColor)
+                            .cornerRadius(12)
+                            .shadow(radius: 12)
+                    })
+                    .accentColor(.black)
                     .padding()
-                    .frame(height: 60)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.MyTheme.blueColor)
-                    .cornerRadius(12)
-                    .shadow(radius: 12)
-            })
-            .accentColor(.black)
-            .padding()
-        }
-        .navigationBarTitle(certificates.certificateName)
-        .navigationBarTitleDisplayMode(.inline)
-        .fullScreenCover(isPresented: $showShortForm, content: {
-            ShortFormView()
-        })
+                }
+                .navigationBarTitle(certificates.certificateName)
+                .navigationBarTitleDisplayMode(.inline)
+                .fullScreenCover(isPresented: $showShortForm, content: {
+                    ShortFormView()
+                })
+                }
+            }
+            
         /*.onAppear(perform: {
             getCertificates()
         })*/
@@ -110,7 +133,14 @@ struct CertificateView: View {
         let certificate1 = CertificateModel(certificateID: "", certificateName: "sertif1", sectionID: "", sectionName: "")
     }*/
     
-    
+    func checkIfLoggedIn(){
+        if UserDefaults.standard.string(forKey: CurrentUserDefaults.userID) != nil{
+            isLoggedIn = true
+        }
+        else{
+            isLoggedIn = false
+        }
+    }
     } //en dis viewın parantezi
 
 
@@ -119,12 +149,16 @@ struct CertificateView: View {
     ContentView()
 }*/
 
+
+
+
+
+
+
 #Preview {
     NavigationView{
         var certificate : CertificateModel = CertificateModel(certificateID: "", certificateName: "Sertifika1", sectionID: "",sectionName: "", photoName: "food2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat varius elementum. In volutpat ligula ornare erat lacinia, non finibus odio vestibulum. Donec eu euismod turpis.", requirements: "gereklilikler")
     
         CertificateView(certificates: certificate)
     }
-    
-   
 }

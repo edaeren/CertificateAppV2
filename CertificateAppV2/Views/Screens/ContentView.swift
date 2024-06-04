@@ -31,11 +31,12 @@ struct ContentView: View {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 }
+            /*  form page
             Text("Form")
                 .tabItem {
                     Image(systemName: "book.pages")
                     Text("Form")
-                }
+                }*/
             
             //ztack is for showing the page if the user is signed in
             //tab item should follow the zstack for not getting a crush

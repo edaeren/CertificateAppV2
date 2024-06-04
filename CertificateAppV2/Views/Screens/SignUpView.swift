@@ -35,7 +35,7 @@ struct SignUpView: View {
             Button(action:{
                 showOnboarding.toggle()
             }  , label: {
-                Text("Sign In  / Sign Up".uppercased())
+                Text("Login / Sign Up".uppercased())
                     .font(.headline)
                     .fontWeight(.bold)
                     .padding()
