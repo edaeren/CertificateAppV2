@@ -42,8 +42,8 @@ struct CertificateView: View {
                 
                 // MARK: - REQUIREMENTS
                 //sola daya bunu
-                Spacer()
-                Spacer()
+//                Spacer()
+//                Spacer()
                 Text("REQUIREMENTS")
                     .frame(width: 200)
                     .fontWeight(.bold)
@@ -52,54 +52,55 @@ struct CertificateView: View {
                 Text(certificates.requirements ?? "")
                     .frame(width: 300, alignment: .leading)
                     .padding(.leading,1)
+                
+                    VStack{
+                        Button(action:{
+                           checkIfLoggedIn()
+                            if isLoggedIn == true {
+                                showShortForm.toggle()
+    //                            showShortForm.toggle()
+                               
+                              /*  NavigationLink(destination: ShortFormView(), isActive: $showShortForm) {
+                                     EmptyView()
+                                 }*/
+                            }
+                            else{
+    //                            showSignUpPage = true
+                                showSignUpPage.toggle()
+                               /* NavigationLink(destination: SignUpView(), isActive: $showSignUpPage) {
+                                      EmptyView()
+                                }*/
+                            }
+                         
+                               
+                        }  , label: {
+                            Text("Apply".uppercased())
+                                .font(.headline)
+                                .fontWeight(.bold)
+                                .padding()
+                                .frame(height: 60)
+                                .frame(maxWidth: 300)
+                                .background(Color.MyTheme.blueColor)
+                                .cornerRadius(12)
+                                .shadow(radius: 12)
+                        })
+                        .accentColor(.black)
+                        .padding()
+                    }
+                    .navigationBarTitle(certificates.certificateName)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .fullScreenCover(isPresented: $showSignUpPage, content: {
+                        SignUpView()
+                    })
+                    .fullScreenCover(isPresented: $showShortForm, content: {
+                        ShortFormView()
+                    })
+                    
+                    
             }
             
             
-            NavigationStack{
-                VStack{
-                    Button(action:{
-                       checkIfLoggedIn()
-                        if isLoggedIn == true {
-                            showShortForm.toggle()
-//                            showShortForm.toggle()
-                           
-                          /*  NavigationLink(destination: ShortFormView(), isActive: $showShortForm) {
-                                 EmptyView()
-                             }*/
-                        }
-                        else{
-//                            showSignUpPage = true
-                            showSignUpPage.toggle()
-                           /* NavigationLink(destination: SignUpView(), isActive: $showSignUpPage) {
-                                  EmptyView()
-                            }*/
-                        }
-                     
-                           
-                    }  , label: {
-                        Text("Apply".uppercased())
-                            .font(.headline)
-                            .fontWeight(.bold)
-                            .padding()
-                            .frame(height: 60)
-                            .frame(maxWidth: .infinity)
-                            .background(Color.MyTheme.blueColor)
-                            .cornerRadius(12)
-                            .shadow(radius: 12)
-                    })
-                    .accentColor(.black)
-                    .padding()
-                }
-                .navigationBarTitle(certificates.certificateName)
-                .navigationBarTitleDisplayMode(.inline)
-                .fullScreenCover(isPresented: $showSignUpPage, content: {
-                    SignUpView()
-                })
-                .fullScreenCover(isPresented: $showShortForm, content: {
-                    ShortFormView()
-                })
-                
-                }
+           
             }
             
         /*.onAppear(perform: {
