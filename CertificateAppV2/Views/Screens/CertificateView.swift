@@ -60,18 +60,19 @@ struct CertificateView: View {
                     Button(action:{
                        checkIfLoggedIn()
                         if isLoggedIn == true {
-                          //  showShortForm.toggle()
                             showShortForm.toggle()
+//                            showShortForm.toggle()
                            
                           /*  NavigationLink(destination: ShortFormView(), isActive: $showShortForm) {
                                  EmptyView()
                              }*/
                         }
                         else{
-                            showSignUpPage = true
-                            NavigationLink(destination: SignUpView(), isActive: $showSignUpPage) {
+//                            showSignUpPage = true
+                            showSignUpPage.toggle()
+                           /* NavigationLink(destination: SignUpView(), isActive: $showSignUpPage) {
                                   EmptyView()
-                            }
+                            }*/
                         }
                      
                            
@@ -91,9 +92,13 @@ struct CertificateView: View {
                 }
                 .navigationBarTitle(certificates.certificateName)
                 .navigationBarTitleDisplayMode(.inline)
+                .fullScreenCover(isPresented: $showSignUpPage, content: {
+                    SignUpView()
+                })
                 .fullScreenCover(isPresented: $showShortForm, content: {
                     ShortFormView()
                 })
+                
                 }
             }
             

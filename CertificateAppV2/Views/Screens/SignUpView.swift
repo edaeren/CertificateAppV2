@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State var showOnboarding: Bool = false
     
     var body: some View {
@@ -54,7 +55,9 @@ struct SignUpView: View {
         .padding(.all, 40)
         .background(Color.MyTheme.blueColor)
         .edgesIgnoringSafeArea(.all)
-        .fullScreenCover(isPresented: $showOnboarding, content: {
+        .fullScreenCover(isPresented: $showOnboarding,onDismiss: {
+            self.presentationMode.wrappedValue.dismiss()
+        },content: {
            OnboardingView()
         })
     }
