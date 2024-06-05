@@ -41,13 +41,12 @@ struct ContentView: View {
             
             //burasi yalnizca admine gorunmeli
             NavigationView{
-               JuryAssignmentView()
+                ApplicantsView(listOfApplicants: DataArrayObject())
             }
                 .tabItem {
                     Image(systemName: "book.pages")
-                    Text("Assignment")
+                    Text("Applicants")
                 }
-            
             //------------------------------------------------------------------------------------------------
             
             
