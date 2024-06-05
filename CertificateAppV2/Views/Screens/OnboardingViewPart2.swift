@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OnboardingViewPart2: View {
-    
+  
     @Binding var displayName: String
     @Binding var email :String
     @Binding var password :String
