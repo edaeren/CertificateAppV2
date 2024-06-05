@@ -1,5 +1,5 @@
 //
-//  JuryAssignmentView.swift
+//  ApplicantsView.swift
 //  CertificateAppV2
 //
 //  Created by Eda Eren on 26.04.2024.
