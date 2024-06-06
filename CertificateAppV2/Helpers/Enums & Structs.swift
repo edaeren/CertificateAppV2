@@ -27,3 +27,12 @@ struct CurrentUserDefaults{
     static let bio = "bio"
     static let userID = "user_id"
 }
+
+struct DatabaseCertificateField{
+    static let certificateID = "certificate,_id"
+    static let certificateName = "certificate_name"
+    static let description = "description"
+    static let requirements = "requirements"
+    static let sectionID = "section_id"
+    static let sectionName = "section_name"
+}

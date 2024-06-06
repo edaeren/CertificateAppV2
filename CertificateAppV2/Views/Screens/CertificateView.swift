@@ -14,6 +14,11 @@ struct CertificateView: View {
     @State var showSignUpPage: Bool = false
     @State var isLoggedIn: Bool = false
     
+    @State var certificateImage: UIImage = UIImage(named: "logo.loading")!
+    @State var certificateName: String?
+    @State var description: String = ""
+    @State var requirements: String = ""
+    
     //bunu fotograf icin olan haline degistiricez ki o foto gelsin sadece
    // @State var submissionText: String = ""
     
@@ -29,7 +34,7 @@ struct CertificateView: View {
                 
                
                 //MARK: - IMAGE
-                Image(certificates.photoName)
+                Image(uiImage: certificateImage)
 //                Image("food1")
                     .resizable()
                     .scaledToFill()
@@ -38,7 +43,7 @@ struct CertificateView: View {
                     .padding(.all,50) .padding(.horizontal,106)
                
                 // MARK: - DESCRIPTION
-                Text(certificates.description ?? "").padding(.horizontal,150)
+                Text(description).padding(.horizontal,150)
                 
                 // MARK: - REQUIREMENTS
                 //sola daya bunu
@@ -49,7 +54,7 @@ struct CertificateView: View {
                     .fontWeight(.bold)
                     .padding(.leading,5)
                 Spacer()
-                Text(certificates.requirements ?? "")
+                Text(requirements)
                     .frame(width: 300, alignment: .leading)
                     .padding(.leading,1)
                 
@@ -147,6 +152,27 @@ struct CertificateView: View {
             isLoggedIn = false
         }
     }
+    
+    func getImages(){
+        ImageManager.instance.downloadCertificateImage(certificateID: certificates.certificateID) { (returnedImage) in
+            if let image = returnedImage {
+                self.certificateImage = image
+            }
+        }
+    }
+
+    func getInfos(){
+        DataService.instance.getCertificateInfo(forCertificateID:certificates.certificateID) {
+            (returnedDescription,returnedReq) in
+            if let description = returnedDescription{
+                self.description = description
+            }
+            if let req = returnedReq{
+                self.requirements = req
+            }
+        }
+    }
+    
     } //en dis viewın parantezi
 
 
@@ -154,17 +180,3 @@ struct CertificateView: View {
 #Preview {
     ContentView()
 }*/
-
-
-
-
-
-
-
-#Preview {
-    NavigationView{
-        var certificate : CertificateModel = CertificateModel(certificateID: "", certificateName: "Sertifika1", sectionID: "",sectionName: "", photoName: "food2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat varius elementum. In volutpat ligula ornare erat lacinia, non finibus odio vestibulum. Donec eu euismod turpis.", requirements: "gereklilikler")
-    
-        CertificateView(certificates: certificate)
-    }
-}

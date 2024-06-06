@@ -16,6 +16,7 @@ import UIKit
 let DB_BASE  = Firestore.firestore()
 
 class AuthService{
+    var onboardingView: OnboardingView!
     
     //MARK: PROPERTIES
     
@@ -26,7 +27,7 @@ class AuthService{
     
     //MARK: AUTH USER FUNCTIONS
     
-    func logInUserToFirebase(credential: AuthCredential, handler: @escaping (_ provierID: String?, _ isError: Bool) ->()) {
+    func logInUserToFirebase(credential: AuthCredential, handler: @escaping (_ providerID: String?, _ isError: Bool) ->()) {
         
         Auth.auth().signIn(with:credential) { (result, error) in
             if  error != nil{
@@ -113,6 +114,9 @@ class AuthService{
                 handler(nil)
             }else{
                 //success
+                Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                  // ...
+                }
                 handler(userID)
             }
         }

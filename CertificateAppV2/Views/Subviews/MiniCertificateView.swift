@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MiniCertificateView: View {
     @State var data: CertificateModel
+    @State var certificateImage: UIImage = UIImage(named: "logo.loading")!
 //    var showHeader: Bool
     
     var body: some View {
@@ -31,8 +32,7 @@ struct MiniCertificateView: View {
                 
                
                 VStack{
-                    Image(data.photoName)
-//                    Image("food1")
+                    Image(uiImage: data.photo ?? certificateImage)
                     .resizable()
                     .scaledToFit()
                     Text(data.certificateName)
@@ -51,7 +51,7 @@ struct MiniCertificateView: View {
 
 struct MiniCertificateView_Previews: PreviewProvider{
     
-    static var data: CertificateModel = CertificateModel(certificateID:"", certificateName: "Yemek Sertifikası", sectionID: "1", sectionName: "FOOD RELATED CERTIFICATES", photoName: "food1")
+    static var data: CertificateModel = CertificateModel(certificateID:"", certificateName: "Yemek Sertifikası", sectionID: "1", sectionName: "FOOD RELATED CERTIFICATES")
     
     static var previews: some View{
 //        MiniCertificateView(data: data, showHeader: true)

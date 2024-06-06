@@ -15,10 +15,9 @@ struct CertificateModel: Identifiable, Hashable{
     var certificateName: String
     var sectionID: String
     var sectionName: String
-
-    var photoName: String
     var description: String?
     var requirements: String?
+    var photo: UIImage?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)

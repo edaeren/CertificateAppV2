@@ -44,12 +44,27 @@ class ImageManager{
         }
     }
     
+    func downloadCertificateImage(certificateID: String, handler: @escaping (_ image: UIImage?)->()){
+        
+        let path = getCertificateImagePath(certificateID: certificateID)
+        
+        downloadImage(path: path) { (returnedImage) in
+            handler(returnedImage)
+        }
+    }
+    
     //MARK: PRIVATE FUNCTIONS
     
     private func getProfileImagePath(userID:String)->StorageReference{
         let userPath = "users/\(userID)/profile"
         
         let storagePath = REF_STOR.reference(withPath: userPath)
+        return storagePath
+    }
+    
+    private func getCertificateImagePath(certificateID:String)->StorageReference{
+        let certificatePath = "certificates/\(certificateID)/image.jpg"
+        let storagePath = REF_STOR.reference(withPath: certificatePath)
         return storagePath
     }
     
