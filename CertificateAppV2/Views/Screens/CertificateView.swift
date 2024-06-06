@@ -91,6 +91,9 @@ struct CertificateView: View {
                         })
                         .accentColor(.black)
                         .padding()
+                    }.onAppear(){
+                        getImages()
+                        getInfos()
                     }
                     .navigationBarTitle(certificates.certificateName)
                     .navigationBarTitleDisplayMode(.inline)
