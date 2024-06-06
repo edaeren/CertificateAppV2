@@ -41,7 +41,7 @@ struct ContentView: View {
             
             //burasi yalnizca admine gorunmeli
             NavigationView{
-                ApplicantsView(listOfApplicants: DataArrayObject())
+                ApplicantsView(listOfApplicants: UserArrayObject(), section1: UserArrayObject(), section2: UserArrayObject(), section3: UserArrayObject())
             }
                 .tabItem {
                     Image(systemName: "book.pages")

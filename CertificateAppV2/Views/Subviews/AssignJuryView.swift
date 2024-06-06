@@ -10,7 +10,7 @@ import SwiftUI
 struct AssignJuryView: View {
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
-       /*
+       
         HStack {
             Button(action: {
                 presentationMode.wrappedValue.dismiss()
@@ -25,7 +25,7 @@ struct AssignJuryView: View {
             .padding(.leading)
             Spacer()
             
-        }//hstack*/
+        }//hstack
         ScrollView{
             Text("Admin will assign juries here")
         }

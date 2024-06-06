@@ -9,16 +9,22 @@ import Foundation
 import SwiftUI
 
 struct UserModel: Identifiable, Hashable{
-    var id: ObjectIdentifier
-    
-    var id2 = UUID()
+//    var id: ObjectIdentifier
+
+    var id = UUID()
     var userID: String
     var userName: String
     var adminOrNot: Bool
     var adminKurum: String?
     var email: String?
     var password: String?
+    var sectionID: String?
+    var sectionName: String?
+    var photoName: String
    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
     
     //userID
     //userName
