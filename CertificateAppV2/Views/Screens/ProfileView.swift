@@ -90,11 +90,28 @@ struct ProfileView: View {
         DataService.instance.getUserCertificates(forUserID: currentUserID!){ (certificates) in
             if let certificates = certificates {
                     // Sertifika listesini ekrana yazdır
-                    print("Kullanıcı Sertifikaları: \(certificates)")
-                certificateNumber = String(certificates.count)
+                    certificateNumber = String(certificates.count)
+                for item in certificates{
+                    getCertificateInformations(forCertificateID: item)
+                }
                 } else {
                     print("Sertifikalar alınamadı.")
                 }
+        }
+    }
+    
+    func getCertificateInformations(forCertificateID certificateID:String){
+        DataService.instance.getCertificateInfoForDataArray(forCertificateID: certificateID){(certificateName,sectionID,sectionName) in
+            if let name = certificateName{
+                print("Name: \(String(describing: name))")
+            }
+            if let id = sectionID{
+                print("ID: \(String(describing: id))")
+            }
+            if let sName = sectionName{
+                print("sName: \(String(describing: sName))")
+            }
+            
         }
     }
 }

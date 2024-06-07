@@ -110,11 +110,6 @@ struct CertificateView: View {
         // MARK: FUNCTIONS
        
         }
-    /*
-    func getCertificates(){
-        print("get certificates from database")
-        let certificate1 = CertificateModel(certificateID: "", certificateName: "sertif1", sectionID: "", sectionName: "")
-    }*/
     
     func checkIfLoggedIn(){
         if UserDefaults.standard.string(forKey: CurrentUserDefaults.userID) != nil{

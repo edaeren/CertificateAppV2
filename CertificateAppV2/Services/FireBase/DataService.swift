@@ -20,16 +20,31 @@ class DataService {
     func getCertificateInfo(forCertificateID certifiacteID:String, handler: @escaping (_ name: String?, _ bio: String?)->()){
         REF_CERTIFICATES.document(certifiacteID).getDocument { (documentSnapshot,error) in
             if let document = documentSnapshot,
-               
                 let description = document.get(DatabaseCertificateField.description) as? String,
                 let requirements = document.get(DatabaseCertificateField.requirements) as? String{
-                
                 print("Success geting certificate info")
                 handler(description,requirements)
                 return
             } else {
                 print("Error geting certificate info")
                 handler(nil,nil)
+                return
+            }
+        }
+    }
+    
+    func getCertificateInfoForDataArray(forCertificateID certifiacteID:String, handler: @escaping (_ certificateName: String?, _ sectionID: String?, _ sectionName: String?)->()){
+        REF_CERTIFICATES.document(certifiacteID).getDocument { (documentSnapshot,error) in
+            if let document = documentSnapshot,
+                let certificateName = document.get(DatabaseCertificateField.certificateName) as? String,
+                let sectionID = document.get(DatabaseCertificateField.sectionID) as? String,
+                let sectionName = document.get(DatabaseCertificateField.sectionName) as? String{
+                print("Success geting certificate info")
+                handler(certificateName,sectionID,sectionName)
+                return
+            } else {
+                print("Error geting certificate info")
+                handler(nil,nil,nil)
                 return
             }
         }
@@ -45,12 +60,9 @@ class DataService {
         }
     }
     
-    
     func getUserCertificates(forUserID userID: String, handler: @escaping (_ certificateID: [String]?) ->()){
-        
         REF_USERCERTIFICATES.document(userID).getDocument{ (documentSnapshot,error)in
             if let document = documentSnapshot,
-               
                 let certificates = document.get(DatabaseUserField.certificates) as? [String]{
                 print("Success getting user certificates")
                 handler(certificates)

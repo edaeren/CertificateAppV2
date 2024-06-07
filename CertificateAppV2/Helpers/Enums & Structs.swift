@@ -33,10 +33,10 @@ struct CurrentUserDefaults{
 }
 
 struct DatabaseCertificateField{
-    static let certificateID = "certificate,_id"
-    static let certificateName = "certificate_name"
+    static let certificateID = "certificate_id"
+    static let certificateName = "certificateName"
     static let description = "description"
     static let requirements = "requirements"
-    static let sectionID = "section_id"
-    static let sectionName = "section_name"
+    static let sectionID = "sectionID"
+    static let sectionName = "sectionName"
 }

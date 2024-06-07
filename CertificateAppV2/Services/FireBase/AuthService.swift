@@ -112,15 +112,6 @@ class AuthService{
             return
         }
         handler(true)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
-            let defaulsDictionary = UserDefaults.standard.dictionaryRepresentation()
-            defaulsDictionary.keys.forEach{ (key) in
-                UserDefaults.standard.removeObject(forKey: key)
-                
-            }
-        }
-      
     }
     
     //database'de yeni kullanıcı oluşturmak

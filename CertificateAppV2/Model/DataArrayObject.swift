@@ -11,11 +11,9 @@ class DataArrayObject: ObservableObject{
     
     //blank array of certificatemodel
     @Published var dataArray = [CertificateModel]()
-    @Published var dataArray2 = [CertificateModel]()
     @Published var section1Array = [CertificateModel]()
     @Published var section2Array = [CertificateModel]()
     @Published var section3Array = [CertificateModel]()
-    @Published var section4Array = [CertificateModel]()
 //    @Published var sectionsArray = [CertificateModel]()
     
     init(){
@@ -105,13 +103,6 @@ class DataArrayObject: ObservableObject{
                 return section.sectionID == "3"
             }
             
-            // seciton4
-            _ = self.dataArray.filter { section in
-                if section.sectionID == "3" {
-                    self.section3Array.append(section)
-                }
-                return section.sectionID == "3"
-            }
         }
 
         
