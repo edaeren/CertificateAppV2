@@ -88,6 +88,32 @@ class ApplicantsArrayObject: ObservableObject{
             section2Array = applicantsArray.filter { $0.sectionID == "2" }
             section3Array = applicantsArray.filter { $0.sectionID == "3" }
         }
+    
+    /*
+    func removeApplicant(_ applicant: ApplicantsModel) {
+            if let index = applicantsArray.firstIndex(where: { $0.userID == applicant.userID && $0.sectionID == sectionID }) {
+                applicantsArray.remove(at: index)
+                updateSections()
+            }
+        }*/
+    /*
+    func removeApplicant(userID: String, sectionID: String) {
+            if let index = applicantsArray.firstIndex(where: { $0.userID == userID && $0.sectionID == sectionID }) {
+                applicantsArray.remove(at: index)
+                updateSections()
+            }
+        }*/
+    func removeApplicant(userID: String, certificateID: String) {
+            if let index = applicantsArray.firstIndex(where: { $0.userID == userID && $0.certificateID == certificateID }) {
+                applicantsArray.remove(at: index)
+                updateSections()
+            }
+        }
+
+    
+    
+    
+    
     /*
     private func updateSections() {
            /* section1Array = applicantsArray.filter { $0.sectionID == "1" }

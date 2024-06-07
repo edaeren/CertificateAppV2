@@ -54,9 +54,16 @@ struct ApplicantsView: View {
 //                                print("userID: \(section1.) link:\(applicants.link) certificateID: \(applicants.certificateID) sectionID: \(applicants.sectionID)")
                                 Spacer()
                                 Spacer(minLength: 170)
-                                Image(systemName: "xmark")
+                                Button(action: {
+//                                    array.removeApplicant(data)
+//                                    array.removeApplicant(userID: data.userID, sectionID: data.sectionID)
+                                    array.removeApplicant(userID: data.userID, certificateID: data.certificateID)
+                                }, label: {
+                                    Image(systemName: "xmark")
                                     .font(.headline)
                                     .fontWeight(.medium)
+                                })
+                                    .accentColor(.black)
                                 Spacer()
                                 Spacer()
                                 Button(action: {
@@ -89,19 +96,8 @@ struct ApplicantsView: View {
                     }
                     
                 }
-                /*
-                Button(action: {
-                    //assignjuryview'a gidecek sekilde degistir
-                    showAssignJuryPage.toggle()
-//                    print("userID: \(section1.section1Array)")
-                    print("userID: \(array.section1Array)")
-                   
-                }, label: {
-                    Image(systemName: "checkmark")
-                        .font(.headline)
-                        .fontWeight(.medium)
-                    
-                })*/
+                
+               
                 Spacer()
                 Spacer()
                 
@@ -144,9 +140,16 @@ struct ApplicantsView: View {
                                 })
                                 .accentColor(.black)*/
                                 
-                                Image(systemName: "xmark")
+                                Button(action: {
+//                                    array.removeApplicant(data)
+//                                    array.removeApplicant(userID: data.userID, sectionID: data.sectionID)
+                                    array.removeApplicant(userID: data.userID, certificateID: data.certificateID)
+                                }, label: {
+                                    Image(systemName: "xmark")
                                     .font(.headline)
                                     .fontWeight(.medium)
+                                })
+                                    .accentColor(.black)
                                 Spacer()
                                 Spacer()
                                 Button(action: {
@@ -204,9 +207,16 @@ struct ApplicantsView: View {
                                 Text(data.userID)
                                 Spacer()
                                 Spacer(minLength: 170)
-                                Image(systemName: "xmark")
+                                Button(action: {
+//                                    array.removeApplicant(data)
+//                                    array.removeApplicant(userID: data.userID, sectionID: data.sectionID)
+                                    array.removeApplicant(userID: data.userID, certificateID: data.certificateID)
+                                }, label: {
+                                    Image(systemName: "xmark")
                                     .font(.headline)
                                     .fontWeight(.medium)
+                                })
+                                    .accentColor(.black)
                                 Spacer()
                                 Spacer()
                                 Button(action: {
@@ -235,6 +245,18 @@ struct ApplicantsView: View {
                         
                     }
                 }
+                Button(action: {
+                    //assignjuryview'a gidecek sekilde degistir
+                    //showAssignJuryPage.toggle()
+//                    print("userID: \(section1.section1Array)")
+                    print("userID: \(array.section1Array) \(array.section2Array) \(array.section3Array) ")
+                   
+                }, label: {
+                    Image(systemName: "checkmark")
+                        .font(.headline)
+                        .fontWeight(.medium)
+                    
+                })
             }
         }
         
