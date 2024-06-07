@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @State var showSettings: Bool = false
     @State var profileDisplayName: String
+    @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
     @ObservedObject var section1 : DataArrayObject
     var profileUserID: String
     
@@ -66,6 +67,14 @@ struct ProfileView: View {
         )
         .onAppear(perform: {
             getProfileImage()
+            /*DataService.getUserCertificates(forUserID :currentUserID ?? "" ){ (certificates) in
+                if let items = certificates{
+                    for item in items{
+                        print("certificate id: \(item)")
+                    }
+                }
+                
+            }*/
         })
         .sheet(isPresented: $showSettings, content: {
             SettingsView()

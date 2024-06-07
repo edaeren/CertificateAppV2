@@ -12,7 +12,12 @@ struct ContentView: View {
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
     @AppStorage(CurrentUserDefaults.displayName) var currentDisplayName :String?
     var currentUserId: String? = nil
-    
+    @State var isAdminModel = UserModel(userID: "", userName: "", isAdmin: false, isJury: false)
+    @State var isAdmin: Bool = false
+    /*
+    init() {
+           checkUserState()
+       }*/
     var body: some View {
         TabView {
             //feed view yazisinin gozukmesi icin navigation view icine aldik feed view u
@@ -38,22 +43,22 @@ struct ContentView: View {
                     Text("Form")
                 }*/
         //------------------------------------------------------------------------------------------------
+//            checkUserState()
             
-            
-            //burasi yalnizca admine gorunmeli
-            NavigationView{
-//                ApplicantsView(listOfApplicants: UserArrayObject(), section1: UserArrayObject(), section2: UserArrayObject(), section3: UserArrayObject())
-//                ApplicantsView(listOfApplicants: ApplicantsArrayObject(), section1: ApplicantsArrayObject())
-//                ApplicantsView(section1: ApplicantsArrayObject(), section2: ApplicantsArrayObject(), array: ApplicantsArrayObject())
-//                ApplicantsView(array: ApplicantsArrayObject())
-                ApplicantsView()
-            }
-            
-                .tabItem {
-                    Image(systemName: "book.pages")
-                    Text("Applicants")
-                }
+            if isAdmin {
+                          NavigationView {
+                              ApplicantsView()
+                          }
+                          .tabItem {
+                              Image(systemName: "book.pages")
+                              Text("Applicants")
+                          }
+                      }
+           
             //------------------------------------------------------------------------------------------------
+            
+            
+            
             
             
             //ztack is for showing the page if the user is signed in
@@ -72,11 +77,38 @@ struct ContentView: View {
                     Image(systemName: "person")
                     Text("Profile")
                 }
-            
            
         }
         .accentColor(Color.MyTheme.pinkColor)
+        .onAppear {
+        }
     }
+   
+    //MARK: FUNCTIONS
+    //checking if the user is admin or not
+    /*
+    func checkUserState(){
+        AuthService.instance.getUserStateInfo(forUserID: isAdminModel.userID) {
+            (returnedUserState) in
+           /* let userState = returnedUserState
+            return userState*/
+            
+            if let userState = returnedUserState{
+                self.isAdmin = isAdmin
+            }
+        }
+    }*/
+    func checkUserState(completion: @escaping (Bool) -> Void) {
+            AuthService.instance.getUserStateInfo(forUserID: isAdminModel.userID) { (returnedUserState) in
+                if let userState = returnedUserState {
+                    completion(userState)
+                } else {
+                    completion(false)
+                }
+            }
+        }
+    
+    
 }
 
 #Preview {

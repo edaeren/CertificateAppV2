@@ -14,14 +14,16 @@ struct UserModel: Identifiable, Hashable{
     var id = UUID()
     var userID: String
     var userName: String
-    var adminOrNot: Bool
-    var adminKurum: String?
+    var isAdmin: Bool
+    var isJury: Bool
+    var juryExpert: String?
     var email: String?
     var password: String?
     var sectionID: String?
     var sectionName: String?
-    var photoName: String
-   
+    var photoName: String?
+    var certificates: [String]?
+    
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
@@ -33,4 +35,4 @@ struct UserModel: Identifiable, Hashable{
     //email
     //password
 }
-    
+

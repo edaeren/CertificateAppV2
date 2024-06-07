@@ -15,12 +15,12 @@ class UserArrayObject: ObservableObject{
     init(){
         print("fetch from database here")
         
-        let user1 = UserModel(userID: "1", userName: "user1", adminOrNot:false, email:"", sectionID: "1", sectionName: "Yemekle İlgili", photoName: "user1")
-        let user2 = UserModel(userID: "2", userName: "user2", adminOrNot:false, email:"", sectionID: "2", sectionName: "Bilgisayarla İlgili", photoName: "user2")
-        let user3 = UserModel(userID: "3", userName: "user3", adminOrNot:false, email:"", sectionID: "3", sectionName: "Çizimle İlgili", photoName: "user1")
-        let user4 = UserModel(userID: "4", userName: "user4", adminOrNot:false, email:"", sectionID: "4", sectionName: "Uzayla İlgili", photoName: "user2")
-        let user5 = UserModel(userID: "5", userName: "user5", adminOrNot:false, email:"", sectionID: "5", sectionName: "Camla İlgili", photoName: "user1")
-        let user6 = UserModel(userID: "6", userName: "user6", adminOrNot:false, email:"", sectionID: "1", sectionName: "Yemekle İlgili", photoName: "user2")
+        let user1 = UserModel(userID: "1", userName: "user1", isAdmin:false, isJury:false ,email:"", sectionID: "1", sectionName: "Yemekle İlgili", photoName: "user1")
+        let user2 = UserModel(userID: "2", userName: "user2", isAdmin:false, isJury:false ,email:"", sectionID: "2", sectionName: "Bilgisayarla İlgili", photoName: "user2")
+        let user3 = UserModel(userID: "3", userName: "user3", isAdmin:false, isJury:false ,email:"", sectionID: "3", sectionName: "Çizimle İlgili", photoName: "user1")
+        let user4 = UserModel(userID: "4", userName: "user4", isAdmin:false, isJury:false ,email:"", sectionID: "4", sectionName: "Uzayla İlgili", photoName: "user2")
+        let user5 = UserModel(userID: "5", userName: "user5", isAdmin:false, isJury:false ,email:"", sectionID: "5", sectionName: "Camla İlgili", photoName: "user1")
+        let user6 = UserModel(userID: "6", userName: "user6", isAdmin:false, isJury:false ,email:"", sectionID: "1", sectionName: "Yemekle İlgili", photoName: "user2")
         
         self.userArray.append(user1)
         self.userArray.append(user2)

@@ -11,15 +11,14 @@ class DataArrayObject: ObservableObject{
     
     //blank array of certificatemodel
     @Published var dataArray = [CertificateModel]()
+    @Published var dataArray2 = [CertificateModel]()
     @Published var section1Array = [CertificateModel]()
     @Published var section2Array = [CertificateModel]()
     @Published var section3Array = [CertificateModel]()
+    @Published var section4Array = [CertificateModel]()
 //    @Published var sectionsArray = [CertificateModel]()
     
     init(){
-        
-        let data4 = CertificateModel(certificateID: "", certificateName: "yemekk4", sectionID: "4", sectionName: "Uzayla İlgili")
-        let data5 = CertificateModel(certificateID: "", certificateName: "yemekk5", sectionID: "5", sectionName: "Camla İlgili")
         
         DataService.instance.getAllCertificates { (documents, error) in
             if let error = error {
@@ -51,6 +50,7 @@ class DataArrayObject: ObservableObject{
             }
         }
         
+        
        /* DataService.instance.getAllCertificates2 { (certificates, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
@@ -60,10 +60,6 @@ class DataArrayObject: ObservableObject{
                 print("Data Array Function: \(self.dataArray)")
             }
         }*/
-        
-        self.dataArray.append(data4)
-        self.dataArray.append(data5)
-        
     /*
         if(data1.sectionID=="1"){
             self.section1Array.append(data1)
@@ -102,6 +98,14 @@ class DataArrayObject: ObservableObject{
             }
 
             // section3Array'yi doldur
+            _ = self.dataArray.filter { section in
+                if section.sectionID == "3" {
+                    self.section3Array.append(section)
+                }
+                return section.sectionID == "3"
+            }
+            
+            // seciton4
             _ = self.dataArray.filter { section in
                 if section.sectionID == "3" {
                     self.section3Array.append(section)

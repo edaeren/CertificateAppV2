@@ -128,6 +128,7 @@ class AuthService{
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             
             let newProviderID = authResult?.user.uid
+            
             print("Oluşturulan user \(newProviderID ?? "unkownID")")
             
             let userData: [String: Any] = [
@@ -137,8 +138,11 @@ class AuthService{
                 DatabaseUserField.providerID: newProviderID ?? "",
                 DatabaseUserField.provider: provider,
                 DatabaseUserField.userID: userID,
+                DatabaseUserField.isAdmin: false,
+                DatabaseUserField.isJury:false,
                 DatabaseUserField.bio:"",
-                
+                DatabaseUserField.juryExpert:"",
+                DatabaseUserField.certificates:[],
                 DatabaseUserField.dateCreated: FieldValue.serverTimestamp(),
             ]
             
@@ -194,4 +198,38 @@ class AuthService{
             }
         }
     }
+    
+    func getUserIsAdmin(forUserID userID:String, handler: @escaping (_ isAdmin: Bool?)->()){
+        REF_USERS.document(userID).getDocument { (documentSnapshot,error) in
+            if let document = documentSnapshot,
+               
+                let isAdmin = document.get(DatabaseUserField.isAdmin) as? Bool{
+                print("Success geting user info")
+                handler(isAdmin)
+                return
+            } else {
+                print("Error geting user info")
+                handler(nil)
+                return
+            }
+        }
+    }
+    
+    func getUserStateInfo(forUserID userID:String, handler: @escaping (_ isAdmin: Bool?)->()){
+            
+            REF_USERS.document(userID).getDocument { (documentSnapshot,error) in
+                if let document = documentSnapshot,
+                   
+                    let isAdmin = document.get(DatabaseUserField.isAdmin) as? Bool{
+                    print("Success geting user is admin")
+                    print("sonucu : \(isAdmin)")
+                    handler(isAdmin)
+                    return
+                } else {
+                    print("Error geting user info")
+                    handler(nil)
+                    return
+                }
+            }
+        }
 }
