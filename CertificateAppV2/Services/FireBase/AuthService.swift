@@ -27,6 +27,23 @@ class AuthService{
     
     //MARK: AUTH USER FUNCTIONS
     
+    func logInWithMail(email: String,password: String, handler: @escaping (_ providerID: String?, _ isError: Bool, _ isNewUser : Bool?, _ userID: String?) ->()){
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if error != nil{
+                print("Error loggin in to Firebase with mail")
+                handler (nil,true,nil,nil)
+                return
+            }
+            guard let providerID = authResult?.user.uid else{
+                print("Error getting provider ID")
+                handler(nil,true,nil,nil)
+                return
+            }
+            print("User loggedWithMail USer providerID: \(providerID)")
+            
+            self.chechIfUserExistsInDatabase(providerID: providerID){ (returnedUserID) in
+                
+                if let userID = returnedUserID{
                     //user exist
                     handler(providerID,false,false,userID)
                 } else {
