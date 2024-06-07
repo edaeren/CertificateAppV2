@@ -85,7 +85,7 @@ struct OnboardingView: View {
             
             
             //MARK: LOGIN
-            TextField("Email", text: $displayName)
+            TextField("Email", text: $email)
                 .padding()
                 .frame(height: 60)
                 .frame(maxWidth: .infinity)
@@ -94,7 +94,7 @@ struct OnboardingView: View {
                 .font(.headline)
                 .autocapitalization(.sentences)
                 .padding(.horizontal)
-            TextField("Password", text: $displayName)
+            TextField("Password", text: $password)
                 .padding()
                 .frame(height: 60)
                 .frame(maxWidth: .infinity)
@@ -105,7 +105,8 @@ struct OnboardingView: View {
                 .padding(.horizontal)
             
             Button(action: {
-                showOnboardingMail.toggle()
+                connectWithMail(email: email, password: password)
+                //showOnboardingMail.toggle()
             }, label: {
                 HStack{
                     //Image(systemName: "mail")
@@ -158,11 +159,13 @@ struct OnboardingView: View {
     func connectToFirebase(name: String,email: String, provider: String, credential: AuthCredential){
         AuthService.instance.logInUserToFirebase(credential: credential) { returnedProviderId, isError in
                 
-            if let provierID = returnedProviderId, !isError {
+            if let providerID = returnedProviderId, !isError {
                 
+                
+                //New User
                 self.displayName = name
                 self.email = email
-                self.providerID = provierID
+                self.providerID = providerID
                 self.provider = provider
                 
                 self.showOnboardingPart2.toggle()
@@ -174,6 +177,31 @@ struct OnboardingView: View {
         }
     }
     
+    func connectWithMail(email:String,password:String){
+        
+        AuthService.instance.logInWithMail(email: email, password: password){ returnedProviderId, isError , isNewUser, returnedUserID in
+            
+            if let userID = returnedUserID, !isError {
+                AuthService.instance.logInUserToApp(userID: userID){(success) in
+                    if success{
+                        print("User logged in!")
+                        //return to app
+                        self.presentationMode.wrappedValue.dismiss()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                    }else{
+                        print("Error logging in")
+                        self.showError.toggle()
+                    }
+                    
+                }
+            }else {
+                print("Error getting in to from log in user Firebase")
+                self.showError.toggle()
+            }
+        }
+    }
     /*
     func cpenProfile(){
      //   AuthService.instance.logInUserToApp(userID: String, handler: <#T##(Bool) -> ()##(Bool) -> ()##(_ success: Bool) -> ()#>) { //(returnedUserId) in

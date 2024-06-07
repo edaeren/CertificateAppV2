@@ -19,6 +19,8 @@ struct DatabaseUserField{
     static let userID = "user_id"
     static let bio = "bio"
     static let dateCreated = "date_created"
+    static let adminOrNot = "admin_or_not"
+    static let adminKurum = "admin_kurum"
     
 }
 

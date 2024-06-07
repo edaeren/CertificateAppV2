@@ -27,6 +27,18 @@ class AuthService{
     
     //MARK: AUTH USER FUNCTIONS
     
+                    //user exist
+                    handler(providerID,false,false,userID)
+                } else {
+                    //user does NOT exist
+                    handler(providerID,false,true,nil)
+                }
+                
+            }
+            //handler(providerID,false)
+        }
+    }
+    
     func logInUserToFirebase(credential: AuthCredential, handler: @escaping (_ providerID: String?, _ isError: Bool) ->()) {
         
         Auth.auth().signIn(with:credential) { (result, error) in
@@ -47,6 +59,8 @@ class AuthService{
     //
     func logInUserToApp(userID: String, handler: @escaping (_ success: Bool)-> ()){
         //Get the users info
+        print("User id in logInUserToApp : \(userID)")
+        
         getUserInfo(forUserID: userID){(returnedName,returnedBio) in
             if let name = returnedName, let bio = returnedBio {
                 //Success
@@ -90,34 +104,57 @@ class AuthService{
         
         let document = REF_USERS.document()
         let userID = document.documentID
-        
         //upload profile image to storage
         ImageManager.instance.uploadProfileImage(userID: userID, image: profileImage)
         
-        //upload porfile data to firebase
-        let userData: [String: Any] = [
-            DatabaseUserField.displayName: name,
-            DatabaseUserField.email: email,
-            DatabaseUserField.password: password,
-            DatabaseUserField.providerID: providerID,
-            DatabaseUserField.provider: provider,
-            DatabaseUserField.userID: userID,
-            DatabaseUserField.bio:"",
-            DatabaseUserField.dateCreated: FieldValue.serverTimestamp(),
-        ]
         
-        document.setData(userData){ (error) in
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             
-            if let error = error{
-                //Error
-                print("Error uploading data to user document. \(error)")
-                handler(nil)
-            }else{
-                //success
-                Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                  // ...
+            let newProviderID = authResult?.user.uid
+            print("Oluşturulan user \(newProviderID ?? "unkownID")")
+            
+            let userData: [String: Any] = [
+                DatabaseUserField.displayName: name,
+                DatabaseUserField.email: email,
+                DatabaseUserField.password: password,
+                DatabaseUserField.providerID: newProviderID ?? "",
+                DatabaseUserField.provider: provider,
+                DatabaseUserField.userID: userID,
+                DatabaseUserField.bio:"",
+                
+                DatabaseUserField.dateCreated: FieldValue.serverTimestamp(),
+            ]
+            
+            document.setData(userData){ (error) in
+                
+                if let error = error{
+                    //Error
+                    print("Error uploading data to user document. \(error)")
+                    handler(nil)
+                }else{
+                    //success
+                    handler(userID)
                 }
-                handler(userID)
+            }
+        }
+        
+        //upload porfile data to firebase
+       
+    }
+    
+    private func chechIfUserExistsInDatabase(providerID: String, handler: @escaping (_ existingUserID:String?) -> ()){
+        
+        REF_USERS.whereField(DatabaseUserField.providerID, isEqualTo: providerID).getDocuments(){ (querySnaphot, error) in
+        
+            if let snaphot = querySnaphot, snaphot.count > 0 , let document = snaphot.documents.first{
+                //Success
+                let existinfUserID = document.documentID
+                handler(existinfUserID)
+                return
+            } else {
+                //Error
+                handler(nil)
+                return
             }
         }
     }
