@@ -11,6 +11,7 @@ struct SectionView: View {
     @ObservedObject var section1 : DataArrayObject
     @ObservedObject var section2 : DataArrayObject
     @ObservedObject var section3 : DataArrayObject
+    @ObservedObject var sectionUser: DataArrayObject
 
     var body: some View {
         
@@ -108,9 +109,9 @@ struct SectionView: View {
                         }.fixedSize()
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
+                    
+                    
                 }
-                
-                
                 
                 
             }//ven ust stack?
@@ -131,7 +132,7 @@ struct SectionView_Previews: PreviewProvider{
     static var previews: some View{
 //        SectionView(section: <#T##CertificateModel#>, datas: DataArrayObject())
       //    SectionView(datas: DataArrayObject(), section1: DataArrayObject())
-        SectionView(section1: DataArrayObject(), section2: DataArrayObject(), section3: DataArrayObject())
+        SectionView(section1: DataArrayObject(forUserID: ""), section2: DataArrayObject(forUserID: ""), section3: DataArrayObject(forUserID: ""), sectionUser: DataArrayObject(forUserID: ""))
             .previewLayout(.sizeThatFits)
     }
 }

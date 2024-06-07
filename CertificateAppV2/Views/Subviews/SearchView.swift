@@ -57,7 +57,7 @@ struct SearchView: View {
 
 #Preview {
     NavigationView{
-        SearchView(listOfCertificates: DataArrayObject())
+        SearchView(listOfCertificates: DataArrayObject(forUserID: ""))
     }
     
 }

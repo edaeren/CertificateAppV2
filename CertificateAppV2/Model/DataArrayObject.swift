@@ -7,16 +7,20 @@
 
 import Foundation
 import UIKit
-class DataArrayObject: ObservableObject{
+
+class DataArrayObject: ObservableObject {
     
     //blank array of certificatemodel
     @Published var dataArray = [CertificateModel]()
+    @Published var dataArrayUser = [CertificateModel]()
     @Published var section1Array = [CertificateModel]()
     @Published var section2Array = [CertificateModel]()
     @Published var section3Array = [CertificateModel]()
+    @Published var sectionArrayUser = [CertificateModel]()
+    
 //    @Published var sectionsArray = [CertificateModel]()
     
-    init(){
+    init(forUserID userID:String){
         
         DataService.instance.getAllCertificates { (documents, error) in
             if let error = error {
@@ -46,6 +50,8 @@ class DataArrayObject: ObservableObject{
                 }
                 print("Data Array Function: \(self.dataArray)")
             }
+            
+            self.sertifikalar(forUserID: userID)
         }
         
         
@@ -103,6 +109,14 @@ class DataArrayObject: ObservableObject{
                 return section.sectionID == "3"
             }
             
+            _ = self.dataArrayUser.filter { section in
+                
+                self.sectionArrayUser.append(section)
+               
+                return section.sectionID == "4"
+            }
+           
+            
         }
 
         
@@ -137,4 +151,57 @@ class DataArrayObject: ObservableObject{
     init(certificate: CertificateModel){
         self.dataArray.append(certificate)
     }
+    
+    
+    func sertifikalar(forUserID userID:String?){
+        if userID != ""{
+            if let user = userID {
+                DataService.instance.getUserCertificates(forUserID: userID!){ (certificates) in
+                    if let certificates = certificates {
+                            // Sertifika listesini ekrana yazdır
+                        for item in certificates{
+                            self.getCertificateInformations(forCertificateID: item)
+                        }
+                        } else {
+                            print("Sertifikalar alınamadı.")
+                        }
+                }
+            }
+
+        } else {
+            print("User not found")
+        }
+            
+       
+        
+    }
+    
+    func getCertificateInformations(forCertificateID certificateID:String){
+        DataService.instance.getCertificateInfoForDataArray(forCertificateID: certificateID){(certificateName,sectionID,sectionName) in
+            if let name = certificateName{
+                if let id = sectionID{
+                    if let sName = sectionName{
+                        print("ID: \(String(describing: id))")
+                        print("Name: \(String(describing: name))")
+                        print("sName: \(String(describing: sName))")
+                        
+                        var certificateImage: UIImage = UIImage(named: "logo.loading")!
+                        ImageManager.instance.downloadCertificateImage(certificateID: certificateID) { (returnedImage) in
+                            if let image = returnedImage {
+                                certificateImage = image
+                            }
+                        }
+                        
+                        let data = CertificateModel(certificateID: certificateID, certificateName: name, sectionID: id, sectionName: sName, photo: certificateImage)
+                        self.dataArrayUser.append(data)
+                    }
+                }
+            }
+            
+            
+            
+            
+        }
+    }
+    
 }

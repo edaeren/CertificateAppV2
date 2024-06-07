@@ -23,14 +23,14 @@ struct ContentView: View {
             //feed view yazisinin gozukmesi icin navigation view icine aldik feed view u
             NavigationView{
                 //  FeedView(datas: DataArrayObject(),section1: DataArrayObject())
-                FeedView(section1: DataArrayObject(), section2: DataArrayObject(), section3: DataArrayObject())
+                FeedView(section1: DataArrayObject(forUserID: currentUserID ?? ""), section2: DataArrayObject(forUserID: currentUserID ?? ""), section3: DataArrayObject(forUserID: currentUserID ?? ""), sectionUser: DataArrayObject(forUserID: currentUserID ?? ""))
             }
             .tabItem {
                 Image(systemName: "rosette")
                 Text("Home Page")
             }
             NavigationView{
-                SearchView(listOfCertificates: DataArrayObject())
+                SearchView(listOfCertificates: DataArrayObject(forUserID: currentUserID ?? "" ))
             }
             .tabItem {
                 Image(systemName: "magnifyingglass")
@@ -66,7 +66,7 @@ struct ContentView: View {
             ZStack{
                 if let userID = currentUserID, let displayName = currentDisplayName {
                     NavigationView{
-                        ProfileView(profileDisplayName: displayName, certificateNumber:"", section1:DataArrayObject(), profileUserID: userID)
+                        ProfileView(profileDisplayName: displayName, certificateNumber:"", section1:DataArrayObject(forUserID: currentUserID!), profileUserID: userID)
                     }
                 } else {
                     SignUpView()

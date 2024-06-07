@@ -40,7 +40,7 @@ struct ProfileView: View {
                 
                 ScrollView(.horizontal){
                     HStack{
-                        ForEach(section1.section1Array, id : \.self){data in
+                        ForEach(section1.sectionArrayUser, id : \.self){data in
                             NavigationLink(
                                 //EGER KULLANICI KENDI PROFILINE BAKACAKSA BASVUR BUTONU GOZUKMEYECEK
                                 //BASKASI BAKIYORSA GOZUKECEK
@@ -87,30 +87,25 @@ struct ProfileView: View {
     }
     
     func sertifikalar(){
-        DataService.instance.getUserCertificates(forUserID: currentUserID!){ (certificates) in
-            if let certificates = certificates {
+        if currentUserID != nil {
+            DataService.instance.getUserCertificates(forUserID: currentUserID!){ (certificates) in
+                if let certificates = certificates {
                     // Sertifika listesini ekrana yazdır
                     certificateNumber = String(certificates.count)
-                for item in certificates{
-                    getCertificateInformations(forCertificateID: item)
                 }
-                } else {
-                    print("Sertifikalar alınamadı.")
-                }
+            }
         }
     }
     
     func getCertificateInformations(forCertificateID certificateID:String){
         DataService.instance.getCertificateInfoForDataArray(forCertificateID: certificateID){(certificateName,sectionID,sectionName) in
-            if let name = certificateName{
-                print("Name: \(String(describing: name))")
-            }
-            if let id = sectionID{
-                print("ID: \(String(describing: id))")
-            }
-            if let sName = sectionName{
-                print("sName: \(String(describing: sName))")
-            }
+            let name = certificateName
+            let id = sectionID
+            let sName = sectionName
+            print("ID: \(String(describing: id))")
+            print("Name: \(String(describing: name))")
+            print("sName: \(String(describing: sName))")
+          
             
         }
     }
@@ -119,7 +114,7 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider{
     static var previews: some View{
         NavigationView{
-            ProfileView(profileDisplayName:"joe", certificateNumber:"4", section1: DataArrayObject(), profileUserID: "")
+            ProfileView(profileDisplayName:"joe", certificateNumber:"4", section1: DataArrayObject(forUserID: ""), profileUserID: "")
         }
     }
 }
