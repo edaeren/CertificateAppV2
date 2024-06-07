@@ -73,7 +73,7 @@ struct ApplicantsView: View {
                                 Spacer()
                             }.frame(height: 40).background(.bar)
                                 .padding(.all,3)
-                                .frame(maxWidth: .infinity)
+                                .frame(maxWidth: 350)
                                 .cornerRadius(21)
                                 .fixedSize()
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -89,6 +89,7 @@ struct ApplicantsView: View {
                     }
                     
                 }
+                /*
                 Button(action: {
                     //assignjuryview'a gidecek sekilde degistir
                     showAssignJuryPage.toggle()
@@ -100,7 +101,7 @@ struct ApplicantsView: View {
                         .font(.headline)
                         .fontWeight(.medium)
                     
-                })
+                })*/
                 Spacer()
                 Spacer()
                 
@@ -161,7 +162,7 @@ struct ApplicantsView: View {
                                 Spacer()
                             }.frame(height: 40).background(.bar)
                                 .padding(.all,3)
-                                .frame(maxWidth: .infinity)
+                                .frame(maxWidth: 350)
                                 .cornerRadius(21)
                                 .fixedSize()
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -221,7 +222,7 @@ struct ApplicantsView: View {
                                 Spacer()
                             }.frame(height: 40).background(.bar)
                                 .padding(.all,3)
-                                .frame(maxWidth: .infinity)
+                                .frame(maxWidth: 350)
                                 .cornerRadius(21)
                                 .fixedSize()
                                 .frame(maxWidth: .infinity, alignment: .leading)

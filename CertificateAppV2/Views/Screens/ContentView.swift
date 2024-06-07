@@ -39,6 +39,7 @@ struct ContentView: View {
                 }*/
         //------------------------------------------------------------------------------------------------
             
+            
             //burasi yalnizca admine gorunmeli
             NavigationView{
 //                ApplicantsView(listOfApplicants: UserArrayObject(), section1: UserArrayObject(), section2: UserArrayObject(), section3: UserArrayObject())
@@ -47,6 +48,7 @@ struct ContentView: View {
 //                ApplicantsView(array: ApplicantsArrayObject())
                 ApplicantsView()
             }
+            
                 .tabItem {
                     Image(systemName: "book.pages")
                     Text("Applicants")

@@ -82,6 +82,13 @@ class ApplicantsArrayObject: ObservableObject{
             applicantsArray.append(applicant)
             updateSections()
         }
+    
+    private func updateSections() {
+            section1Array = applicantsArray.filter { $0.sectionID == "1" }
+            section2Array = applicantsArray.filter { $0.sectionID == "2" }
+            section3Array = applicantsArray.filter { $0.sectionID == "3" }
+        }
+    /*
     private func updateSections() {
            /* section1Array = applicantsArray.filter { $0.sectionID == "1" }
             section2Array = applicantsArray.filter { $0.sectionID == "2" }*/
@@ -103,7 +110,7 @@ class ApplicantsArrayObject: ObservableObject{
             }
             return section.sectionID == "3"
         }
-        }
+        }*/
      /*
        func addApplicant(_ applicant: ApplicantsModel) {
            applicantsArray.append(applicant)
