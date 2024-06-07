@@ -9,10 +9,12 @@ import SwiftUI
 
 struct ApplicantsView: View {
     //this list will be the applicant list
-    @ObservedObject var listOfApplicants : UserArrayObject
-    @ObservedObject var section1 : UserArrayObject
-    @ObservedObject var section2 : UserArrayObject
-    @ObservedObject var section3 : UserArrayObject
+//    @ObservedObject var listOfApplicants : ApplicantsArrayObject
+//    @ObservedObject var section1 : ApplicantsArrayObject
+//    @ObservedObject var section2 : ApplicantsArrayObject
+//    @ObservedObject var array : ApplicantsArrayObject
+    @EnvironmentObject var array: ApplicantsArrayObject
+//    @ObservedObject var section3 : ApplicantsArrayObject
 //    @State var searchText = ""
     @State var showAssignJuryPage: Bool = false
     @Environment(\.presentationMode) var presentationMode
@@ -37,15 +39,19 @@ struct ApplicantsView: View {
                 ScrollView(.horizontal){
                     VStack{
                         //                ForEach(sections)  sectionlari icinde tutan arrayi gezerek tek bir baslik saglama
-                        ForEach(section1.section1Array, id : \.self){data in
+                        ForEach(array.section1Array, id : \.self){data in
                             
                             HStack {
-                                Image(data.photoName)
+                               /* Image(data.photoName)
                                     .resizable()
                                     .scaledToFit()
-                                    .cornerRadius(130)
+                                    .cornerRadius(130)*/
                                 
-                                Text(data.userName)
+//                                Text(data.userName)
+//                                Text(data.userID)
+                                Text(data.userID)
+                               
+//                                print("userID: \(section1.) link:\(applicants.link) certificateID: \(applicants.certificateID) sectionID: \(applicants.sectionID)")
                                 Spacer()
                                 Spacer(minLength: 170)
                                 Image(systemName: "xmark")
@@ -56,6 +62,7 @@ struct ApplicantsView: View {
                                 Button(action: {
                                     //assignjuryview'a gidecek sekilde degistir
                                     showAssignJuryPage.toggle()
+                                   
                                 }, label: {
                                     Image(systemName: "checkmark")
                                         .font(.headline)
@@ -76,15 +83,24 @@ struct ApplicantsView: View {
                                 }, content: {
                                     AssignJuryView()
                                 })
-                            /*
-                             .fixedSize()
-                             .frame(maxWidth: .infinity, alignment: .leading)
-                             .padding(.leading, 30)*/
-                            
+                           
                         }
+                        
                     }
+                    
                 }
-                
+                Button(action: {
+                    //assignjuryview'a gidecek sekilde degistir
+                    showAssignJuryPage.toggle()
+//                    print("userID: \(section1.section1Array)")
+                    print("userID: \(array.section1Array)")
+                   
+                }, label: {
+                    Image(systemName: "checkmark")
+                        .font(.headline)
+                        .fontWeight(.medium)
+                    
+                })
                 Spacer()
                 Spacer()
                 
@@ -98,19 +114,21 @@ struct ApplicantsView: View {
                     Spacer()
                 }
                 .padding(.all, 6)
-                // MARK: YEMEK SERTIFIKALARI SCROLLVIEWI
+                // MARK: BILG SERTIFIKALARI SCROLLVIEWI
                 ScrollView(.horizontal){
                     VStack{
                         //                ForEach(sections)  sectionlari icinde tutan arrayi gezerek tek bir baslik saglama
-                        ForEach(section2.section2Array, id : \.self){data in
+                        ForEach(array.section3Array, id : \.self){data in
                             
                             HStack {
-                                Image(data.photoName)
+                              /*  Image(data.photoName)
                                     .resizable()
                                     .scaledToFit()
                                     .cornerRadius(130)
                                 
-                                Text(data.userName)
+                                Text(data.userName)*/
+                                Text(data.userID)
+//                                Text(data.certificateID)
                                 Spacer()
                                 Spacer(minLength: 170)
                                 /*
@@ -153,29 +171,8 @@ struct ApplicantsView: View {
                                 }, content: {
                                     AssignJuryView()
                                 })}
-                          /*  NavigationLink(
-                                destination: AssignJuryView(),
-                                label: {
-                                    HStack {
-                                        Image(data.photoName)
-                                            .resizable()
-                                            .scaledToFit()
-                                            .cornerRadius(130)
-                                        Text(data.userName)
-                                        Spacer()
-                                    }.frame(height: 40).background(.bar)
-                                        .padding(.all,3)
-                                        .frame(maxWidth: .infinity)
-                                        .cornerRadius(21)
-                                })
-                        }.fixedSize()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading, 30)*/
                     }
                 }
-                
-                
                 Spacer()
                 Spacer()
                 
@@ -193,15 +190,17 @@ struct ApplicantsView: View {
                 ScrollView(.horizontal){
                     VStack{
                         //                ForEach(sections)  sectionlari icinde tutan arrayi gezerek tek bir baslik saglama
-                        ForEach(section3.section3Array, id : \.self){data in
+                        ForEach(array.section2Array, id : \.self){data in
                             
                             HStack {
+                                /*
                                 Image(data.photoName)
                                     .resizable()
                                     .scaledToFit()
-                                    .cornerRadius(130)
+                                    .cornerRadius(130)*/
                                 
-                                Text(data.userName)
+//                                Text(data.userName)
+                                Text(data.userID)
                                 Spacer()
                                 Spacer(minLength: 170)
                                 Image(systemName: "xmark")
@@ -232,27 +231,6 @@ struct ApplicantsView: View {
                                 }, content: {
                                     AssignJuryView()
                                 })}
-                            /*
-                            NavigationLink(
-                                destination: AssignJuryView(),
-                                label: {
-                                    HStack {
-                                        Image(data.photoName)
-                                            .resizable()
-                                            .scaledToFit()
-                                            .cornerRadius(130)
-                                        Text(data.userName)
-                                        Spacer()
-                                    }.frame(height: 40).background(.bar)
-                                        .padding(.all,3)
-                                        .frame(maxWidth: .infinity)
-                                        .cornerRadius(21)
-                                })
-                        }.fixedSize()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading, 30)
-                        */
                         
                     }
                 }
@@ -261,15 +239,12 @@ struct ApplicantsView: View {
         
     }
     
-    /*
-    struct ApplicantsView_Previews: PreviewProvider{
-        static var previews: some View{
-            ApplicantsView(listOfApplicants: UserArrayObject(), section1: UserArrayObject(), section2: UserArrayObject(), section3: UserArrayObject())
-                .previewLayout(.sizeThatFits)
-        }
-    }*/
 }
 
 #Preview {
-    ApplicantsView(listOfApplicants: UserArrayObject(), section1: UserArrayObject(), section2: UserArrayObject(), section3: UserArrayObject())
+//    ApplicantsView(listOfApplicants: ApplicantsArrayObject(), section1: ApplicantsArrayObject(), section2: UserArrayObject(), section3: UserArrayObject())
+//    ApplicantsView(section1: ApplicantsArrayObject(), section2: ApplicantsArrayObject(), array: ApplicantsArrayObject())
+//    ApplicantsView(array: ApplicantsArrayObject())
+    ApplicantsView()
+    .environmentObject(ApplicantsArrayObject.shared)
 }

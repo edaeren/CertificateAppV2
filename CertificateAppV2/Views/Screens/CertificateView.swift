@@ -18,6 +18,8 @@ struct CertificateView: View {
     @State var certificateName: String?
     @State var description: String = ""
     @State var requirements: String = ""
+//    @StateObject var applicantsArray = ApplicantsArrayObject()
+   
     
     //bunu fotograf icin olan haline degistiricez ki o foto gelsin sadece
    // @State var submissionText: String = ""
@@ -25,14 +27,7 @@ struct CertificateView: View {
     var body: some View {
         VStack{
             ScrollView{
-             /* Text("CERTIFICATE 1")
-                    .font(.title)
-                    .fontDesign(.monospaced)
-                    .fontWeight(.bold)
-                   // .padding(.horizontal,10)
-                    .frame(width: 300, height: 30, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)*/
                 
-               
                 //MARK: - IMAGE
                 Image(uiImage: certificateImage)
 //                Image("food1")
@@ -63,11 +58,7 @@ struct CertificateView: View {
                            checkIfLoggedIn()
                             if isLoggedIn == true {
                                 showShortForm.toggle()
-    //                            showShortForm.toggle()
                                
-                              /*  NavigationLink(destination: ShortFormView(), isActive: $showShortForm) {
-                                     EmptyView()
-                                 }*/
                             }
                             else{
     //                            showSignUpPage = true
@@ -101,7 +92,8 @@ struct CertificateView: View {
                         SignUpView()
                     })
                     .fullScreenCover(isPresented: $showShortForm, content: {
-                        ShortFormView()
+//                        ShortFormView(applicantsArray: applicantsArray, certificates: certificates)
+                        ShortFormView(certificates: certificates)
                     })
                     
                     
@@ -117,29 +109,6 @@ struct CertificateView: View {
         
         // MARK: FUNCTIONS
        
-        
-        /*
-        HStack{
-            Button(action: {
-               
-            }) {
-                Text("BAŞVUR")
-                //.background(Color.MyTheme.pinkColor)
-                //.foregroundColor(.white)
-                // .font(.title)
-                //.fontWeight(.medium)
-                //.fontDesign(.rounded)
-                // .padding(.all,6)
-            
-                    
-            }
-            .accentColor(Color.MyTheme.pinkColor)*/
-            /*
-            Image("certificate1")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 40, height: 40, alignment: .center)
-                .cornerRadius(20)*/
         }
     /*
     func getCertificates(){
@@ -178,8 +147,26 @@ struct CertificateView: View {
     
     } //en dis viewın parantezi
 
-
 /*
 #Preview {
-    ContentView()
+    NavigationView{
+        var certificate : CertificateModel = CertificateModel(certificateID: "", certificateName: "Sertifika1", sectionID: "",sectionName: "", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat varius elementum. In volutpat ligula ornare erat lacinia, non finibus odio vestibulum. Donec eu euismod turpis.", requirements: "gereklilikler")
+//        var user : UserModel = UserModel(userID: "", userName: "user1", adminOrNot: false, photoName: "user1")
+    
+//        CertificateView(certificates: certificate, user: user)
+        CertificateView(certificates: certificate)
+     
+    }
 }*/
+/*
+struct CertificateView_Previews: PreviewProvider{
+    
+    static var certificate: CertificateModel = CertificateModel(certificateID:"", certificateName: "Yemek Sertifikası", sectionID: "1", sectionName: "FOOD RELATED CERTIFICATES")
+    
+    static var previews: some View{
+//        MiniCertificateView(data: data, showHeader: true)
+        CertificateView(certificates: certificate)
+            .previewLayout(.sizeThatFits)
+    }
+}
+*/

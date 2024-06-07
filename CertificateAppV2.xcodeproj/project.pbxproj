@@ -13,6 +13,7 @@
 		3C2853B92BA48D26007E93D9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2853B82BA48D26007E93D9 /* UserModel.swift */; };
 		3C2853BB2BA496D7007E93D9 /* DataArrayObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2853BA2BA496D7007E93D9 /* DataArrayObject.swift */; };
 		3C2853BD2BA49B13007E93D9 /* CertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2853BC2BA49B13007E93D9 /* CertificateView.swift */; };
+		3C299A642C122639004E8DAA /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C299A632C122639004E8DAA /* DataService.swift */; };
 		3C3E0C0A2BA1BA470087500C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E0C092BA1BA470087500C /* Extensions.swift */; };
 		3C4073582BE130730031C140 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C4073572BE130730031C140 /* GoogleService-Info.plist */; };
 		3C40735F2BE1307D0031C140 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C40735B2BE1307D0031C140 /* AuthService.swift */; };
@@ -43,6 +44,8 @@
 		3C65AE8B2C10F69200F907D7 /* AssignJuryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C65AE8A2C10F69200F907D7 /* AssignJuryView.swift */; };
 		3C68BA502BCE9ED800E1093B /* MiniCertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68BA4F2BCE9ED800E1093B /* MiniCertificateView.swift */; };
 		3C8067912C0F54E000B548DE /* ApplicantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8067902C0F54E000B548DE /* ApplicantsView.swift */; };
+		3CD6DD1C2C1316400044CA52 /* ApplicantsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD6DD1B2C1316400044CA52 /* ApplicantsModel.swift */; };
+		3CD6DD1E2C1316440044CA52 /* ApplicantsArrayObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD6DD1D2C1316440044CA52 /* ApplicantsArrayObject.swift */; };
 		3CDD1FAA2BA1A155009549E7 /* CertificateAppV2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD1FA92BA1A155009549E7 /* CertificateAppV2App.swift */; };
 		3CDD1FAC2BA1A155009549E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD1FAB2BA1A155009549E7 /* ContentView.swift */; };
 		3CDD1FAE2BA1A156009549E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CDD1FAD2BA1A156009549E7 /* Assets.xcassets */; };
@@ -60,6 +63,7 @@
 		3C2853B82BA48D26007E93D9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		3C2853BA2BA496D7007E93D9 /* DataArrayObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataArrayObject.swift; sourceTree = "<group>"; };
 		3C2853BC2BA49B13007E93D9 /* CertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateView.swift; sourceTree = "<group>"; };
+		3C299A632C122639004E8DAA /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		3C3E0C092BA1BA470087500C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3C4073572BE130730031C140 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C40735B2BE1307D0031C140 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 		3C65AE8A2C10F69200F907D7 /* AssignJuryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignJuryView.swift; sourceTree = "<group>"; };
 		3C68BA4F2BCE9ED800E1093B /* MiniCertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCertificateView.swift; sourceTree = "<group>"; };
 		3C8067902C0F54E000B548DE /* ApplicantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantsView.swift; sourceTree = "<group>"; };
+		3CD6DD1B2C1316400044CA52 /* ApplicantsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicantsModel.swift; sourceTree = "<group>"; };
+		3CD6DD1D2C1316440044CA52 /* ApplicantsArrayObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicantsArrayObject.swift; sourceTree = "<group>"; };
 		3CDD1FA62BA1A155009549E7 /* CertificateAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CertificateAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CDD1FA92BA1A155009549E7 /* CertificateAppV2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateAppV2App.swift; sourceTree = "<group>"; };
 		3CDD1FAB2BA1A155009549E7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -136,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				3C40735B2BE1307D0031C140 /* AuthService.swift */,
+				3C299A632C122639004E8DAA /* DataService.swift */,
 			);
 			path = FireBase;
 			sourceTree = "<group>";
@@ -170,6 +177,8 @@
 				3C2853B82BA48D26007E93D9 /* UserModel.swift */,
 				3C2853BA2BA496D7007E93D9 /* DataArrayObject.swift */,
 				3C4E9E432C11C25400480569 /* UserArrayObject.swift */,
+				3CD6DD1B2C1316400044CA52 /* ApplicantsModel.swift */,
+				3CD6DD1D2C1316440044CA52 /* ApplicantsArrayObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -362,6 +371,7 @@
 				3C4C1B572BDB03B90041E802 /* ImagePicker.swift in Sources */,
 				3C3E0C0A2BA1BA470087500C /* Extensions.swift in Sources */,
 				3C2853BD2BA49B13007E93D9 /* CertificateView.swift in Sources */,
+				3CD6DD1C2C1316400044CA52 /* ApplicantsModel.swift in Sources */,
 				3C062F792BA387B700EF6784 /* SectionView.swift in Sources */,
 				3C5691172BD2B716008BA524 /* ProfileHeaderView.swift in Sources */,
 				3CE96F0A2BE7B5D2009BDD85 /* OnboardingViewMail.swift in Sources */,
@@ -369,12 +379,14 @@
 				3C2853BB2BA496D7007E93D9 /* DataArrayObject.swift in Sources */,
 				3C5E2A742BD82904003F82F4 /* OnboardingView.swift in Sources */,
 				3C4C1B552BDAF9180041E802 /* OnboardingViewPart2.swift in Sources */,
+				3CD6DD1E2C1316440044CA52 /* ApplicantsArrayObject.swift in Sources */,
 				3CDD1FAA2BA1A155009549E7 /* CertificateAppV2App.swift in Sources */,
 				3C56911B2BD2D27A008BA524 /* SettingsLabelView.swift in Sources */,
 				3C5E2A6E2BD812A4003F82F4 /* SettingsEditTextView.swift in Sources */,
 				3CF1233E2BE2733700694DE0 /* SearchView.swift in Sources */,
 				3C5691152BD2B57C008BA524 /* ProfileView.swift in Sources */,
 				3C68BA502BCE9ED800E1093B /* MiniCertificateView.swift in Sources */,
+				3C299A642C122639004E8DAA /* DataService.swift in Sources */,
 				3C5E2A722BD81CB2003F82F4 /* SignUpView.swift in Sources */,
 				3C4073602BE1307D0031C140 /* SignInWithApple.swift in Sources */,
 				3C4073742BE26A7B0031C140 /* Enums & Structs.swift in Sources */,

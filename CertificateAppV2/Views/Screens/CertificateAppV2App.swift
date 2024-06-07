@@ -13,9 +13,11 @@ struct CertificateAppV2App: App {
     init(){
         FirebaseApp.configure()
     }
+    @StateObject private var applicantsArray = ApplicantsArrayObject.shared
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(applicantsArray)
         }
     }
 }
