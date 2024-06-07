@@ -32,6 +32,7 @@ struct OnboardingViewMail: View {
     @State var isPasswordValid: Bool = false
     @State var isNameValid: Bool = false
     @State var showNameMessage: Bool = false
+    @State private var isSecured: Bool = true
     
     var body: some View {
         VStack(alignment: .center, spacing: 20, content: {
@@ -83,9 +84,55 @@ struct OnboardingViewMail: View {
             }
           
                             
-                
-            
-            TextField("Add your pasword here...", text: $password)
+            Group {
+                if isSecured {
+                    HStack{
+                        SecureField("Add your pasword here...", text: $password)
+                          
+                    Button(action: {
+                        isSecured.toggle()
+                    }) {
+                        Image(systemName: self.isSecured ? "eye.slash" : "eye")
+                            .accentColor(.gray)
+                            .padding(.leading,90)
+         }
+             .onChange(of: password){ newValue in
+                        isPasswordValid = isValidPassword(enteredPassword: newValue)
+                        showInvalidPasswordMessage = !isPasswordValid
+                        
+             }
+                    }
+                        
+                } else {
+                    HStack{
+                        TextField("Add your pasword here...", text: $password)
+                    Button(action: {
+                        isSecured.toggle()
+                    }) {
+                        Image(systemName: self.isSecured ? "eye.slash" : "eye")
+                            .accentColor(.gray)
+                            .padding(.leading,90)
+         }
+             .onChange(of: password){ newValue in
+                        isPasswordValid = isValidPassword(enteredPassword: newValue)
+                        showInvalidPasswordMessage = !isPasswordValid
+                        
+             }
+                    }
+                       
+                }
+            }.padding(.trailing, 32)
+                .padding()
+                .frame(height: 60)
+                .frame(maxWidth: .infinity)
+                .background(Color.white)
+                .cornerRadius(12)
+                .font(.headline)
+                .padding(.horizontal)
+
+                      
+            /*
+            SecureField("Add your pasword here...", text: $password)
                 .padding()
                 .frame(height: 60)
                 .frame(maxWidth: .infinity)
@@ -97,7 +144,7 @@ struct OnboardingViewMail: View {
                     isPasswordValid = isValidPassword(enteredPassword: newValue)
                     showInvalidPasswordMessage = !isPasswordValid
                     
-                }
+                }*/
             if showInvalidPasswordMessage {
                     Text("Please enter a valid password")
 //                    .opacity(showInvalidPasswordMessage ? 1.0 : 0.0)

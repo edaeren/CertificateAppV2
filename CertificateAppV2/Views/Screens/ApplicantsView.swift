@@ -96,8 +96,6 @@ struct ApplicantsView: View {
                     }
                     
                 }
-                
-               
                 Spacer()
                 Spacer()
                 
@@ -128,17 +126,6 @@ struct ApplicantsView: View {
 //                                Text(data.certificateID)
                                 Spacer()
                                 Spacer(minLength: 170)
-                                /*
-                                Button(action: {
-                                    //arraydan silecek carpiya basinca
-                                    showAssignJuryPage.toggle()
-                                }, label: {
-                                    Image(systemName: "xmark")
-                                        .font(.headline)
-                                        .fontWeight(.medium)
-                                    
-                                })
-                                .accentColor(.black)*/
                                 
                                 Button(action: {
 //                                    array.removeApplicant(data)
@@ -153,7 +140,6 @@ struct ApplicantsView: View {
                                 Spacer()
                                 Spacer()
                                 Button(action: {
-                                    //assignjuryview'a gidecek sekilde degistir
                                     showAssignJuryPage.toggle()
                                 }, label: {
                                     Image(systemName: "checkmark")
@@ -245,10 +231,10 @@ struct ApplicantsView: View {
                         
                     }
                 }
+                
+                /*
+                //arraye eklenmis mi diye bakmak icin yazdim
                 Button(action: {
-                    //assignjuryview'a gidecek sekilde degistir
-                    //showAssignJuryPage.toggle()
-//                    print("userID: \(section1.section1Array)")
                     print("userID: \(array.section1Array) \(array.section2Array) \(array.section3Array) ")
                    
                 }, label: {
@@ -256,7 +242,7 @@ struct ApplicantsView: View {
                         .font(.headline)
                         .fontWeight(.medium)
                     
-                })
+                })*/
             }
         }
         
