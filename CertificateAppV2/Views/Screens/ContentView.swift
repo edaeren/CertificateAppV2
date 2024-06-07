@@ -22,39 +22,39 @@ struct ContentView: View {
         TabView {
             //feed view yazisinin gozukmesi icin navigation view icine aldik feed view u
             NavigationView{
-              //  FeedView(datas: DataArrayObject(),section1: DataArrayObject())
+                //  FeedView(datas: DataArrayObject(),section1: DataArrayObject())
                 FeedView(section1: DataArrayObject(), section2: DataArrayObject(), section3: DataArrayObject())
             }
-                .tabItem {
-                    Image(systemName: "rosette")
-                    Text("Home Page")
-                }
+            .tabItem {
+                Image(systemName: "rosette")
+                Text("Home Page")
+            }
             NavigationView{
                 SearchView(listOfCertificates: DataArrayObject())
             }
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                    Text("Search")
-                }
+            .tabItem {
+                Image(systemName: "magnifyingglass")
+                Text("Search")
+            }
             /*  form page
-            Text("Form")
-                .tabItem {
-                    Image(systemName: "book.pages")
-                    Text("Form")
-                }*/
-        //------------------------------------------------------------------------------------------------
-//            checkUserState()
+             Text("Form")
+             .tabItem {
+             Image(systemName: "book.pages")
+             Text("Form")
+             }*/
+            //------------------------------------------------------------------------------------------------
+            //            checkUserState()
             
             if isAdmin {
-                          NavigationView {
-                              ApplicantsView()
-                          }
-                          .tabItem {
-                              Image(systemName: "book.pages")
-                              Text("Applicants")
-                          }
-                      }
-           
+                NavigationView {
+                    ApplicantsView()
+                }
+                .tabItem {
+                    Image(systemName: "book.pages")
+                    Text("Applicants")
+                }
+            }
+            
             //------------------------------------------------------------------------------------------------
             
             
@@ -66,22 +66,72 @@ struct ContentView: View {
             ZStack{
                 if let userID = currentUserID, let displayName = currentDisplayName {
                     NavigationView{
-                        ProfileView(profileDisplayName: displayName, section1:DataArrayObject(), profileUserID: userID)
+                        ProfileView(profileDisplayName: displayName, certificateNumber:"", section1:DataArrayObject(), profileUserID: userID)
                     }
                 } else {
                     SignUpView()
                 }
-               
+                
             }
-                .tabItem {
-                    Image(systemName: "person")
-                    Text("Profile")
-                }
-           
+            .tabItem {
+                Image(systemName: "person")
+                Text("Profile")
+            }
+            
         }
         .accentColor(Color.MyTheme.pinkColor)
         .onAppear {
+                    updateAdminStatus()
+                }
+                .onChange(of: currentUserID) { _ in
+                    updateAdminStatus()
+                }
+    
+       /* .onAppear {
+            
+            if let userID = currentUserID {
+                           // Initialize isAdminModel with the correct userID
+                           isAdminModel = UserModel(userID: userID, userName: "", isAdmin: false, isJury: false)
+                           
+                           checkUserState { isAdmin in
+                               self.isAdmin = isAdmin
+                           }
+                       } else {
+                           // Handle the case where currentUserID is nil
+                           print("No current user ID found.")
+                       }
+            }*/
         }
+    
+    func updateAdminStatus() {
+           guard let userID = currentUserID else {
+               self.isAdmin = false
+               return
+           }
+           
+           checkUserState(forUserID: userID) { isAdmin in
+               self.isAdmin = isAdmin
+           }
+       }
+    
+    func checkUserState(forUserID userID: String, completion: @escaping (Bool) -> Void) {
+            guard !userID.isEmpty else {
+                print("User ID is empty.")
+                completion(false)
+                return
+            }
+            
+            AuthService.instance.getUserStateInfo(forUserID: userID) { returnedUserState in
+                if let userState = returnedUserState {
+                    completion(userState)
+                } else {
+                    completion(false)
+                }
+            }
+        }
+    
+    
+    
     }
    
     //MARK: FUNCTIONS
@@ -98,6 +148,10 @@ struct ContentView: View {
             }
         }
     }*/
+
+    
+
+/*
     func checkUserState(completion: @escaping (Bool) -> Void) {
             AuthService.instance.getUserStateInfo(forUserID: isAdminModel.userID) { (returnedUserState) in
                 if let userState = returnedUserState {
@@ -106,10 +160,12 @@ struct ContentView: View {
                     completion(false)
                 }
             }
-        }
+        }*/
+
+
     
     
-}
+
 
 #Preview {
     ContentView()

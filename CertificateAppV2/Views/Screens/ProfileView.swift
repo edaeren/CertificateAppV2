@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @State var showSettings: Bool = false
     @State var profileDisplayName: String
+    @State var certificateNumber: String
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
     @ObservedObject var section1 : DataArrayObject
     var profileUserID: String
@@ -18,7 +19,7 @@ struct ProfileView: View {
     
     var body: some View {
         ScrollView(.vertical,showsIndicators: false, content:{
-            ProfileHeaderView(profileDisplayName: $profileDisplayName, profileImage: $profileImage)
+            ProfileHeaderView(profileDisplayName: $profileDisplayName, profileImage: $profileImage,certificateNumber: $certificateNumber)
            Spacer()
            Spacer()
             
@@ -67,14 +68,8 @@ struct ProfileView: View {
         )
         .onAppear(perform: {
             getProfileImage()
-            /*DataService.getUserCertificates(forUserID :currentUserID ?? "" ){ (certificates) in
-                if let items = certificates{
-                    for item in items{
-                        print("certificate id: \(item)")
-                    }
-                }
-                
-            }*/
+            sertifikalar()
+            
         })
         .sheet(isPresented: $showSettings, content: {
             SettingsView()
@@ -90,12 +85,24 @@ struct ProfileView: View {
             }
         }
     }
+    
+    func sertifikalar(){
+        DataService.instance.getUserCertificates(forUserID: currentUserID!){ (certificates) in
+            if let certificates = certificates {
+                    // Sertifika listesini ekrana yazdır
+                    print("Kullanıcı Sertifikaları: \(certificates)")
+                certificateNumber = String(certificates.count)
+                } else {
+                    print("Sertifikalar alınamadı.")
+                }
+        }
+    }
 }
 
 struct ProfileView_Previews: PreviewProvider{
     static var previews: some View{
         NavigationView{
-            ProfileView(profileDisplayName:"joe", section1: DataArrayObject(), profileUserID: "")
+            ProfileView(profileDisplayName:"joe", certificateNumber:"4", section1: DataArrayObject(), profileUserID: "")
         }
     }
 }

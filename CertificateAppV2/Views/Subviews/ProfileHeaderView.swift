@@ -11,6 +11,7 @@ import SwiftUI
 struct ProfileHeaderView: View {
     @Binding var profileDisplayName:String
     @Binding var profileImage : UIImage
+    @Binding var certificateNumber: String
     var body: some View {
         
         VStack(alignment: .center, spacing: 10, content: {
@@ -36,7 +37,7 @@ struct ProfileHeaderView: View {
             HStack(alignment: .center, spacing: 20, content: {
                 // MARK: NUMBER OF CERTIFICATES
                 VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 5, content: {
-                    Text("5")
+                    Text(certificateNumber)
                         .font(.title2)
                         .fontWeight(.bold)
                     //divider between number and the "certificate"
@@ -59,9 +60,10 @@ struct ProfileHeaderView_Previews :PreviewProvider{
     
     @State static var name: String = "Joe"
     @State static var image: UIImage = UIImage(named:"food1")!
+    @State static var number: String = "4"
     
     static var previews: some View{
-        ProfileHeaderView(profileDisplayName: $name, profileImage: $image)
+        ProfileHeaderView(profileDisplayName: $name, profileImage: $image, certificateNumber: $number)
             .previewLayout(.sizeThatFits)
     }
 }
