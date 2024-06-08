@@ -232,4 +232,17 @@ class AuthService{
                 }
             }
         }
+    
+    func addCertificateToUser(forUserID userID: String, forCertificateID certificateID: String){
+        let userDocument = REF_USERS.document(userID)
+        userDocument.updateData([
+            DatabaseUserField.certificates: FieldValue.arrayUnion([certificateID])
+        ]){ err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
 }
