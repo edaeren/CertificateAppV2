@@ -16,7 +16,7 @@ struct UserModel: Identifiable, Hashable{
     var userName: String
     var isAdmin: Bool
     var isJury: Bool
-    var juryExpert: String?
+    var juryExpert: String
     var email: String?
     var password: String?
     var sectionID: String?

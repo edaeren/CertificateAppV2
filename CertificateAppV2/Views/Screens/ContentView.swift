@@ -12,7 +12,7 @@ struct ContentView: View {
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
     @AppStorage(CurrentUserDefaults.displayName) var currentDisplayName :String?
     var currentUserId: String? = nil
-    @State var isAdminModel = UserModel(userID: "", userName: "", isAdmin: false, isJury: false)
+    @State var isAdminModel = UserModel(userID: "", userName: "", isAdmin: false, isJury: false, juryExpert: "")
     @State var isAdmin: Bool = false
     /*
     init() {
