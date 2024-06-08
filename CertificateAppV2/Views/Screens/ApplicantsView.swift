@@ -14,6 +14,7 @@ struct ApplicantsView: View {
 //    @ObservedObject var section2 : ApplicantsArrayObject
 //    @ObservedObject var array : ApplicantsArrayObject
     @EnvironmentObject var array: ApplicantsArrayObject
+    @State var sectionID : String = ""
 //    @ObservedObject var section3 : ApplicantsArrayObject
 //    @State var searchText = ""
     @State var showAssignJuryPage: Bool = false
@@ -89,7 +90,9 @@ struct ApplicantsView: View {
                                 .fullScreenCover(isPresented: $showAssignJuryPage, onDismiss: {
                                     self.presentationMode.wrappedValue.dismiss()
                                 }, content: {
-                                    AssignJuryView()
+                                   
+                                  
+                                    AssignJuryView(sectionID: sectionID)
                                 })
                            
                         }
@@ -161,7 +164,7 @@ struct ApplicantsView: View {
                                 .fullScreenCover(isPresented: $showAssignJuryPage, onDismiss: {
                                     self.presentationMode.wrappedValue.dismiss()
                                 }, content: {
-                                    AssignJuryView()
+                                    AssignJuryView(sectionID: sectionID)
                                 })}
                     }
                 }
@@ -229,7 +232,9 @@ struct ApplicantsView: View {
                                 .fullScreenCover(isPresented: $showAssignJuryPage, onDismiss: {
                                     self.presentationMode.wrappedValue.dismiss()
                                 }, content: {
-                                    AssignJuryView()
+                                    //parametre olarak sectionID gitmeli
+                                    
+                                    AssignJuryView(sectionID: sectionID)
                                 })}
                         
                     }

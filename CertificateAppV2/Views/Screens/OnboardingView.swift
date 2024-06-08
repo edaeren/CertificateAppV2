@@ -41,6 +41,7 @@ struct OnboardingView: View {
                 .foregroundColor(Color.black)
                 .padding()
             
+            /*
             //MARK: SIGN IN WITH APPLE
             Button(action: {
                 SignInWithApple.instance.startSignInWithAppleFlow(view: self)
@@ -48,7 +49,7 @@ struct OnboardingView: View {
                 SignInWithAppleButtonCustom()
                     .frame(height: 60)
                     .frame(maxWidth: .infinity)
-            })
+            })*/
             
             //MARK: SIGN IN WITH GOOGLE
             Button(action: {
