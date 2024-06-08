@@ -142,16 +142,35 @@ class ApplicantsArrayObject: ObservableObject{
     func clearList(){
         applicantsArray.removeAll()
     }
-    
-    func deleteApplicant(applicantID:String){
-        ApplicantService.instance.deleteApplicant(forApplicantID: applicantID)
+    func clearRequestList(){
+        requestArray.removeAll()
     }
+    /*
+    //requestleri databaseteen silmek icin
+    func deleteRequest(applicantID:String){
+        AuthService.instance.removeRequestFromJury(forUserID: <#String#>, forApplicantID: applicantID)
+    }*/
+    //requestleri arrayden silmek icin
+    /*
+    func deleteRequest(_ applicant: ApplicantsModel) {
+        AuthService.instance.removeRequestFromJury(forUserID: applicant.userID, forApplicantID: applicant.certificateID)
+   }*/
+    func removeRequest(userID: String, applicantID: String) {
+            if let index = requestArray.firstIndex(where: { $0.userID == userID && $0.applicantID == applicantID }) {
+                requestArray.remove(at: index)
+                clearRequestList()
+                getApplicants()
+            }
+        }
     
     func updateSectionFromOutside(){
         clearList()
         getApplicants()
         updateSections()
     }
+    func deleteApplicant(applicantID:String){
+            ApplicantService.instance.deleteApplicant(forApplicantID: applicantID)
+        }
     
     func getRequest(forUserID userID:String?){
         if userID != ""{

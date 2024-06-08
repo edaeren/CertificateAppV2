@@ -12,6 +12,7 @@ struct JuryView: View {
     @EnvironmentObject var array: ApplicantsArrayObject
 //    @ObservedObject var array: ApplicantsArrayObject
 //    @State var sectionID : String = ""
+    @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
 
     @State var showGiveApprovalPage: Bool = false
     @Environment(\.presentationMode) var presentationMode
@@ -30,6 +31,19 @@ struct JuryView: View {
                         .padding(.leading,15)
                         .padding(.top,30)
                     Spacer()
+                    Button(action: {
+                        ApplicantsArrayObject.shared.getApplicants()
+                        ApplicantsArrayObject.shared.clearRequestList()
+                        ApplicantsArrayObject.shared.getRequest(forUserID: currentUserID)
+                    }, label: {
+                        Image(systemName: "arrow.clockwise")
+                            .font(.headline)
+                            .fontWeight(.medium)
+
+                    })
+                    .accentColor(.green)
+                    .padding(.top,30)
+                    .padding(.trailing,20)
                 }
                 .padding(.all, 6)
                 // MARK:  SCROLLVIEW
@@ -48,8 +62,11 @@ struct JuryView: View {
                                     Spacer(minLength: 170)
                                     Button(action: {
                                         //remove from request array
-                                        //                                    array.removeApplicant(userID: data.userID, certificateID: data.certificateID)
-                                        //                                    ApplicantsArrayObject.shared.deleteApplicant(applicantID: data.applicantID)
+//                                        ApplicantsArrayObject.shared.deleteRequest(data)
+                                        rejectApplication(data)
+                                        ApplicantsArrayObject.shared.removeRequest(userID: data.userID, applicantID:  data.applicantID)
+//                                                                            array.removeApplicant(userID: data.userID, certificateID: data.certificateID)
+//                                                                            ApplicantsArrayObject.shared.deleteApplicant(applicantID: data.applicantID)
                                     }, label: {
                                         Image(systemName: "xmark")
                                             .font(.headline)
@@ -91,9 +108,16 @@ struct JuryView: View {
             }/*.onAppear{
 //                ApplicantsArrayObject.shared.updateSectionFromOutside()
             }*/
+        }.onAppear{
+            ApplicantsArrayObject.shared.clearRequestList()
+            ApplicantsArrayObject.shared.getRequest(forUserID: currentUserID)
         }
         
     }
+    
+    func rejectApplication(_ applicant: ApplicantsModel) {
+        AuthService.instance.removeRequestFromJury(forUserID: applicant.userID, forApplicantID: applicant.certificateID)
+   }
     
 }
 

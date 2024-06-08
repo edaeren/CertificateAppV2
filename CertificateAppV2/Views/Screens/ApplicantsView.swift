@@ -53,7 +53,7 @@ struct ApplicantsView: View {
                     Spacer()
                     Button(action: {
                         ApplicantsArrayObject.shared.updateSectionFromOutside()
-                        ApplicantsArrayObject.shared.getRequest(forUserID: currentUserID)
+//                        ApplicantsArrayObject.shared.getRequest(forUserID: currentUserID)
                     }, label: {
                         Image(systemName: "arrow.clockwise")
                             .font(.headline)
