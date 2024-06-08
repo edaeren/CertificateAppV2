@@ -45,6 +45,8 @@
 		3C68BA502BCE9ED800E1093B /* MiniCertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68BA4F2BCE9ED800E1093B /* MiniCertificateView.swift */; };
 		3C8067912C0F54E000B548DE /* ApplicantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8067902C0F54E000B548DE /* ApplicantsView.swift */; };
 		3CA6E9FA2C14662E00977F1A /* ApplicantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA6E9F92C14662E00977F1A /* ApplicantService.swift */; };
+		3CB6AC0B2C14C474000F00FC /* JuryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB6AC0A2C14C474000F00FC /* JuryView.swift */; };
+		3CB6AC0D2C14CC92000F00FC /* GiveApprovalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB6AC0C2C14CC92000F00FC /* GiveApprovalView.swift */; };
 		3CD6DD1C2C1316400044CA52 /* ApplicantsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD6DD1B2C1316400044CA52 /* ApplicantsModel.swift */; };
 		3CD6DD1E2C1316440044CA52 /* ApplicantsArrayObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD6DD1D2C1316440044CA52 /* ApplicantsArrayObject.swift */; };
 		3CDD1FAA2BA1A155009549E7 /* CertificateAppV2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD1FA92BA1A155009549E7 /* CertificateAppV2App.swift */; };
@@ -90,6 +92,8 @@
 		3C68BA4F2BCE9ED800E1093B /* MiniCertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCertificateView.swift; sourceTree = "<group>"; };
 		3C8067902C0F54E000B548DE /* ApplicantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantsView.swift; sourceTree = "<group>"; };
 		3CA6E9F92C14662E00977F1A /* ApplicantService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicantService.swift; sourceTree = "<group>"; };
+		3CB6AC0A2C14C474000F00FC /* JuryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JuryView.swift; sourceTree = "<group>"; };
+		3CB6AC0C2C14CC92000F00FC /* GiveApprovalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveApprovalView.swift; sourceTree = "<group>"; };
 		3CD6DD1B2C1316400044CA52 /* ApplicantsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicantsModel.swift; sourceTree = "<group>"; };
 		3CD6DD1D2C1316440044CA52 /* ApplicantsArrayObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicantsArrayObject.swift; sourceTree = "<group>"; };
 		3CDD1FA62BA1A155009549E7 /* CertificateAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CertificateAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -254,6 +258,7 @@
 				3C5E2A732BD82904003F82F4 /* OnboardingView.swift */,
 				3C4C1B542BDAF9180041E802 /* OnboardingViewPart2.swift */,
 				3C8067902C0F54E000B548DE /* ApplicantsView.swift */,
+				3CB6AC0A2C14C474000F00FC /* JuryView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 				3C65AE8A2C10F69200F907D7 /* AssignJuryView.swift */,
 				3CF1233D2BE2733700694DE0 /* SearchView.swift */,
 				3CF1233F2BE2DBCF00694DE0 /* ShortFormView.swift */,
+				3CB6AC0C2C14CC92000F00FC /* GiveApprovalView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 				3CD6DD1C2C1316400044CA52 /* ApplicantsModel.swift in Sources */,
 				3C062F792BA387B700EF6784 /* SectionView.swift in Sources */,
 				3C5691172BD2B716008BA524 /* ProfileHeaderView.swift in Sources */,
+				3CB6AC0D2C14CC92000F00FC /* GiveApprovalView.swift in Sources */,
 				3CE96F0A2BE7B5D2009BDD85 /* OnboardingViewMail.swift in Sources */,
 				3CF123402BE2DBCF00694DE0 /* ShortFormView.swift in Sources */,
 				3C2853BB2BA496D7007E93D9 /* DataArrayObject.swift in Sources */,
@@ -388,6 +395,7 @@
 				3C56911B2BD2D27A008BA524 /* SettingsLabelView.swift in Sources */,
 				3C5E2A6E2BD812A4003F82F4 /* SettingsEditTextView.swift in Sources */,
 				3CF1233E2BE2733700694DE0 /* SearchView.swift in Sources */,
+				3CB6AC0B2C14C474000F00FC /* JuryView.swift in Sources */,
 				3C5691152BD2B57C008BA524 /* ProfileView.swift in Sources */,
 				3C68BA502BCE9ED800E1093B /* MiniCertificateView.swift in Sources */,
 				3C299A642C122639004E8DAA /* DataService.swift in Sources */,

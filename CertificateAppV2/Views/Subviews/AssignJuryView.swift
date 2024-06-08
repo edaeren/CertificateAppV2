@@ -74,6 +74,8 @@ struct AssignJuryView: View {
                                 Button(action: {
                                    //send request to the juries
                                     AuthService.instance.addApplicantToJury(forUserID:jury.userID, forApplicantID:applicantID)
+                                    addRequestToArray(userID: jury.userID, applicantID: applicantID, sectionID: sectionID)
+//                                    listOfJuries.getRequest()
                                 }, label: {
                                     Image(systemName: "person.badge.plus")
                                         .font(.headline)
@@ -96,6 +98,10 @@ struct AssignJuryView: View {
                 }
         
     }
+    func addRequestToArray(userID: String, applicantID: String, sectionID: String) {
+           let newRequest = ApplicantsModel(applicantID: UUID().uuidString, userID: userID, sectionID: sectionID, link: "", certificateID: applicantID)
+           array.addRequest(newRequest)
+       }
 }
 
 #Preview {

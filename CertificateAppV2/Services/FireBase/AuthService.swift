@@ -285,4 +285,16 @@ class AuthService{
             
         }
     }
+    func removeRequestFromJury(forUserID userID: String, forApplicantID applicantID: String){
+            let userDocument = REF_USERS.document(userID)
+            userDocument.updateData([
+                DatabaseUserField.applicants: FieldValue.arrayRemove([applicantID])
+            ]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Applicant successfully removed")
+                }
+            }
+        }
 }

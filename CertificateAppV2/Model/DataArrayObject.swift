@@ -192,5 +192,10 @@ class DataArrayObject: ObservableObject {
             }
         }
     }
+    /*
+    //kullaniciya onay verilen sertifikalari ekledik
+    func addCertificates(_ certificate: CertificateModel) {
+        dataArrayUser.append(certificate)
+    }*/
     
 }

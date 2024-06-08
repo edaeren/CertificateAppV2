@@ -11,7 +11,7 @@ class ApplicantsArrayObject: ObservableObject{
 //    @Published var applicantsArray = [ApplicantsModel]()
     @Published var applicantsArray: [ApplicantsModel] = []
     
-    @Published var requestAray: [ApplicantsModel] = []
+    @Published var requestArray: [ApplicantsModel] = []
     
 //    @Published var section1Array = [ApplicantsModel]()
     @Published var section1Array : [ApplicantsModel] = []
@@ -84,6 +84,7 @@ class ApplicantsArrayObject: ObservableObject{
             applicantsArray.append(applicant)
             updateSections()
         }
+   
     
     private func updateSections() {
             section1Array = applicantsArray.filter { $0.sectionID == "1" }
@@ -179,7 +180,7 @@ class ApplicantsArrayObject: ObservableObject{
                     if let link = applicantLink{
                         if let sectionId = sectionID{
                             let applicant = ApplicantsModel(applicantID: requestID, userID: userId, sectionID: sectionId, link:link, certificateID: certificateId )
-                            self.requestAray.append(applicant)
+                            self.requestArray.append(applicant)
                             print("Eklenen applicant : \(applicant)")
                         }
                     }
@@ -188,6 +189,9 @@ class ApplicantsArrayObject: ObservableObject{
         }
         
     }
+    func addRequest(_ applicant: ApplicantsModel) {
+            requestArray.append(applicant)
+        }
     /*
     private func updateSections() {
            /* section1Array = applicantsArray.filter { $0.sectionID == "1" }
