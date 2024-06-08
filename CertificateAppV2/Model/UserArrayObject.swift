@@ -50,4 +50,29 @@ class UserArrayObject: ObservableObject{
             return section.sectionID == "3"
         }
     }
+    
+    
+    func addAllUSersToArray(){
+        AuthService.instance.getAllUsers {  (documents, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else if let documents = documents {
+                for document in documents {
+                    guard let userID = document.data()["user_id"] as? String,
+                          let userName = document.data()["user_name"] as? String,
+                          let isAdmin = document.data()["is_admin"] as? Bool,
+                          let isJury = document.data()["is_jury"] as? Bool,
+                          let juryExpert = document.data()["jury_expert"] as? String
+                    else {
+                                    // Eğer herhangi bir alan eksikse, bu dökümanı atla
+                                    print("Error: Missing field in document \(document.documentID)")
+                                    continue
+                                }
+                    let user = UserModel(userID: userID, userName: userName, isAdmin: isAdmin, isJury: true, juryExpert: "")
+                    
+                    self.userArray.append(user)
+                }
+            }
+        }
+    }
 }

@@ -245,4 +245,15 @@ class AuthService{
             }
         }
     }
+    
+    func getAllUsers(completion: @escaping ([QueryDocumentSnapshot]?, Error?) -> Void) {
+        REF_USERS.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                completion(querySnapshot?.documents, nil)
+            }
+        }
+        
+    }
 }
