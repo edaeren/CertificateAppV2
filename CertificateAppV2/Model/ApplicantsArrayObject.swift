@@ -133,15 +133,21 @@ class ApplicantsArrayObject: ObservableObject{
             }
             
         }
-        
-        
-        
+    }
+    
+    func clearList(){
+        applicantsArray.removeAll()
     }
     
     func deleteApplicant(applicantID:String){
         ApplicantService.instance.deleteApplicant(forApplicantID: applicantID)
     }
     
+    func updateSectionFromOutside(){
+        clearList()
+        getApplicants()
+        updateSections()
+    }
     /*
     private func updateSections() {
            /* section1Array = applicantsArray.filter { $0.sectionID == "1" }

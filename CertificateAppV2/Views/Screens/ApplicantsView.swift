@@ -246,6 +246,8 @@ struct ApplicantsView: View {
                         .fontWeight(.medium)
                     
                 })*/
+            }.onAppear{
+                ApplicantsArrayObject.shared.updateSectionFromOutside()
             }
         }
         
