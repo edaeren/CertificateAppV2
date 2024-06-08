@@ -40,3 +40,11 @@ struct DatabaseCertificateField{
     static let sectionID = "sectionID"
     static let sectionName = "sectionName"
 }
+
+struct ApplicantField{
+    static let applicantID = "applicant_id"
+    static let userID = "user_id"
+    static let sectionID = "section_id"
+    static let link = "link"
+    static let certificateID = "certificate_id"
+}

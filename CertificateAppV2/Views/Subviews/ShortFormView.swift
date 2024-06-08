@@ -62,7 +62,8 @@ struct ShortFormView: View {
                 //sectionID ve certificateID gelmeli sertifikadan
                 //userID , photoName al applicantsArray'e at
                 buttonText = "Applied!".uppercased()
-                appendApplicantToArray()
+                //appendApplicantToArray()
+                appendApplicantToDatabase()
                    
 //                print("userID: \(applicants.userID) link:\(applicants.link) certificateID: \(applicants.certificateID) sectionID: \(applicants.sectionID)")
                 print("array: \(applicantsArray.section1Array)")
@@ -105,6 +106,12 @@ struct ShortFormView: View {
         }
         else{
             
+        }
+    }
+    
+    func appendApplicantToDatabase(){
+        if let userID = UserDefaults.standard.string(forKey: CurrentUserDefaults.userID) {
+            ApplicantService.instance.createApplicant(userID: userID, sectionID:certificates.sectionID , link: submissionText, certificateID: certificates.certificateID)
         }
     }
     

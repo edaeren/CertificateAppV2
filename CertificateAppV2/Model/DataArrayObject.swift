@@ -51,7 +51,7 @@ class DataArrayObject: ObservableObject {
                 print("Data Array Function: \(self.dataArray)")
             }
             
-            self.sertifikalar(forUserID: userID)
+            self.getUserSertificates(forUserID: userID)
         }
         
         
@@ -153,7 +153,7 @@ class DataArrayObject: ObservableObject {
     }
     
     
-    func sertifikalar(forUserID userID:String?){
+    func getUserSertificates(forUserID userID:String?){
         if userID != ""{
             if let user = userID {
                 DataService.instance.getUserCertificates(forUserID: userID!){ (certificates) in
@@ -197,10 +197,6 @@ class DataArrayObject: ObservableObject {
                     }
                 }
             }
-            
-            
-            
-            
         }
     }
     

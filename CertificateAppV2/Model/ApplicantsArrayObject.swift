@@ -18,7 +18,6 @@ class ApplicantsArrayObject: ObservableObject{
     
     private init(){
 //        print("fetch from database here")
-        
         //photoName de eklenecek su an currentUserInfo'sunda sadeve bio vs oldugu icin foto olmadigi icin ekleyemedim
 //       let user1 = ApplicantsModel(userID: "1",  sectionID: "1", link: "a", certificateID: "1")
 //        let user2 = ApplicantsModel(userID: "2",  sectionID: "2",   link: "", certificateID: "")
@@ -49,7 +48,6 @@ class ApplicantsArrayObject: ObservableObject{
             }
             return section.sectionID == "2"
         }*/
-     
         updateSections()
         /*
         _ = applicantsArray.filter { section in
@@ -84,6 +82,7 @@ class ApplicantsArrayObject: ObservableObject{
         }
     
     private func updateSections() {
+            getApplicants()
             section1Array = applicantsArray.filter { $0.sectionID == "1" }
             section2Array = applicantsArray.filter { $0.sectionID == "2" }
             section3Array = applicantsArray.filter { $0.sectionID == "3" }
@@ -110,7 +109,34 @@ class ApplicantsArrayObject: ObservableObject{
             }
         }
 
-    
+    func getApplicants(){
+        ApplicantService.instance.getAllAplicants{ (documents,error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else if let documents = documents {
+                for document in documents {
+                    //print("Document ID: \(document.documentID)")
+                    guard let certificateID = document.data()["certificate_id"] as? String,
+                          let sectionID = document.data()["section_id"] as? String,
+                          let userID = document.data()["user_id"] as? String,
+                          let link = document.data()["link"] as? String
+                    
+                    else {
+                                    // Eğer herhangi bir alan eksikse, bu dökümanı atla
+                                    print("Error: Missing field in document \(document.documentID)")
+                                    continue
+                                }
+                    
+                    let user = ApplicantsModel(userID: userID,  sectionID: sectionID, link: link, certificateID: certificateID)
+                    self.applicantsArray.append(user)
+                    print("gelen applicants'lar : \(document)")
+
+                }
+            }
+            
+        }
+        
+    }
     
     
     
