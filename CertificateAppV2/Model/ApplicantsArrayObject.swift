@@ -48,6 +48,7 @@ class ApplicantsArrayObject: ObservableObject{
             }
             return section.sectionID == "2"
         }*/
+        getApplicants()
         updateSections()
         /*
         _ = applicantsArray.filter { section in
@@ -82,7 +83,6 @@ class ApplicantsArrayObject: ObservableObject{
         }
     
     private func updateSections() {
-            getApplicants()
             section1Array = applicantsArray.filter { $0.sectionID == "1" }
             section2Array = applicantsArray.filter { $0.sectionID == "2" }
             section3Array = applicantsArray.filter { $0.sectionID == "3" }
@@ -128,7 +128,7 @@ class ApplicantsArrayObject: ObservableObject{
                                 }
                     
                     let user = ApplicantsModel(userID: userID,  sectionID: sectionID, link: link, certificateID: certificateID)
-                    self.applicantsArray.append(user)
+                    self.addApplicant(user)
                     print("gelen applicants'lar : \(document)")
 
                 }
