@@ -29,7 +29,7 @@ class UserArrayObject: ObservableObject{
         self.userArray.append(user4)
         self.userArray.append(user5)
         self.userArray.append(user6)
-
+         */
         _ = userArray.filter { section in
             if section.sectionID == "1" {
                 self.section1Array.append(section)
@@ -49,7 +49,7 @@ class UserArrayObject: ObservableObject{
                 self.section3Array.append(section)
             }
             return section.sectionID == "3"
-        }*/
+        }
         addAllUSersToArray()
     }
     
@@ -62,19 +62,19 @@ class UserArrayObject: ObservableObject{
                 for document in documents {
                     guard let userID = document.data()["user_id"] as? String,
                           let userName = document.data()["display_name"] as? String,
+                          let juryExpert = document.data()["jury_expert"] as? String,
                           let isAdmin = document.data()["is_admin"] as? Bool,
-                          let isJury = document.data()["is_jury"] as? Bool,
-                          let juryExpert = document.data()["jury_expert"] as? String
+                          let isJury = document.data()["is_jury"] as? Bool
                     else {
                                     // Eğer herhangi bir alan eksikse, bu dökümanı atla
                                     print("Error: Missing field in document \(document.documentID)")
                                     continue
                                 }
                     let user = UserModel(userID: userID, userName: userName, isAdmin: isAdmin, isJury: isJury, juryExpert: juryExpert)
-                    
                     self.userArray.append(user)
                 }
             }
         }
     }
+    
 }

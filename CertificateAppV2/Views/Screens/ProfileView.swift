@@ -102,11 +102,6 @@ struct ProfileView: View {
             let name = certificateName
             let id = sectionID
             let sName = sectionName
-            print("ID: \(String(describing: id))")
-            print("Name: \(String(describing: name))")
-            print("sName: \(String(describing: sName))")
-          
-            
         }
     }
 }

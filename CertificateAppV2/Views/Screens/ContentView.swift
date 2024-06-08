@@ -14,6 +14,7 @@ struct ContentView: View {
     var currentUserId: String? = nil
     @State var isAdminModel = UserModel(userID: "", userName: "", isAdmin: false, isJury: false, juryExpert: "")
     @State var isAdmin: Bool = false
+    @State var isJury: Bool = false
     /*
     init() {
            checkUserState()
@@ -55,7 +56,20 @@ struct ContentView: View {
                 }
             }
             
+            //---------------------------------------------------------------------------------------------
+            
+            if isJury {
+                NavigationView {
+                    JuryView()
+                }
+                .tabItem {
+                    Image(systemName: "book.pages")
+                    Text("Jury")
+                }
+            }
+            
             //------------------------------------------------------------------------------------------------
+            
             
             
             
@@ -82,9 +96,11 @@ struct ContentView: View {
         .accentColor(Color.MyTheme.pinkColor)
         .onAppear {
                     updateAdminStatus()
+                    updateJuryStatus()
                 }
                 .onChange(of: currentUserID) { _ in
                     updateAdminStatus()
+                    updateJuryStatus()
                 }
     
        /* .onAppear {
@@ -103,14 +119,25 @@ struct ContentView: View {
             }*/
         }
     
+
+    
     func updateAdminStatus() {
            guard let userID = currentUserID else {
                self.isAdmin = false
                return
            }
-           
            checkUserState(forUserID: userID) { isAdmin in
                self.isAdmin = isAdmin
+           }
+       }
+    
+    func updateJuryStatus() {
+           guard let userID = currentUserID else {
+               self.isJury = false
+               return
+           }
+           checkUserJury(forUserID: userID) { isJury in
+               self.isJury = isJury
            }
        }
     
@@ -120,7 +147,6 @@ struct ContentView: View {
                 completion(false)
                 return
             }
-            
             AuthService.instance.getUserStateInfo(forUserID: userID) { returnedUserState in
                 if let userState = returnedUserState {
                     completion(userState)
@@ -130,10 +156,23 @@ struct ContentView: View {
             }
         }
     
-    
+    func checkUserJury(forUserID userID: String, completion: @escaping (Bool) -> Void) {
+            guard !userID.isEmpty else {
+                print("User ID is empty.")
+                completion(false)
+                return
+            }
+            AuthService.instance.getUserIsJury(forUserID: userID) { returnedUserState in
+                if let userState = returnedUserState {
+                    completion(userState)
+                } else {
+                    completion(false)
+                }
+            }
+        }
     
     }
-   
+
     //MARK: FUNCTIONS
     //checking if the user is admin or not
     /*

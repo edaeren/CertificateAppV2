@@ -199,13 +199,13 @@ class AuthService{
         }
     }
     
-    func getUserIsAdmin(forUserID userID:String, handler: @escaping (_ isAdmin: Bool?)->()){
+    func getUserIsJury(forUserID userID:String, handler: @escaping (_ isJury: Bool?)->()){
         REF_USERS.document(userID).getDocument { (documentSnapshot,error) in
             if let document = documentSnapshot,
                
-                let isAdmin = document.get(DatabaseUserField.isAdmin) as? Bool{
+                let isJury = document.get(DatabaseUserField.isJury) as? Bool{
                 print("Success geting user info")
-                handler(isAdmin)
+                handler(isJury)
                 return
             } else {
                 print("Error geting user info")

@@ -147,11 +147,12 @@ class DataArrayObject: ObservableObject {
             return section.sectionID == "2"
         }*/
     }
+    
     //USED FOR SINGLE CERTIFICATE SELECTION--deneme
+    
     init(certificate: CertificateModel){
         self.dataArray.append(certificate)
     }
-    
     
     func getUserSertificates(forUserID userID:String?){
         if userID != ""{
@@ -167,13 +168,9 @@ class DataArrayObject: ObservableObject {
                         }
                 }
             }
-
         } else {
             print("User not found")
         }
-            
-       
-        
     }
     
     func getCertificateInformations(forCertificateID certificateID:String){
