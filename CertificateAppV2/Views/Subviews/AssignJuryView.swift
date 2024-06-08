@@ -64,21 +64,28 @@ struct AssignJuryView: View {
                 //ekrana istenilen alanda uzman jurilerin userID'leri getirilecek
                 VStack{
                     if filteredJuries.isEmpty {
-                                            Text("No juries found for section \(sectionID)")
-                                                .foregroundColor(.red)
+                        Text("No juries found for section \(sectionID)")
+                                .foregroundColor(.red)
                     } else {
                         ForEach(filteredJuries, id: \.self) { jury in
-                            Text(jury.userID)
+                            HStack{
+                                Text(jury.userID)
+//                                Spacer()
+                                Button(action: {
+                                   //send request to the juries
+                                }, label: {
+                                    Image(systemName: "person.badge.plus")
+                                        .font(.headline)
+                                        .fontWeight(.medium)
+
+                                })
+                                .accentColor(.green)
+                                .padding(.trailing,5)
+                                .padding(.leading,5)
+                            }
+                            Spacer()
                         }
                     }
-                    /*
-                    List(filteredJuries, id: \.self) { jury in
-                        HStack{
-                            Text(jury.userID)
-                            Text("gelmio")
-                        }
-                        
-                    }*/
                 }
         }
         .onAppear {
