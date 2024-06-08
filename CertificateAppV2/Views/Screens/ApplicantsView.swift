@@ -21,7 +21,22 @@ struct ApplicantsView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        
+        /*
+        HStack {
+            Button(action: {
+                ApplicantsArrayObject.shared.updateSectionFromOutside()
+            }, label: {
+                Image(systemName: "arrow.clockwise")
+                    .font(.headline)
+                    .fontWeight(.medium)
+
+            })
+            .accentColor(.green)
+//            .padding(.all, 20)
+//            .padding(.trailing,3)
+            .padding(.top,5)
+            .padding(.leading,320)
+        }//hstack*/
         ScrollView{
             VStack{
                 // MARK: YEMEKLE ILGILI SERTIFIKALAR
@@ -34,8 +49,21 @@ struct ApplicantsView: View {
                         .padding(.leading,15)
                     
                     Spacer()
+                    Button(action: {
+                        ApplicantsArrayObject.shared.updateSectionFromOutside()
+                    }, label: {
+                        Image(systemName: "arrow.clockwise")
+                            .font(.headline)
+                            .fontWeight(.medium)
+
+                    })
+                    .accentColor(.green)
+                    .padding(.top,30)
+                    .padding(.trailing,20)
+                    
                 }
-                .padding(.all, 6)
+                .padding(.all, 4)
+               
                 // MARK: YEMEK SERTIFIKALARI SCROLLVIEWI
                 ScrollView(.horizontal){
                     VStack{
