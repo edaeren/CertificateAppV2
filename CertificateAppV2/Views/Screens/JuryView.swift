@@ -15,6 +15,7 @@ struct JuryView: View {
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
 
     @State var showGiveApprovalPage: Bool = false
+    @State var userID : String = ""
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -76,7 +77,7 @@ struct JuryView: View {
                                     Spacer()
                                     Spacer()
                                     Button(action: {
-                                        //                                    sectionID = data.sectionID
+                                        userID = data.userID
                                         showGiveApprovalPage.toggle()
                                     }, label: {
                                         Image(systemName: "checkmark")
@@ -96,7 +97,7 @@ struct JuryView: View {
                                     .fullScreenCover(isPresented: $showGiveApprovalPage, onDismiss: {
                                         self.presentationMode.wrappedValue.dismiss()
                                     }, content: {
-                                        GiveApprovalView()
+                                        GiveApprovalView(userID: userID)
                                         //                                    AssignJuryView(sectionID: sectionID)
                                         //                                        .environmentObject(ApplicantsArrayObject.shared)
                                     }

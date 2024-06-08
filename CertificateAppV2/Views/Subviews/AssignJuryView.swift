@@ -25,18 +25,6 @@ struct AssignJuryView: View {
             print("Filtered Juries for section \(sectionID): \(filtered.map { $0.userID })")
             return filtered
         }
-
-    /*
-    if let juryExpert = user.juryExpert, juryExpert == sectionName {
-        return listOfJuries.section1Array // section1'de atiyorum yemekle alakali expert olan juriler tutulacak
-    }*/
-    // Function to filter juries based on sectionID
-    /*
-    @State private var filteredJuries: [UserModel] = []
-        private func filterJuries() {
-            filteredJuries = listOfJuries.userArray.filter { $0.juryExpert == sectionID }
-        }
-*/
     
     
     var body: some View {

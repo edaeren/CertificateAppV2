@@ -13,6 +13,17 @@ struct GiveApprovalView: View {
     @EnvironmentObject var array: ApplicantsArrayObject
     //    @EnvironmentObject var applicantsArray: ApplicantsArrayObject
     //    @State var certificates : CertificateModel
+//    @State var userIDmodel = ApplicantsModel(applicantID: "", userID: "", sectionID: "", link: "", certificateID: "")
+    let userID: String // Accepting userID as a parameter
+   
+    
+         var filteredRequest: [ApplicantsModel] {
+             let filtered = array.requestArray.filter { $0.userID == userID }
+             // Debug print
+//             print("Filtered Juries for section \(sectionID): \(filtered.map { $0.userID })")
+             return filtered
+         }
+     
     
     var body: some View {
         
@@ -45,54 +56,60 @@ struct GiveApprovalView: View {
             Spacer()
             //burada kullanicinin gonderdigi link yer almali
             VStack{
-                ForEach(array.requestArray) { data in
-                    HStack {
-                        Text(data.link)
-                            .padding()
-                            .frame(height: 50)
-                            .frame(maxWidth: 350)
-                            .background(Color.MyTheme.pinkColor)
-                        //                .background(Color.white)
-                        //                .border(Color.black)
-                            .cornerRadius(12)
-                            .font(.headline)
-                        Spacer()
-                        Spacer(minLength: 170)
-                    }
-                    HStack {
-                        Button(action: {
-                            rejectApplicant(data)
-                        }, label: {
-                            Text("REJECT")
-                                .font(.title3)
-                                .fontWeight(.medium)
+                if filteredRequest.isEmpty {
+                    Text("No requests found for userID \(userID)")
+                            .foregroundColor(.red)
+                } else {
+                    ForEach(filteredRequest, id: \.self) { data in
+//                    ForEach(array.requestArray) { data in
+                        HStack {
+                            Text(data.link)
                                 .padding()
-                                .frame(height: 40)
-                                .frame(maxWidth: 170)
-                                .background(Color.gray)
+                                .frame(height: 50)
+                                .frame(maxWidth: 350)
+                                .background(Color.MyTheme.pinkColor)
+                            //                .background(Color.white)
+                            //                .border(Color.black)
                                 .cornerRadius(12)
-                            Image(systemName: "xmark")
                                 .font(.headline)
-                                .fontWeight(.medium)
-                        })
-                        .accentColor(.black)
-                        
-                        Button(action: {
-                            approveApplicant(data)
-                        }, label: {
-                            Text("APPROVE")
-                                .font(.title3)
-                                .fontWeight(.medium)
-                                .padding()
-                                .frame(height: 40)
-                                .frame(maxWidth: 170)
-                                .background(Color.gray)
-                                .cornerRadius(12)
-                            Image(systemName: "checkmark")
-                                .font(.headline)
-                                .fontWeight(.medium)
-                        })
-                        .accentColor(.black)
+                            Spacer()
+                            Spacer(minLength: 170)
+                        }
+                        HStack {
+                            Button(action: {
+                                rejectApplicant(data)
+                            }, label: {
+                                Text("REJECT")
+                                    .font(.title3)
+                                    .fontWeight(.medium)
+                                    .padding()
+                                    .frame(height: 40)
+                                    .frame(maxWidth: 170)
+                                    .background(Color.gray)
+                                    .cornerRadius(12)
+                                Image(systemName: "xmark")
+                                    .font(.headline)
+                                    .fontWeight(.medium)
+                            })
+                            .accentColor(.black)
+                            
+                            Button(action: {
+                                approveApplicant(data)
+                            }, label: {
+                                Text("APPROVE")
+                                    .font(.title3)
+                                    .fontWeight(.medium)
+                                    .padding()
+                                    .frame(height: 40)
+                                    .frame(maxWidth: 170)
+                                    .background(Color.gray)
+                                    .cornerRadius(12)
+                                Image(systemName: "checkmark")
+                                    .font(.headline)
+                                    .fontWeight(.medium)
+                            })
+                            .accentColor(.black)
+                        }
                     }
                 }
                 Spacer()
@@ -119,6 +136,6 @@ struct GiveApprovalView: View {
 #Preview {
     NavigationView{
 //        ShortFormView(certificates: CertificateModel(certificateID: "exampleCertificateID", certificateName: "",sectionID: "1", sectionName: "")).environmentObject(ApplicantsArrayObject.shared)
-        GiveApprovalView()
+        GiveApprovalView(userID: "exampleUserID")
     }
 }
