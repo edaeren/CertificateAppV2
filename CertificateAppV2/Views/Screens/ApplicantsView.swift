@@ -98,6 +98,7 @@ struct ApplicantsView: View {
                                 Spacer()
                                 Button(action: {
                                     //assignjuryview'a gidecek sekilde degistir
+                                    sectionID = data.sectionID
                                     showAssignJuryPage.toggle()
                                    
                                 }, label: {
@@ -121,6 +122,7 @@ struct ApplicantsView: View {
                                    
                                   
                                     AssignJuryView(sectionID: sectionID)
+                                        .environmentObject(ApplicantsArrayObject.shared)
                                 })
                            
                         }
@@ -173,6 +175,7 @@ struct ApplicantsView: View {
                                 Spacer()
                                 Spacer()
                                 Button(action: {
+                                    sectionID = data.sectionID
                                     showAssignJuryPage.toggle()
                                 }, label: {
                                     Image(systemName: "checkmark")
@@ -193,6 +196,7 @@ struct ApplicantsView: View {
                                     self.presentationMode.wrappedValue.dismiss()
                                 }, content: {
                                     AssignJuryView(sectionID: sectionID)
+                                        .environmentObject(ApplicantsArrayObject.shared)
                                 })}
                     }
                 }
@@ -241,6 +245,7 @@ struct ApplicantsView: View {
                                 Spacer()
                                 Button(action: {
                                     //assignjuryview'a gidecek sekilde degistir
+                                    sectionID = data.sectionID
                                     showAssignJuryPage.toggle()
                                 }, label: {
                                     Image(systemName: "checkmark")
@@ -263,6 +268,7 @@ struct ApplicantsView: View {
                                     //parametre olarak sectionID gitmeli
                                     
                                     AssignJuryView(sectionID: sectionID)
+                                        .environmentObject(ApplicantsArrayObject.shared)
                                 })}
                         
                     }

@@ -46,7 +46,7 @@ struct AssignJuryView: View {
         ScrollView{
             Text("Admin will assign juries here")
             Text("Juries which can evaluate the application:")
-            Text("Experts in .... section:")
+            Text("Experts in .... section: \(sectionID)" )
             
             //ekrana istenilen alanda uzman jurilerin userID'leri getirilecek
             VStack{

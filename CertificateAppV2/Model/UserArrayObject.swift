@@ -13,6 +13,7 @@ class UserArrayObject: ObservableObject{
     @Published var section3Array = [UserModel]()
     
     init(){
+        /*
         print("fetch from database here")
         
         let user1 = UserModel(userID: "1", userName: "user1", isAdmin:false, isJury:false ,email:"", sectionID: "1", sectionName: "Yemekle İlgili", photoName: "user1")
@@ -48,7 +49,8 @@ class UserArrayObject: ObservableObject{
                 self.section3Array.append(section)
             }
             return section.sectionID == "3"
-        }
+        }*/
+        addAllUSersToArray()
     }
     
     
@@ -59,7 +61,7 @@ class UserArrayObject: ObservableObject{
             } else if let documents = documents {
                 for document in documents {
                     guard let userID = document.data()["user_id"] as? String,
-                          let userName = document.data()["user_name"] as? String,
+                          let userName = document.data()["display_name"] as? String,
                           let isAdmin = document.data()["is_admin"] as? Bool,
                           let isJury = document.data()["is_jury"] as? Bool,
                           let juryExpert = document.data()["jury_expert"] as? String
@@ -68,7 +70,7 @@ class UserArrayObject: ObservableObject{
                                     print("Error: Missing field in document \(document.documentID)")
                                     continue
                                 }
-                    let user = UserModel(userID: userID, userName: userName, isAdmin: isAdmin, isJury: true, juryExpert: "")
+                    let user = UserModel(userID: userID, userName: userName, isAdmin: isAdmin, isJury: isJury, juryExpert: juryExpert)
                     
                     self.userArray.append(user)
                 }
