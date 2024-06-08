@@ -78,6 +78,7 @@ struct OnboardingView: View {
                         Image(systemName: self.isSecured ? "eye.slash" : "eye")
                             .accentColor(.gray)
                             .padding(.leading,90)
+                            .background(Color(.systemBackground))
          }
                     }
                        
