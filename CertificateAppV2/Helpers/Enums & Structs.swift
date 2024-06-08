@@ -23,6 +23,7 @@ struct DatabaseUserField{
     static let isJury = "is_jury"
     static let juryExpert = "jury_expert"
     static let certificates = "certificates"
+    static let applicants = "applicants"
     
 }
 

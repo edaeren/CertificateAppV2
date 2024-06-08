@@ -143,6 +143,7 @@ class AuthService{
                 DatabaseUserField.bio:"",
                 DatabaseUserField.juryExpert:"",
                 DatabaseUserField.certificates:[],
+                DatabaseUserField.applicants:[],
                 DatabaseUserField.dateCreated: FieldValue.serverTimestamp(),
             ]
             
@@ -254,6 +255,34 @@ class AuthService{
                 completion(querySnapshot?.documents, nil)
             }
         }
-        
+    }
+    
+    func addApplicantToJury(forUserID userID: String, forApplicantID applicantID: String){
+        let userDocument = REF_USERS.document(userID)
+        userDocument.updateData([
+            DatabaseUserField.applicants: FieldValue.arrayUnion([applicantID])
+        ]){ err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Applicant successfully updated")
+            }
+        }
+    }
+    
+    func getJuryApplicants(forUserID userID: String, handler: @escaping (_ applicants : [String]?) ->()){
+        REF_USERS.document(userID).getDocument{ (documentSnapshot,error)in
+            if let document = documentSnapshot,
+                let applicants = document.get(DatabaseUserField.applicants) as? [String]{
+                print("Success getting jury applicants")
+                handler(applicants)
+                return
+            } else {
+                print("Error getting jury applicants")
+                handler(nil)
+                return
+            }
+            
+        }
     }
 }

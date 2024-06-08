@@ -8,27 +8,28 @@
 import Foundation
 class UserArrayObject: ObservableObject{
     @Published var userArray = [UserModel]()
+    @Published var requestArray = [UserModel]()
     @Published var section1Array = [UserModel]()
     @Published var section2Array = [UserModel]()
     @Published var section3Array = [UserModel]()
     
     init(){
         /*
-        print("fetch from database here")
-        
-        let user1 = UserModel(userID: "1", userName: "user1", isAdmin:false, isJury:false ,email:"", sectionID: "1", sectionName: "Yemekle İlgili", photoName: "user1")
-        let user2 = UserModel(userID: "2", userName: "user2", isAdmin:false, isJury:false ,email:"", sectionID: "2", sectionName: "Bilgisayarla İlgili", photoName: "user2")
-        let user3 = UserModel(userID: "3", userName: "user3", isAdmin:false, isJury:false ,email:"", sectionID: "3", sectionName: "Çizimle İlgili", photoName: "user1")
-        let user4 = UserModel(userID: "4", userName: "user4", isAdmin:false, isJury:false ,email:"", sectionID: "4", sectionName: "Uzayla İlgili", photoName: "user2")
-        let user5 = UserModel(userID: "5", userName: "user5", isAdmin:false, isJury:false ,email:"", sectionID: "5", sectionName: "Camla İlgili", photoName: "user1")
-        let user6 = UserModel(userID: "6", userName: "user6", isAdmin:false, isJury:false ,email:"", sectionID: "1", sectionName: "Yemekle İlgili", photoName: "user2")
-        
-        self.userArray.append(user1)
-        self.userArray.append(user2)
-        self.userArray.append(user3)
-        self.userArray.append(user4)
-        self.userArray.append(user5)
-        self.userArray.append(user6)
+         print("fetch from database here")
+         
+         let user1 = UserModel(userID: "1", userName: "user1", isAdmin:false, isJury:false ,email:"", sectionID: "1", sectionName: "Yemekle İlgili", photoName: "user1")
+         let user2 = UserModel(userID: "2", userName: "user2", isAdmin:false, isJury:false ,email:"", sectionID: "2", sectionName: "Bilgisayarla İlgili", photoName: "user2")
+         let user3 = UserModel(userID: "3", userName: "user3", isAdmin:false, isJury:false ,email:"", sectionID: "3", sectionName: "Çizimle İlgili", photoName: "user1")
+         let user4 = UserModel(userID: "4", userName: "user4", isAdmin:false, isJury:false ,email:"", sectionID: "4", sectionName: "Uzayla İlgili", photoName: "user2")
+         let user5 = UserModel(userID: "5", userName: "user5", isAdmin:false, isJury:false ,email:"", sectionID: "5", sectionName: "Camla İlgili", photoName: "user1")
+         let user6 = UserModel(userID: "6", userName: "user6", isAdmin:false, isJury:false ,email:"", sectionID: "1", sectionName: "Yemekle İlgili", photoName: "user2")
+         
+         self.userArray.append(user1)
+         self.userArray.append(user2)
+         self.userArray.append(user3)
+         self.userArray.append(user4)
+         self.userArray.append(user5)
+         self.userArray.append(user6)
          */
         _ = userArray.filter { section in
             if section.sectionID == "1" {
@@ -66,10 +67,10 @@ class UserArrayObject: ObservableObject{
                           let isAdmin = document.data()["is_admin"] as? Bool,
                           let isJury = document.data()["is_jury"] as? Bool
                     else {
-                                    // Eğer herhangi bir alan eksikse, bu dökümanı atla
-                                    print("Error: Missing field in document \(document.documentID)")
-                                    continue
-                                }
+                        // Eğer herhangi bir alan eksikse, bu dökümanı atla
+                        print("Error: Missing field in document \(document.documentID)")
+                        continue
+                    }
                     let user = UserModel(userID: userID, userName: userName, isAdmin: isAdmin, isJury: isJury, juryExpert: juryExpert)
                     self.userArray.append(user)
                 }

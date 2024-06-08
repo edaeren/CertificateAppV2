@@ -11,7 +11,7 @@ struct JuryView: View {
 
     @EnvironmentObject var array: ApplicantsArrayObject
     @State var sectionID : String = ""
-
+    @State var applicantID : String = ""
     @State var showAssignJuryPage: Bool = false
     @Environment(\.presentationMode) var presentationMode
     
@@ -72,6 +72,7 @@ struct JuryView: View {
                                 Spacer()
                                 Button(action: {
                                     //assignjuryview'a gidecek sekilde degistir
+                                    applicantID = data.applicantID
                                     sectionID = data.sectionID
                                     showAssignJuryPage.toggle()
                                    
@@ -95,7 +96,7 @@ struct JuryView: View {
                                 }, content: {
                                    
                                   
-                                    AssignJuryView(sectionID: sectionID)
+                                    AssignJuryView(sectionID: sectionID, applicantID: applicantID)
                                         .environmentObject(ApplicantsArrayObject.shared)
                                 })
                            
@@ -141,6 +142,7 @@ struct JuryView: View {
                                 Spacer()
                                 Spacer()
                                 Button(action: {
+                                    applicantID = data.applicantID
                                     sectionID = data.sectionID
                                     showAssignJuryPage.toggle()
                                 }, label: {
@@ -161,7 +163,7 @@ struct JuryView: View {
                                 .fullScreenCover(isPresented: $showAssignJuryPage, onDismiss: {
                                     self.presentationMode.wrappedValue.dismiss()
                                 }, content: {
-                                    AssignJuryView(sectionID: sectionID)
+                                    AssignJuryView(sectionID: sectionID, applicantID: applicantID)
                                         .environmentObject(ApplicantsArrayObject.shared)
                                 })}
                     }
@@ -202,6 +204,7 @@ struct JuryView: View {
                                 Spacer()
                                 Button(action: {
                                     //assignjuryview'a gidecek sekilde degistir
+                                    applicantID = data.applicantID
                                     sectionID = data.sectionID
                                     showAssignJuryPage.toggle()
                                 }, label: {
@@ -224,7 +227,7 @@ struct JuryView: View {
                                 }, content: {
                                     //parametre olarak sectionID gitmeli
                                     
-                                    AssignJuryView(sectionID: sectionID)
+                                    AssignJuryView(sectionID: sectionID, applicantID: applicantID)
                                         .environmentObject(ApplicantsArrayObject.shared)
                                 })}
                         

@@ -10,6 +10,9 @@ class ApplicantsArrayObject: ObservableObject{
     static let shared = ApplicantsArrayObject()
 //    @Published var applicantsArray = [ApplicantsModel]()
     @Published var applicantsArray: [ApplicantsModel] = []
+    
+    @Published var requestAray: [ApplicantsModel] = []
+    
 //    @Published var section1Array = [ApplicantsModel]()
     @Published var section1Array : [ApplicantsModel] = []
     @Published var section2Array : [ApplicantsModel] = []
@@ -131,7 +134,7 @@ class ApplicantsArrayObject: ObservableObject{
 
                 }
             }
-            
+
         }
     }
     
@@ -147,6 +150,43 @@ class ApplicantsArrayObject: ObservableObject{
         clearList()
         getApplicants()
         updateSections()
+    }
+    
+    func getRequest(forUserID userID:String?){
+        if userID != ""{
+            if let user = userID {
+                AuthService.instance.getJuryApplicants(forUserID: userID!){ (returnedRequests) in
+                    if let request = returnedRequests {
+                            // Sertifika listesini ekrana yazdır
+                        for item in request{
+                            print("gelen applicant id: \(item)")
+                            self.getRequsetInfo(forRequsetID: item)
+                        }
+                        } else {
+                            print("Sertifikalar alınamadı.")
+                        }
+                }
+            }
+        } else {
+            print("User not found")
+        }
+    }
+    
+    func getRequsetInfo(forRequsetID requestID: String){
+        ApplicantService.instance.getApplicantInfo(forApplicantID: requestID){(certificateID,userID,applicantLink,sectionID) in
+            if let certificateId = certificateID{
+                if let userId = userID{
+                    if let link = applicantLink{
+                        if let sectionId = sectionID{
+                            let applicant = ApplicantsModel(applicantID: requestID, userID: userId, sectionID: sectionId, link:link, certificateID: certificateId )
+                            self.requestAray.append(applicant)
+                            print("Eklenen applicant : \(applicant)")
+                        }
+                    }
+                }
+            }
+        }
+        
     }
     /*
     private func updateSections() {

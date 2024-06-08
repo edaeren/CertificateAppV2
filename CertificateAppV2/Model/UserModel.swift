@@ -22,7 +22,7 @@ struct UserModel: Identifiable, Hashable{
     var sectionID: String?
     var sectionName: String?
     var photoName: String?
-    var certificates: [String]?
+    var applicants: [String]?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)

@@ -48,7 +48,7 @@ class DataArrayObject: ObservableObject {
                     self.dataArray.append(data)
                     
                 }
-                print("Data Array Function: \(self.dataArray)")
+                //print("Data Array Function: \(self.dataArray)")
             }
             
             self.getUserSertificates(forUserID: userID)
@@ -178,10 +178,6 @@ class DataArrayObject: ObservableObject {
             if let name = certificateName{
                 if let id = sectionID{
                     if let sName = sectionName{
-                        print("ID: \(String(describing: id))")
-                        print("Name: \(String(describing: name))")
-                        print("sName: \(String(describing: sName))")
-                        
                         var certificateImage: UIImage = UIImage(named: "logo.loading")!
                         ImageManager.instance.downloadCertificateImage(certificateID: certificateID) { (returnedImage) in
                             if let image = returnedImage {

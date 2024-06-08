@@ -14,8 +14,8 @@ struct AssignJuryView: View {
        @State var juryExpert = UserModel(userID: "", userName: "", isAdmin: false, isJury: true, juryExpert: "")
        @Environment(\.presentationMode) var presentationMode
 
-       let sectionID: String // Accepting sectionID as a parameter
-
+        let sectionID: String // Accepting sectionID as a parameter
+        let applicantID: String
     
     // Filtering juries based on sectionID
    
@@ -73,6 +73,7 @@ struct AssignJuryView: View {
 //                                Spacer()
                                 Button(action: {
                                    //send request to the juries
+                                    AuthService.instance.addApplicantToJury(forUserID:jury.userID, forApplicantID:applicantID)
                                 }, label: {
                                     Image(systemName: "person.badge.plus")
                                         .font(.headline)
@@ -98,7 +99,7 @@ struct AssignJuryView: View {
 }
 
 #Preview {
-        AssignJuryView(sectionID: "exampleSection")
+    AssignJuryView(sectionID: "exampleSection", applicantID: "exampleApplicant")
             .environmentObject(ApplicantsArrayObject.shared)
     
 }

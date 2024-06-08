@@ -16,7 +16,7 @@ struct ApplicantsModel: Identifiable, Hashable{
     var userID: String
     var sectionID: String
 //    var photoName: String
-    var link: String?
+    var link: String
     var certificateID: String
    
     func hash(into hasher: inout Hasher) {

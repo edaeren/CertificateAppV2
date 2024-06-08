@@ -15,10 +15,12 @@ struct ApplicantsView: View {
 //    @ObservedObject var array : ApplicantsArrayObject
     @EnvironmentObject var array: ApplicantsArrayObject
     @State var sectionID : String = ""
+    @State var applicantID : String = ""
 //    @ObservedObject var section3 : ApplicantsArrayObject
 //    @State var searchText = ""
     @State var showAssignJuryPage: Bool = false
     @Environment(\.presentationMode) var presentationMode
+    @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
     
     var body: some View {
         /*
@@ -51,6 +53,7 @@ struct ApplicantsView: View {
                     Spacer()
                     Button(action: {
                         ApplicantsArrayObject.shared.updateSectionFromOutside()
+                        ApplicantsArrayObject.shared.getRequest(forUserID: currentUserID)
                     }, label: {
                         Image(systemName: "arrow.clockwise")
                             .font(.headline)
@@ -98,6 +101,7 @@ struct ApplicantsView: View {
                                 Spacer()
                                 Button(action: {
                                     //assignjuryview'a gidecek sekilde degistir
+                                    applicantID = data.applicantID
                                     sectionID = data.sectionID
                                     showAssignJuryPage.toggle()
                                    
@@ -121,7 +125,7 @@ struct ApplicantsView: View {
                                 }, content: {
                                    
                                   
-                                    AssignJuryView(sectionID: sectionID)
+                                    AssignJuryView(sectionID: sectionID,applicantID: applicantID)
                                         .environmentObject(ApplicantsArrayObject.shared)
                                 })
                            
@@ -175,6 +179,7 @@ struct ApplicantsView: View {
                                 Spacer()
                                 Spacer()
                                 Button(action: {
+                                    applicantID = data.applicantID
                                     sectionID = data.sectionID
                                     showAssignJuryPage.toggle()
                                 }, label: {
@@ -195,7 +200,7 @@ struct ApplicantsView: View {
                                 .fullScreenCover(isPresented: $showAssignJuryPage, onDismiss: {
                                     self.presentationMode.wrappedValue.dismiss()
                                 }, content: {
-                                    AssignJuryView(sectionID: sectionID)
+                                    AssignJuryView(sectionID: sectionID, applicantID: applicantID)
                                         .environmentObject(ApplicantsArrayObject.shared)
                                 })}
                     }
@@ -234,7 +239,6 @@ struct ApplicantsView: View {
 //                                    array.removeApplicant(data)
 //                                    array.removeApplicant(userID: data.userID, sectionID: data.sectionID)
                                     array.removeApplicant(userID: data.userID, certificateID: data.certificateID)
-                                    ApplicantsArrayObject.shared.deleteApplicant(applicantID: data.applicantID)
                                 }, label: {
                                     Image(systemName: "xmark")
                                     .font(.headline)
@@ -245,6 +249,7 @@ struct ApplicantsView: View {
                                 Spacer()
                                 Button(action: {
                                     //assignjuryview'a gidecek sekilde degistir
+                                    applicantID = data.applicantID
                                     sectionID = data.sectionID
                                     showAssignJuryPage.toggle()
                                 }, label: {
@@ -267,7 +272,7 @@ struct ApplicantsView: View {
                                 }, content: {
                                     //parametre olarak sectionID gitmeli
                                     
-                                    AssignJuryView(sectionID: sectionID)
+                                    AssignJuryView(sectionID: sectionID, applicantID: applicantID)
                                         .environmentObject(ApplicantsArrayObject.shared)
                                 })}
                         
