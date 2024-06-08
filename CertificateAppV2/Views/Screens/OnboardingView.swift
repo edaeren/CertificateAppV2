@@ -47,15 +47,17 @@ struct OnboardingView: View {
                 .padding()
                 .frame(height: 50)
                 .frame(maxWidth: .infinity)
-                .background(Color.white)
+                .background(Color(.systemBackground))
                 .cornerRadius(12)
                 .font(.headline)
                 .autocapitalization(.sentences)
                 .padding(.horizontal)
+                .foregroundColor(Color.primary)
             Group {
                 if isSecured {
                     HStack{
                         SecureField("Add your pasword here...", text: $password)
+                            .foregroundColor(Color.primary)
                           
                     Button(action: {
                         isSecured.toggle()
@@ -69,6 +71,7 @@ struct OnboardingView: View {
                 } else {
                     HStack{
                         TextField("Add your pasword here...", text: $password)
+                            .foregroundColor(Color.primary)
                     Button(action: {
                         isSecured.toggle()
                     }) {
@@ -83,7 +86,7 @@ struct OnboardingView: View {
                 .padding()
                 .frame(height: 50)
                 .frame(maxWidth: .infinity)
-                .background(Color.white)
+                .background(Color(.systemBackground))
                 .cornerRadius(12)
                 .font(.headline)
                 .padding(.horizontal)
