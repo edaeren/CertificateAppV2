@@ -20,6 +20,7 @@ struct OnboardingView: View {
     @State var password :String = ""
     @State var providerID: String = ""
     @State var provider : String = ""
+    @State private var isSecured: Bool = true
     
     var body: some View {
         VStack(spacing: 10){
@@ -34,67 +35,59 @@ struct OnboardingView: View {
                 .fontWeight(.bold)
                 .foregroundStyle(Color.black)
             
-            Text("Certificate App is the #1 app for getting the certifates that you need for your career!")
+            Text("Certificate App is the #1 app for getting the certificates that you need for your career!")
                 .font(.headline)
                 .fontWeight(.medium)
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color.black)
                 .padding()
             
-            /*
-            //MARK: SIGN IN WITH APPLE
-            Button(action: {
-                SignInWithApple.instance.startSignInWithAppleFlow(view: self)
-            }, label: {
-                SignInWithAppleButtonCustom()
-                    .frame(height: 60)
-                    .frame(maxWidth: .infinity)
-            })*/
-            
-            //MARK: SIGN IN WITH GOOGLE
-            Button(action: {
-                showOnboardingPart2.toggle()
-            }, label: {
-                HStack{
-                    Image(systemName: "globe")
-                    Text("Sign in with Google")
-                }
-                .frame(height: 60)
-                .frame(maxWidth: .infinity)
-                .background(Color(.sRGB, red:222/255, green: 82/255, blue: 70/255, opacity: 1.0))
-                .cornerRadius(4)
-                .font(.system(size: 23, weight: .medium, design: .default))
-            })
-            .accentColor(Color.white)
-            
-            
-            //MARK: SIGN UP WITH MAIL
-            Button(action: {
-                showOnboardingMail.toggle()
-            }, label: {
-                HStack{
-                    Image(systemName: "mail")
-                    Text("Sign Up")
-                }
-                .frame(height: 60)
-                .frame(maxWidth: .infinity)
-                .background(Color(.sRGB, red:100/255, green: 200/255, blue: 100/255, opacity: 1.0))
-                .cornerRadius(4)
-                .font(.system(size: 23, weight: .medium, design: .default))
-            })
-            .accentColor(Color.white)
-            
-            
             //MARK: LOGIN
             TextField("Email", text: $email)
                 .padding()
-                .frame(height: 60)
+                .frame(height: 50)
                 .frame(maxWidth: .infinity)
                 .background(Color.white)
                 .cornerRadius(12)
                 .font(.headline)
                 .autocapitalization(.sentences)
                 .padding(.horizontal)
+            Group {
+                if isSecured {
+                    HStack{
+                        SecureField("Add your pasword here...", text: $password)
+                          
+                    Button(action: {
+                        isSecured.toggle()
+                    }) {
+                        Image(systemName: self.isSecured ? "eye.slash" : "eye")
+                            .accentColor(.gray)
+                            .padding(.leading,90)
+         }
+                    }
+                        
+                } else {
+                    HStack{
+                        TextField("Add your pasword here...", text: $password)
+                    Button(action: {
+                        isSecured.toggle()
+                    }) {
+                        Image(systemName: self.isSecured ? "eye.slash" : "eye")
+                            .accentColor(.gray)
+                            .padding(.leading,90)
+         }
+                    }
+                       
+                }
+            }
+                .padding()
+                .frame(height: 50)
+                .frame(maxWidth: .infinity)
+                .background(Color.white)
+                .cornerRadius(12)
+                .font(.headline)
+                .padding(.horizontal)
+            /*
             TextField("Password", text: $password)
                 .padding()
                 .frame(height: 60)
@@ -103,7 +96,7 @@ struct OnboardingView: View {
                 .cornerRadius(12)
                 .font(.headline)
                 .autocapitalization(.sentences)
-                .padding(.horizontal)
+                .padding(.horizontal)*/
             
             Button(action: {
                 connectWithMail(email: email, password: password)
@@ -114,13 +107,56 @@ struct OnboardingView: View {
                     Text("Login")
                 }
                 .frame(height: 60)
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: 300)
                 .background(Color.gray)
                 .cornerRadius(4)
                 .font(.system(size: 23, weight: .medium, design: .default))
             })
             .accentColor(Color.white)
             
+            //MARK: SIGN UP WITH MAIL
+            Button(action: {
+                showOnboardingMail.toggle()
+            }, label: {
+                HStack{
+                    Image(systemName: "mail")
+                    Text("Sign Up")
+                }
+                .frame(height: 60)
+                .frame(maxWidth: 300)
+                .background(Color(.sRGB, red:100/255, green: 200/255, blue: 100/255, opacity: 1.0))
+                .cornerRadius(4)
+                .font(.system(size: 23, weight: .medium, design: .default))
+            })
+            .accentColor(Color.white)
+            
+            
+            //MARK: SIGN IN WITH APPLE
+            Button(action: {
+                SignInWithApple.instance.startSignInWithAppleFlow(view: self)
+            }, label: {
+                SignInWithAppleButtonCustom()
+                    .frame(height: 50)
+                    .frame(maxWidth: 300)
+            })
+            
+            //MARK: SIGN IN WITH GOOGLE
+            Button(action: {
+                showOnboardingPart2.toggle()
+            }, label: {
+                HStack{
+                    Image(systemName: "globe")
+                    Text("Sign in with Google")
+                }
+                .frame(height: 50)
+                .frame(maxWidth: 300)
+                .background(Color(.sRGB, red:222/255, green: 82/255, blue: 70/255, opacity: 1.0))
+                .cornerRadius(4)
+                .font(.system(size: 23, weight: .medium, design: .default))
+            })
+            .accentColor(Color.white)
+            
+            //MARK: OR CONTINUE AS GUEST
             
             Text("or")
             Button(action: {
@@ -130,13 +166,11 @@ struct OnboardingView: View {
                 Text("Continue as guest".uppercased())
                     .font(.headline)
                     .fontWeight(.medium)
-                    .padding()
+//                    .padding()
             })
             .accentColor(.black)
-            
-            
         }
-        .padding(.all,20)
+        .padding(.all,30)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.MyTheme.blueColor)
         .edgesIgnoringSafeArea(.all)
