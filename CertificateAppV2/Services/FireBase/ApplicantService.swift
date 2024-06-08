@@ -46,4 +46,8 @@ class ApplicantService{
             }
         }
     }
+    
+    func deleteApplicant(forApplicantID applicantID: String){
+        REF_CERTIFICATES.document(applicantID).delete()
+    }
 }

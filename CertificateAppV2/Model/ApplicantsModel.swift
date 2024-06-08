@@ -12,6 +12,7 @@ struct ApplicantsModel: Identifiable, Hashable{
 //    var id: ObjectIdentifier
 
     var id = UUID()
+    var applicantID: String
     var userID: String
     var sectionID: String
 //    var photoName: String

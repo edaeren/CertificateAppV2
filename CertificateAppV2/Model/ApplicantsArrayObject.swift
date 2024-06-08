@@ -120,14 +120,12 @@ class ApplicantsArrayObject: ObservableObject{
                           let sectionID = document.data()["section_id"] as? String,
                           let userID = document.data()["user_id"] as? String,
                           let link = document.data()["link"] as? String
-                    
                     else {
                                     // Eğer herhangi bir alan eksikse, bu dökümanı atla
                                     print("Error: Missing field in document \(document.documentID)")
                                     continue
                                 }
-                    
-                    let user = ApplicantsModel(userID: userID,  sectionID: sectionID, link: link, certificateID: certificateID)
+                    let user = ApplicantsModel(applicantID: document.documentID ,userID: userID,  sectionID: sectionID, link: link, certificateID: certificateID)
                     self.addApplicant(user)
                     print("gelen applicants'lar : \(document)")
 
@@ -136,9 +134,13 @@ class ApplicantsArrayObject: ObservableObject{
             
         }
         
+        
+        
     }
     
-    
+    func deleteApplicant(applicantID:String){
+        ApplicantService.instance.deleteApplicant(forApplicantID: applicantID)
+    }
     
     /*
     private func updateSections() {

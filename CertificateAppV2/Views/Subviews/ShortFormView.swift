@@ -12,7 +12,7 @@ struct ShortFormView: View {
     @State var submissionText: String = ""
     @State var placeholder: String = "Please enter the link.."
     @State private var buttonText: String = "Apply".uppercased()
-    @State var applicants = ApplicantsModel(userID: "", sectionID: "", link: "", certificateID: "")
+    @State var applicants = ApplicantsModel(applicantID: "", userID: "", sectionID: "", link: "", certificateID: "")
 //    @ObservedObject var applicantsArray = ApplicantsArrayObject()
     @EnvironmentObject var applicantsArray: ApplicantsArrayObject
     @State var certificates : CertificateModel
