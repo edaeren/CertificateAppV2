@@ -11,6 +11,8 @@ struct GiveApprovalView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var buttonText: String = "Apply".uppercased()
     @EnvironmentObject var array: ApplicantsArrayObject
+    @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
+    
     let userID: String // Accepting userID as a parameter
     
     var filteredRequest: [ApplicantsModel] {
@@ -101,17 +103,21 @@ struct GiveApprovalView: View {
     }
     
     func approveApplicant(_ applicant: ApplicantsModel) {
-        buttonText = "APPROVE".uppercased()
-        AuthService.instance.addCertificateToUser(forUserID: applicant.userID, forCertificateID: applicant.certificateID)
-        // Other logic to handle the approval...
-    }
-    
-    func rejectApplicant(_ applicant: ApplicantsModel) {
-        buttonText = "REJECT".uppercased()
-        // Logic to handle rejection, such as removing the applicant from the list or database
-        AuthService.instance.removeRequestFromJury(forUserID: applicant.userID, forApplicantID: applicant.certificateID)
-        // Other logic to handle the rejection...
-    }
+                buttonText = "APPROVE".uppercased()
+                AuthService.instance.addCertificateToUser(forUserID: applicant.userID, forCertificateID: applicant.certificateID)
+                AuthService.instance.removeRequestFromJury(forUserID:currentUserID ?? "" , forApplicantID: applicant.applicantID)
+                ApplicantsArrayObject.shared.removeApplicant(userID:applicant.userID, certificateID: applicant.certificateID)
+                ApplicantsArrayObject.shared.deleteApplicant(applicantID: applicant.applicantID)
+                ApplicantsArrayObject.shared.removeRequest(userID: applicant.userID, applicantID:  applicant.applicantID)
+               // Other logic to handle the approval...
+           }
+           // Rejection function
+            func rejectApplicant(_ applicant: ApplicantsModel) {
+               buttonText = "REJECT".uppercased()
+               // Logic to handle rejection, such as removing the applicant from the list or database
+                AuthService.instance.removeRequestFromJury(forUserID:currentUserID ?? "" , forApplicantID: applicant.applicantID)
+                ApplicantsArrayObject.shared.removeRequest(userID: applicant.userID, applicantID:  applicant.applicantID)
+           }
 }
 
 #Preview {

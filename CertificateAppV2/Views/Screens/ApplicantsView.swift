@@ -239,6 +239,7 @@ struct ApplicantsView: View {
 //                                    array.removeApplicant(data)
 //                                    array.removeApplicant(userID: data.userID, sectionID: data.sectionID)
                                     array.removeApplicant(userID: data.userID, certificateID: data.certificateID)
+                                    ApplicantsArrayObject.shared.deleteApplicant(applicantID: data.applicantID)
                                 }, label: {
                                     Image(systemName: "xmark")
                                     .font(.headline)

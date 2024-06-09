@@ -117,8 +117,8 @@ struct JuryView: View {
     }
     
     func rejectApplication(_ applicant: ApplicantsModel) {
-        AuthService.instance.removeRequestFromJury(forUserID: applicant.userID, forApplicantID: applicant.certificateID)
-   }
+            AuthService.instance.removeRequestFromJury(forUserID: currentUserID ?? "", forApplicantID: applicant.applicantID)
+       }
     
 }
 
