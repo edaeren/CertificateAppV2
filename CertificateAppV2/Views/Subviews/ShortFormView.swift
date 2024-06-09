@@ -16,6 +16,7 @@ struct ShortFormView: View {
 //    @ObservedObject var applicantsArray = ApplicantsArrayObject()
     @EnvironmentObject var applicantsArray: ApplicantsArrayObject
     @State var certificates : CertificateModel
+    @State private var isButtonDisabled: Bool = false
     
     var body: some View {
       
@@ -58,17 +59,10 @@ struct ShortFormView: View {
             
             Spacer()
             Button(action: {
-                //eger butona basildiysa istek listesine kisinin istegi dusmeli
-                //textfield'da yazilan linki al ve applicantsArray'e at icindekini (link degiskeni)
-                //sectionID ve certificateID gelmeli sertifikadan
-                //userID , photoName al applicantsArray'e at
                 buttonText = "Applied!".uppercased()
-                //appendApplicantToArray()
                 appendApplicantToDatabase()
-                   
-//                print("userID: \(applicants.userID) link:\(applicants.link) certificateID: \(applicants.certificateID) sectionID: \(applicants.sectionID)")
                 print("array: \(applicantsArray.section1Array)")
-                
+                isButtonDisabled = true
             }, label: {
                 Text(buttonText)
                     .font(.title3)
@@ -76,11 +70,11 @@ struct ShortFormView: View {
                     .padding()
                     .frame(height: 40)
                     .frame(maxWidth: 170)
-                    .background(Color.gray)
+                    .background(isButtonDisabled ? Color.gray.opacity(0.5) : Color.gray)
                     .cornerRadius(12)
             })
             .accentColor(Color.black)
-            
+            .disabled(isButtonDisabled)
             
             
         } //scroll view
