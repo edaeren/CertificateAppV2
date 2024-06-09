@@ -13,11 +13,14 @@ struct CertificateView: View {
     @State var showShortForm: Bool = false
     @State var showSignUpPage: Bool = false
     @State var isLoggedIn: Bool = false
+    @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
     
     @State var certificateImage: UIImage = UIImage(named: "logo.loading")!
+    @State var certificateID: String = ""
     @State var certificateName: String?
     @State var description: String = ""
     @State var requirements: String = ""
+    @State var doesUserHaveCertificate: Bool = false
 //    @StateObject var applicantsArray = ApplicantsArrayObject()
    
     
@@ -54,37 +57,61 @@ struct CertificateView: View {
                     .padding(.leading,1)
                 
                     VStack{
-                        Button(action:{
-                           checkIfLoggedIn()
-                            if isLoggedIn == true {
-                                showShortForm.toggle()
-                               
-                            }
-                            else{
-    //                            showSignUpPage = true
-                                showSignUpPage.toggle()
-                               /* NavigationLink(destination: SignUpView(), isActive: $showSignUpPage) {
-                                      EmptyView()
-                                }*/
-                            }
-                         
-                               
-                        }  , label: {
-                            Text("Apply".uppercased())
-                                .font(.headline)
-                                .fontWeight(.bold)
-                                .padding()
-                                .frame(height: 60)
-                                .frame(maxWidth: 300)
-                                .background(Color.MyTheme.blueColor)
-                                .cornerRadius(12)
-                                .shadow(radius: 12)
-                        })
-                        .accentColor(.black)
-                        .padding()
+                        
+                        if doesUserHaveCertificate == false {
+                           
+                            Button(action:{
+                               checkIfLoggedIn()
+                                if isLoggedIn == true {
+                                    showShortForm.toggle()
+                                   
+                                }
+                                else{
+        //                            showSignUpPage = true
+                                    showSignUpPage.toggle()
+                                   /* NavigationLink(destination: SignUpView(), isActive: $showSignUpPage) {
+                                          EmptyView()
+                                    }*/
+                                }
+                             
+                                   
+                            }  , label: {
+                                Text("Apply".uppercased())
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                    .padding()
+                                    .frame(height: 60)
+                                    .frame(maxWidth: 300)
+                                    .background(Color.MyTheme.blueColor)
+                                    .cornerRadius(12)
+                                    .shadow(radius: 12)
+                            })
+                            .accentColor(.black)
+                            .padding()
+                            
+                        }
+                        else{
+
+                            Button(action:{
+                            }  , label: {
+                                Text("You have this certificate!".uppercased())
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                    .padding()
+                                    .frame(height: 60)
+                                    .frame(maxWidth: 300)
+                                    .background(Color.MyTheme.blueColor)
+                                    .cornerRadius(12)
+                                    .shadow(radius: 12)
+                            })
+                            .accentColor(.black)
+                            .padding()
+                            
+                        }
                     }.onAppear(){
                         getImages()
                         getInfos()
+                        setUserHavecertificates()
                     }
                     .navigationBarTitle(certificates.certificateName)
                     .navigationBarTitleDisplayMode(.inline)
@@ -139,6 +166,33 @@ struct CertificateView: View {
             }
         }
     }
+    
+    func setUserHavecertificates(){
+        if currentUserID != ""{
+            if let user = currentUserID {
+                DataService.instance.getUserCertificates(forUserID: currentUserID!){ (returnedCertificates) in
+                    if let certificate = returnedCertificates {
+                            // Sertifika listesini ekrana yazdır
+                        for item in certificate{
+                            if certificates.certificateID == item{
+                                self.doesUserHaveCertificate = true
+                            }else{
+                                print("kullanıcıda var mı: \(self.doesUserHaveCertificate)")
+                                print("item : \(item)")
+                                print("diğer : \(certificates.certificateID)")
+                            }
+                        }
+                        } else {
+                            print("Sertifikalar alınamadı.")
+                        }
+                }
+            }
+        } else {
+            print("User not found")
+        }
+    }
+    
+    
     
     } //en dis viewın parantezi
 
