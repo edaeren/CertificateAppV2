@@ -15,25 +15,12 @@ struct MiniCertificateView: View {
     var body: some View {
         HStack{
             VStack {
-                // MARK: HEADER
-               
-//                if showHeader{
-//                    HStack {
-//                        Text(data.sectionName)
-//                            .font(.subheadline)
-//                            .fontWeight(.heavy)
-//                            .foregroundColor(.primary) //changes the color depenging of the mode(dark mode or light mode)
-//                        Spacer() //sola dayadik
-//                        Image(systemName: "ellipsis") //sagdaki uc nokta
-//                            .font(.headline) //belki buraya tiklayarak geri kalan sertifikalara bakilabilir. tumunu gor gibi
-//                    }
-//                    .padding(.all, 6)
-//                }
-                
-               
                 VStack{
                     Image(uiImage: data.photo ?? certificateImage)
                     .resizable()
+                    .aspectRatio(contentMode: .fill) // Ensure the image fills its space
+                     .frame(width: 230, height: 150) // Set a fixed size for the image
+                      .clipped() // Clip the image to prevent overflow
                     .scaledToFit()
                     Text(data.certificateName)
                         .font(.subheadline)
@@ -41,8 +28,12 @@ struct MiniCertificateView: View {
                         .foregroundColor(.primary)
                 }
                 
-            }.frame(height: 150).background(.bar)
-                .padding(.all,10)
+            }
+//            .frame(height: 150).background(.bar)
+//                .padding(.all,10)
+            .background(Color.clear) // Adjust the background color here if needed
+                 .cornerRadius(10) // Apply corner radius to the container
+                 .padding(8) // Add padding to the container
         }
         
        
