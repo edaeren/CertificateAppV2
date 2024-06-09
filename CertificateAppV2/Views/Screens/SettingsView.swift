@@ -84,6 +84,7 @@ struct SettingsView: View {
                 label: {
                    Image(systemName: "xmark")
                     .font(.title3)
+                    .foregroundColor(Color.primary)
             }).accentColor(.primary)
             )
         }

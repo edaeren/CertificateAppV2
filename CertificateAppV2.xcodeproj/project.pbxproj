@@ -44,6 +44,7 @@
 		3C65AE8B2C10F69200F907D7 /* AssignJuryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C65AE8A2C10F69200F907D7 /* AssignJuryView.swift */; };
 		3C68BA502BCE9ED800E1093B /* MiniCertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68BA4F2BCE9ED800E1093B /* MiniCertificateView.swift */; };
 		3C8067912C0F54E000B548DE /* ApplicantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8067902C0F54E000B548DE /* ApplicantsView.swift */; };
+		3C8689092C15BEF900D3A9B8 /* YoutubeWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8689082C15BEF900D3A9B8 /* YoutubeWebView.swift */; };
 		3CA6E9FA2C14662E00977F1A /* ApplicantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA6E9F92C14662E00977F1A /* ApplicantService.swift */; };
 		3CB6AC0B2C14C474000F00FC /* JuryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB6AC0A2C14C474000F00FC /* JuryView.swift */; };
 		3CB6AC0D2C14CC92000F00FC /* GiveApprovalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB6AC0C2C14CC92000F00FC /* GiveApprovalView.swift */; };
@@ -91,6 +92,7 @@
 		3C65AE8A2C10F69200F907D7 /* AssignJuryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignJuryView.swift; sourceTree = "<group>"; };
 		3C68BA4F2BCE9ED800E1093B /* MiniCertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCertificateView.swift; sourceTree = "<group>"; };
 		3C8067902C0F54E000B548DE /* ApplicantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantsView.swift; sourceTree = "<group>"; };
+		3C8689082C15BEF900D3A9B8 /* YoutubeWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeWebView.swift; sourceTree = "<group>"; };
 		3CA6E9F92C14662E00977F1A /* ApplicantService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicantService.swift; sourceTree = "<group>"; };
 		3CB6AC0A2C14C474000F00FC /* JuryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JuryView.swift; sourceTree = "<group>"; };
 		3CB6AC0C2C14CC92000F00FC /* GiveApprovalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveApprovalView.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				3CF1233D2BE2733700694DE0 /* SearchView.swift */,
 				3CF1233F2BE2DBCF00694DE0 /* ShortFormView.swift */,
 				3CB6AC0C2C14CC92000F00FC /* GiveApprovalView.swift */,
+				3C8689082C15BEF900D3A9B8 /* YoutubeWebView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				3C8067912C0F54E000B548DE /* ApplicantsView.swift in Sources */,
 				3CDD1FAC2BA1A155009549E7 /* ContentView.swift in Sources */,
 				3C4C1B572BDB03B90041E802 /* ImagePicker.swift in Sources */,
+				3C8689092C15BEF900D3A9B8 /* YoutubeWebView.swift in Sources */,
 				3C3E0C0A2BA1BA470087500C /* Extensions.swift in Sources */,
 				3C2853BD2BA49B13007E93D9 /* CertificateView.swift in Sources */,
 				3CD6DD1C2C1316400044CA52 /* ApplicantsModel.swift in Sources */,

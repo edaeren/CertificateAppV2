@@ -36,6 +36,7 @@ struct AssignJuryView: View {
                 Image(systemName: "xmark")
                     .font(.headline)
                     .fontWeight(.medium)
+                    .foregroundColor(Color.primary)
 
             })
             .accentColor(.black)
