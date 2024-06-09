@@ -11,131 +11,112 @@ struct GiveApprovalView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var buttonText: String = "Apply".uppercased()
     @EnvironmentObject var array: ApplicantsArrayObject
-    //    @EnvironmentObject var applicantsArray: ApplicantsArrayObject
-    //    @State var certificates : CertificateModel
-//    @State var userIDmodel = ApplicantsModel(applicantID: "", userID: "", sectionID: "", link: "", certificateID: "")
     let userID: String // Accepting userID as a parameter
-   
     
-         var filteredRequest: [ApplicantsModel] {
-             let filtered = array.requestArray.filter { $0.userID == userID }
-             // Debug print
-//             print("Filtered Juries for section \(sectionID): \(filtered.map { $0.userID })")
-             return filtered
-         }
-     
+    var filteredRequest: [ApplicantsModel] {
+        let filtered = array.requestArray.filter { $0.userID == userID }
+        return filtered
+    }
     
     var body: some View {
-        
-        HStack {
-            Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }, label: {
-                Image(systemName: "xmark")
-                    .font(.headline)
-                    .fontWeight(.medium)
+        VStack {
+            HStack {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Image(systemName: "xmark")
+                        .font(.headline)
+                        .fontWeight(.medium)
+                })
+                .accentColor(.black)
+                .padding(.all, 20)
+                .padding(.leading)
+                Spacer()
+            }
+            
+            ScrollView(.vertical) {
+                Text("Give Approval View")
+                    .font(.title)
+                    .padding(.bottom, 50)
                 
-            })
-            .accentColor(.black)
-            .padding(.all, 20)
-            .padding(.leading)
-            Spacer()
-            
-        }//hstack
-        
-        ScrollView(.vertical){
-            
-            Text("Give Approval View")
-                .font(.title)
-                .padding(.bottom,50)
-            Spacer()
-            Spacer()
-            Text("kabul veya red")
-                .padding(.bottom,30)
-                .frame(maxWidth: 350)
-            Spacer()
-            //burada kullanicinin gonderdigi link yer almali
-            VStack{
-                if filteredRequest.isEmpty {
-                    Text("No requests found for userID \(userID)")
+                VStack {
+                    if filteredRequest.isEmpty {
+                        Text("No requests found for userID \(userID)")
                             .foregroundColor(.red)
-                } else {
-                    ForEach(filteredRequest, id: \.self) { data in
-//                    ForEach(array.requestArray) { data in
-                        HStack {
-                            Text(data.link)
-                                .padding()
-                                .frame(height: 50)
-                                .frame(maxWidth: 350)
-                                .background(Color.MyTheme.pinkColor)
-                            //                .background(Color.white)
-                            //                .border(Color.black)
-                                .cornerRadius(12)
-                                .font(.headline)
-                            Spacer()
-                            Spacer(minLength: 170)
-                        }
-                        HStack {
-                            Button(action: {
-                                rejectApplicant(data)
-                            }, label: {
-                                Text("REJECT")
-                                    .font(.title3)
-                                    .fontWeight(.medium)
-                                    .padding()
-                                    .frame(height: 40)
-                                    .frame(maxWidth: 170)
-                                    .background(Color.gray)
-                                    .cornerRadius(12)
-                                Image(systemName: "xmark")
-                                    .font(.headline)
-                                    .fontWeight(.medium)
-                            })
-                            .accentColor(.black)
-                            
-                            Button(action: {
-                                approveApplicant(data)
-                            }, label: {
-                                Text("APPROVE")
-                                    .font(.title3)
-                                    .fontWeight(.medium)
-                                    .padding()
-                                    .frame(height: 40)
-                                    .frame(maxWidth: 170)
-                                    .background(Color.gray)
-                                    .cornerRadius(12)
-                                Image(systemName: "checkmark")
-                                    .font(.headline)
-                                    .fontWeight(.medium)
-                            })
-                            .accentColor(.black)
+                    } else {
+                        ForEach(filteredRequest, id: \.self) { data in
+                            VStack(spacing: 20) {
+                                HStack {
+                                    Text(data.link)
+                                        .padding(.all, 5)
+                                        .frame(height: 50)
+                                        .frame(maxWidth: 300)
+                                        .background(Color.clear)
+                                        .border(Color.black)
+                                        .cornerRadius(6)
+                                        .font(.headline)
+//                                        .padding(.leading,30)
+                                    Spacer()
+                                }.padding(.all, 50)
+                                
+                                HStack {
+                                    Button(action: {
+                                        rejectApplicant(data)
+                                        presentationMode.wrappedValue.dismiss()
+                                    }, label: {
+                                        Label("REJECT", systemImage: "xmark")
+                                            .font(.title3)
+                                            .fontWeight(.medium)
+                                            .padding()
+                                            .frame(height: 50)
+                                            .frame(maxWidth: 155)
+                                            .background(Color.gray)
+                                            .cornerRadius(12)
+                                    })
+                                    .accentColor(.black)
+                                    
+                                    Button(action: {
+                                        approveApplicant(data)
+                                        presentationMode.wrappedValue.dismiss()
+                                    }, label: {
+                                        Label("APPROVE", systemImage: "checkmark")
+                                            .font(.title3)
+                                            .fontWeight(.medium)
+                                            .padding()
+                                            .frame(height: 50)
+                                            .frame(maxWidth: 155)
+                                            .background(Color.MyTheme.blueColor)
+                                            .cornerRadius(12)
+                                    })
+                                    .accentColor(.black)
+                                }
+                            }
                         }
                     }
                 }
+                .padding(.top, 20)
                 Spacer()
-            } //scroll view
-            
-            
-        } //body view
-        
-    }//endis view
+            }
+        }
+    }
+    
     func approveApplicant(_ applicant: ApplicantsModel) {
-       buttonText = "APPROVE".uppercased()
-       AuthService.instance.addCertificateToUser(forUserID: applicant.userID, forCertificateID: applicant.certificateID)
-       // Other logic to handle the approval...
-   }
-   // Rejection function
+        buttonText = "APPROVE".uppercased()
+        AuthService.instance.addCertificateToUser(forUserID: applicant.userID, forCertificateID: applicant.certificateID)
+        // Other logic to handle the approval...
+    }
+    
     func rejectApplicant(_ applicant: ApplicantsModel) {
-       buttonText = "REJECT".uppercased()
-       // Logic to handle rejection, such as removing the applicant from the list or database
+        buttonText = "REJECT".uppercased()
+        // Logic to handle rejection, such as removing the applicant from the list or database
         AuthService.instance.removeRequestFromJury(forUserID: applicant.userID, forApplicantID: applicant.certificateID)
-       // Other logic to handle the rejection...
-   }
+        // Other logic to handle the rejection...
+    }
 }
 
 #Preview {
-    NavigationView{
-//        ShortFormView(certificates: CertificateModel(certificateID: "exampleCertificateID", certificateName: "",sectionID: "1", sectionName: "")).environmentObject(ApplicantsArrayObject.shared)
+    NavigationView {
         GiveApprovalView(userID: "exampleUserID")
+            .environmentObject(ApplicantsArrayObject.shared)
     }
 }
