@@ -285,6 +285,7 @@ class AuthService{
             
         }
     }
+    
     func removeRequestFromJury(forUserID userID: String, forApplicantID applicantID: String){
             let userDocument = REF_USERS.document(userID)
             userDocument.updateData([
@@ -297,4 +298,21 @@ class AuthService{
                 }
             }
         }
+    
+    func getJuryExpert(forUserID userID:String, handler: @escaping (_ expert: String?)->()){
+        REF_USERS.document(userID).getDocument { (documentSnapshot,error) in
+            if let document = documentSnapshot,
+               
+                let expert = document.get(DatabaseUserField.juryExpert) as? String{
+                print("Success geting user expert")
+                handler(expert)
+                return
+            } else {
+                print("Error geting user expert")
+                handler(nil)
+                return
+            }
+        }
+    }
+    
 }

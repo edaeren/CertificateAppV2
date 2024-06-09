@@ -24,7 +24,7 @@ struct SectionView: View {
             VStack{
                 // MARK: YEMEKLE ILGILI SERTIFIKALAR
                 HStack {
-                 Text("Yemekle ilgili Sertifikalar")
+                 Text("Food Related Certificates")
                       .font(.title3)
                       .fontWeight(.heavy)
                        .foregroundColor(.primary)
@@ -78,7 +78,7 @@ struct SectionView: View {
                 // MARK: CİZİM SERTİFİKALAR
                 VStack{
                     HStack {
-                     Text("Çizimle ilgili Sertifikalar")
+                     Text("Drawing Related Certificates")
                           .font(.title3)
                           .fontWeight(.heavy)
                            .foregroundColor(.primary)
@@ -126,7 +126,7 @@ struct SectionView: View {
                 // MARK: BILGISAYAR SERTİFİKALAR
                 VStack{
                     HStack {
-                     Text("Bilgisayarla ilgili Sertifikalar")
+                     Text("Computer Related Certificates")
                           .font(.title3)
                           .fontWeight(.heavy)
                            .foregroundColor(.primary)

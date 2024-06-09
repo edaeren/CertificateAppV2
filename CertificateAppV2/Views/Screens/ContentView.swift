@@ -80,7 +80,7 @@ struct ContentView: View {
             ZStack{
                 if let userID = currentUserID, let displayName = currentDisplayName {
                     NavigationView{
-                        ProfileView(profileDisplayName: displayName, certificateNumber:"", section1:DataArrayObject(forUserID: currentUserID!), profileUserID: userID)
+                        ProfileView(profileDisplayName: displayName, certificateNumber:"", expertID: "", expert: "", section1:DataArrayObject(forUserID: currentUserID!), profileUserID: userID)
                     }
                 } else {
                     SignUpView()

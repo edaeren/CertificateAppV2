@@ -76,7 +76,11 @@ struct ShowAllCertificatesView: View {
 
 #Preview {
     NavigationView{
-        ShowAllCertificatesView(sectionID: "1", dataArrayObject: DataArrayObject(forUserID:""))
-           
+//        ShowAllCertificatesView(sectionID: "1", dataArrayObject: DataArrayObject(forUserID:""))
+        let sampleDataArray = DataArrayObject(forUserID: "")
+               sampleDataArray.dataArray = [CertificateModel(certificateID: "1", certificateName: "Certificate 1", sectionID: "1", sectionName: "Section 1"),
+                                            CertificateModel(certificateID: "2", certificateName: "Certificate 2", sectionID: "1", sectionName: "Section 1"),
+                                            CertificateModel(certificateID: "3", certificateName: "Certificate 3", sectionID: "2", sectionName: "Section 2")]
+               return ShowAllCertificatesView(sectionID: "1", dataArrayObject: sampleDataArray)
     }
 }

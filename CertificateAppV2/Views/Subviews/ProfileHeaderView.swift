@@ -12,6 +12,9 @@ struct ProfileHeaderView: View {
     @Binding var profileDisplayName:String
     @Binding var profileImage : UIImage
     @Binding var certificateNumber: String
+    @Binding var expert: String
+    @Binding var isJury: Bool
+    
     var body: some View {
         
         VStack(alignment: .center, spacing: 10, content: {
@@ -34,6 +37,14 @@ struct ProfileHeaderView: View {
                 .fontWeight(.regular)
                 .multilineTextAlignment(.center)
             
+            // MARK: EXPERT
+            if isJury {
+                Text("Expert of : \(expert)")
+                    .font(.title3)
+                    .fontWeight(.bold)
+            }
+            
+            
             HStack(alignment: .center, spacing: 20, content: {
                 // MARK: NUMBER OF CERTIFICATES
                 VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 5, content: {
@@ -54,16 +65,22 @@ struct ProfileHeaderView: View {
         .frame(maxWidth: .infinity)
         .padding()
     }
+    
+    
 }
+
+
 
 struct ProfileHeaderView_Previews :PreviewProvider{
     
     @State static var name: String = "Joe"
     @State static var image: UIImage = UIImage(named:"food1")!
     @State static var number: String = "4"
+    @State static var expert: String = "2"
+    @State static var isJury: Bool = true
     
     static var previews: some View{
-        ProfileHeaderView(profileDisplayName: $name, profileImage: $image, certificateNumber: $number)
+        ProfileHeaderView(profileDisplayName: $name, profileImage: $image, certificateNumber: $number, expert:$expert, isJury: $isJury)
             .previewLayout(.sizeThatFits)
     }
 }

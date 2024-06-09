@@ -11,6 +11,9 @@ struct ProfileView: View {
     @State var showSettings: Bool = false
     @State var profileDisplayName: String
     @State var certificateNumber: String
+    @State var expertID: String
+    @State var isJury: Bool = false
+    @State var expert: String = "Loading..."
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
     @ObservedObject var section1 : DataArrayObject
     var profileUserID: String
@@ -19,13 +22,13 @@ struct ProfileView: View {
     
     var body: some View {
         ScrollView(.vertical,showsIndicators: false, content:{
-            ProfileHeaderView(profileDisplayName: $profileDisplayName, profileImage: $profileImage,certificateNumber: $certificateNumber)
+            ProfileHeaderView(profileDisplayName: $profileDisplayName, profileImage: $profileImage,certificateNumber: $certificateNumber, expert:$expert, isJury: $isJury)
            Spacer()
            Spacer()
             
             VStack{
                 HStack {
-                 Text("Sahip Olunan Sertifikalar")
+                 Text("Owned Certificates")
                         .font(.subheadline)
                       .fontWeight(.heavy)
                        .foregroundColor(.primary)
@@ -67,9 +70,11 @@ struct ProfileView: View {
                 .accentColor(Color.MyTheme.pinkColor)
         )
         .onAppear(perform: {
+            updateJuryStatus()
+            updateExpert()
             getProfileImage()
             sertifikalar()
-            
+            convertExpert()
         })
         .sheet(isPresented: $showSettings, content: {
             SettingsView()
@@ -97,19 +102,67 @@ struct ProfileView: View {
         }
     }
     
-    func getCertificateInformations(forCertificateID certificateID:String){
-        DataService.instance.getCertificateInfoForDataArray(forCertificateID: certificateID){(certificateName,sectionID,sectionName) in
-            let name = certificateName
-            let id = sectionID
-            let sName = sectionName
+    
+    
+    func updateJuryStatus() {
+           guard let userID = currentUserID else {
+               self.isJury = false
+               return
+           }
+           checkUserJury(forUserID: userID) { isJury in
+               self.isJury = isJury
+           }
+       }
+    
+    
+    func checkUserJury(forUserID userID: String, completion: @escaping (Bool) -> Void) {
+            guard !userID.isEmpty else {
+                print("User ID is empty.")
+                completion(false)
+                return
+            }
+            AuthService.instance.getUserIsJury(forUserID: userID) { returnedUserState in
+                if let userState = returnedUserState {
+                    completion(userState)
+                } else {
+                    completion(false)
+                }
+            }
+        }
+    
+    func updateExpert(){
+        guard let userID = currentUserID else {
+            self.expertID = ""
+            return
+        }
+        AuthService.instance.getJuryExpert(forUserID: userID){ (returnedExpert) in
+            if let expert = returnedExpert{
+                self.expertID = expert
+            }
         }
     }
+    
+    
+    func convertExpert() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            if self.expertID == "1" {
+                self.expert = "Food"
+            } else if self.expertID == "2" {
+                self.expert = "Drawing"
+            } else if self.expertID == "3" {
+                self.expert = "Computer"
+            } else {
+                self.expert = "Error"
+            }
+        }
+    }
+
 }
 
 struct ProfileView_Previews: PreviewProvider{
     static var previews: some View{
         NavigationView{
-            ProfileView(profileDisplayName:"joe", certificateNumber:"4", section1: DataArrayObject(forUserID: ""), profileUserID: "")
+            ProfileView(profileDisplayName:"joe", certificateNumber:"4", expertID: "3", expert: "", section1: DataArrayObject(forUserID: ""), profileUserID: "")
         }
     }
 }
