@@ -27,9 +27,23 @@ struct FeedView: View {
             }
             
         })
-        //this shows up only if we're in a navigation view so we put the FeedView() into the NavigationView{} down below
-        .navigationBarTitle("FEED VIEW")
-        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        HStack {
+                            Image("logo.transparent") // Replace "AppLogo" with the name of your image asset
+                                                       .resizable()
+                                                       .frame(width: 22, height: 30)
+                                                       .padding(.bottom, 6)
+                                               Text("Certificate")
+                                                   .font(Font.custom("Zapfino", size: 16))
+                                                   .padding(.top,5)
+                                                   .padding(.leading,-3)
+                                               Text("App")
+                                                   .font(Font.system(size: 16, weight: .bold))
+                                           }
+                      
+                    }
+                }
     }
 }
 
