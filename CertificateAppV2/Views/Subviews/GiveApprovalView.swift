@@ -6,10 +6,10 @@ struct GiveApprovalView: View {
     @EnvironmentObject var array: ApplicantsArrayObject
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
     
-    let userID: String
+    let applicantID: String
     
     var filteredRequest: [ApplicantsModel] {
-        let filtered = array.requestArray.filter { $0.userID == userID }
+        let filtered = array.requestArray.filter { $0.applicantID == applicantID }
         return filtered
     }
     
@@ -38,7 +38,7 @@ struct GiveApprovalView: View {
                 
                 VStack {
                     if filteredRequest.isEmpty {
-                        Text("No requests found for userID \(userID)")
+                        Text("No requests found for applicantID \(applicantID)")
                             .foregroundColor(.red)
                     } else {
                         ForEach(filteredRequest, id: \.self) { data in
@@ -139,7 +139,7 @@ extension URL {
 
 #Preview {
     NavigationView {
-        GiveApprovalView(userID: "exampleUserID")
+        GiveApprovalView(applicantID: "exampleUserID")
             .environmentObject(ApplicantsArrayObject.shared)
     }
 }
