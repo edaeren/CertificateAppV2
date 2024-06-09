@@ -14,6 +14,7 @@ struct GiveApprovalView: View {
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
     
     let userID: String // Accepting userID as a parameter
+    @State private var isLoading: Bool = true
     
     var filteredRequest: [ApplicantsModel] {
         let filtered = array.requestArray.filter { $0.userID == userID }
@@ -35,72 +36,89 @@ struct GiveApprovalView: View {
                 .padding(.leading)
                 Spacer()
             }
-            
-            ScrollView(.vertical) {
-                Text("Give Approval View")
-                    .font(.title)
-                    .padding(.bottom, 50)
-                
-                VStack {
-                    if filteredRequest.isEmpty {
-                        Text("No requests found for userID \(userID)")
-                            .foregroundColor(.red)
-                    } else {
-                        ForEach(filteredRequest, id: \.self) { data in
-                            VStack(spacing: 20) {
-                                HStack {
-                                    Text(data.link)
-                                        .padding(.all, 5)
-                                        .frame(height: 50)
-                                        .frame(maxWidth: 300)
-                                        .background(Color.clear)
-                                        .border(Color.black)
-                                        .cornerRadius(6)
-                                        .font(.headline)
-//                                        .padding(.leading,30)
-                                    Spacer()
-                                }.padding(.all, 50)
-                                
-                                HStack {
-                                    Button(action: {
-                                        rejectApplicant(data)
-                                        presentationMode.wrappedValue.dismiss()
-                                    }, label: {
-                                        Label("REJECT", systemImage: "xmark")
-                                            .font(.title3)
-                                            .fontWeight(.medium)
-                                            .padding()
-                                            .frame(height: 50)
-                                            .frame(maxWidth: 155)
-                                            .background(Color.gray)
-                                            .cornerRadius(12)
-                                    })
-                                    .accentColor(.black)
-                                    
-                                    Button(action: {
-                                        approveApplicant(data)
-                                        presentationMode.wrappedValue.dismiss()
-                                    }, label: {
-                                        Label("APPROVE", systemImage: "checkmark")
-                                            .font(.title3)
-                                            .fontWeight(.medium)
-                                            .padding()
-                                            .frame(height: 50)
-                                            .frame(maxWidth: 155)
-                                            .background(Color.MyTheme.blueColor)
-                                            .cornerRadius(12)
-                                    })
-                                    .accentColor(.black)
+            VStack{
+                if isLoading {
+                    VStack{
+                        ProgressView("Loading...")
+                    }
+                        .padding()
+                } else {
+                    VStack {
+                        ScrollView(.vertical) {
+                            Text("Give Approval View")
+                                .font(.title)
+                                .padding(.bottom, 50)
+                            
+                            VStack {
+                                if filteredRequest.isEmpty {
+                                    Text("No requests found for userID \(userID)")
+                                        .foregroundColor(.red)
+                                } else {
+                                    ForEach(filteredRequest, id: \.self) { data in
+                                        VStack(spacing: 20) {
+                                            HStack {
+                                                Text(data.link)
+                                                    .padding(.all, 5)
+                                                    .frame(height: 50)
+                                                    .frame(maxWidth: 300)
+                                                    .background(Color.clear)
+                                                    .border(Color.black)
+                                                    .cornerRadius(6)
+                                                    .font(.headline)
+                                                Spacer()
+                                            }.padding(.all, 50)
+                                            
+                                            HStack {
+                                                Button(action: {
+                                                    rejectApplicant(data)
+                                                    presentationMode.wrappedValue.dismiss()
+                                                }, label: {
+                                                    Label("REJECT", systemImage: "xmark")
+                                                        .font(.title3)
+                                                        .fontWeight(.medium)
+                                                        .padding()
+                                                        .frame(height: 50)
+                                                        .frame(maxWidth: 155)
+                                                        .background(Color.gray)
+                                                        .cornerRadius(12)
+                                                })
+                                                .accentColor(.black)
+                                                Button(action: {
+                                                    approveApplicant(data)
+                                                    presentationMode.wrappedValue.dismiss()
+                                                }, label: {
+                                                    Label("APPROVE", systemImage: "checkmark")
+                                                        .font(.title3)
+                                                        .fontWeight(.medium)
+                                                        .padding()
+                                                        .frame(height: 50)
+                                                        .frame(maxWidth: 155)
+                                                        .background(Color.MyTheme.blueColor)
+                                                        .cornerRadius(12)
+                                                })
+                                                .accentColor(.black)
+                                            }
+                                        }
+                                    }
                                 }
                             }
+                            .padding(.top, 20)
+                            Spacer()
                         }
                     }
-                }
-                .padding(.top, 20)
+                }// else sonu
                 Spacer()
             }
+        }.onAppear {
+            loadRequests()
         }
     }
+    private func loadRequests() {
+            // Simulate a delay to load the data (in a real app, this could be a network call)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                isLoading = false
+            }
+        }
     
     func approveApplicant(_ applicant: ApplicantsModel) {
                 buttonText = "APPROVE".uppercased()

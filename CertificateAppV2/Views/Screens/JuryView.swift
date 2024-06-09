@@ -16,6 +16,7 @@ struct JuryView: View {
 
     @State var showGiveApprovalPage: Bool = false
     @State var userID : String = ""
+    @State private var isLoading: Bool = false
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -33,9 +34,11 @@ struct JuryView: View {
                         .padding(.top,30)
                     Spacer()
                     Button(action: {
+                        refreshData()
+                        /*
                         ApplicantsArrayObject.shared.getApplicants()
                         ApplicantsArrayObject.shared.clearRequestList()
-                        ApplicantsArrayObject.shared.getRequest(forUserID: currentUserID)
+                        ApplicantsArrayObject.shared.getRequest(forUserID: currentUserID, completion: <#() -> Void#>)*/
                     }, label: {
                         Image(systemName: "arrow.clockwise")
                             .font(.headline)
@@ -47,75 +50,83 @@ struct JuryView: View {
                     .padding(.trailing,20)
                 }
                 .padding(.all, 6)
-                // MARK:  SCROLLVIEW
-                ScrollView(.horizontal){
-                    VStack{
-
-                        if array.requestArray.isEmpty {
-                            Text("No applicants found ")
-                                    .foregroundColor(.red)
-                        } else {
-                            ForEach(array.requestArray, id : \.self){data in
-                                
-                                HStack {
-                                    Text(data.applicantID)
-                                    Spacer()
-                                    Spacer(minLength: 170)
-                                    Button(action: {
-                                        //remove from request array
-//                                        ApplicantsArrayObject.shared.deleteRequest(data)
-                                        rejectApplication(data)
-                                        ApplicantsArrayObject.shared.removeRequest(userID: data.userID, applicantID:  data.applicantID)
-//                                                                            array.removeApplicant(userID: data.userID, certificateID: data.certificateID)
-//                                                                            ApplicantsArrayObject.shared.deleteApplicant(applicantID: data.applicantID)
-                                    }, label: {
-                                        Image(systemName: "xmark")
-                                            .font(.headline)
-                                            .fontWeight(.medium)
-                                    })
-                                    .accentColor(.black)
-                                    Spacer()
-                                    Spacer()
-                                    Button(action: {
-                                        userID = data.userID
-                                        showGiveApprovalPage.toggle()
-                                    }, label: {
-                                        Image(systemName: "checkmark")
-                                            .font(.headline)
-                                            .fontWeight(.medium)
-                                        
-                                    })
-                                    .accentColor(.green)
-                                    Spacer()
-                                }.frame(height: 40).background(.bar)
-                                    .padding(.all,3)
-                                    .frame(maxWidth: 350)
-                                    .cornerRadius(21)
-                                    .fixedSize()
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(.leading, 30)
-                                    .fullScreenCover(isPresented: $showGiveApprovalPage, onDismiss: {
-                                        self.presentationMode.wrappedValue.dismiss()
-                                    }, content: {
-                                        GiveApprovalView(userID: userID)
-                                        //                                    AssignJuryView(sectionID: sectionID)
-                                        //                                        .environmentObject(ApplicantsArrayObject.shared)
-                                    }
-                                    )}
+                
+                if isLoading {
+                                   ProgressView("Loading...")
+                                       .padding()
+                } else {
+                    // MARK:  SCROLLVIEW
+                    ScrollView(.horizontal){
+                        VStack{
+                            
+                            if isLoading {
+                                                ProgressView("Loading...")
+                                                    .padding()
+                                            }else {
+                                ForEach(array.requestArray, id : \.self){data in
+                                    
+                                    HStack {
+                                        Text(data.applicantID)
+                                        Spacer()
+                                        Spacer(minLength: 170)
+                                        Button(action: {
+                                            rejectApplication(data)
+                                            ApplicantsArrayObject.shared.removeRequest(userID: data.userID, applicantID:  data.applicantID)
+                                        }, label: {
+                                            Image(systemName: "xmark")
+                                                .font(.headline)
+                                                .fontWeight(.medium)
+                                        })
+                                        .accentColor(.black)
+                                        Spacer()
+                                        Spacer()
+                                        Button(action: {
+                                            userID = data.userID
+                                            showGiveApprovalPage.toggle()
+                                        }, label: {
+                                            Image(systemName: "checkmark")
+                                                .font(.headline)
+                                                .fontWeight(.medium)
+                                        })
+                                        .accentColor(.green)
+                                        Spacer()
+                                    }.frame(height: 40).background(.bar)
+                                        .padding(.all,3)
+                                        .frame(maxWidth: 350)
+                                        .cornerRadius(21)
+                                        .fixedSize()
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .padding(.leading, 30)
+                                        .fullScreenCover(isPresented: $showGiveApprovalPage, onDismiss: {
+                                            self.presentationMode.wrappedValue.dismiss()
+                                        }, content: {
+                                            GiveApprovalView(userID: userID)
+                                        }
+                                        )}
+                            }
+                            
                         }
-                        
                     }
                 }
             }/*.onAppear{
 //                ApplicantsArrayObject.shared.updateSectionFromOutside()
             }*/
         }.onAppear{
+            /*
             ApplicantsArrayObject.shared.clearRequestList()
-            ApplicantsArrayObject.shared.getRequest(forUserID: currentUserID)
+            ApplicantsArrayObject.shared.getRequest(forUserID: currentUserID)*/
+            refreshData()
         }
         
     }
     
+    private func refreshData() {
+            isLoading = true
+            ApplicantsArrayObject.shared.clearRequestList()
+            ApplicantsArrayObject.shared.getRequest(forUserID: currentUserID) {
+                isLoading = false
+            }
+        }
     func rejectApplication(_ applicant: ApplicantsModel) {
             AuthService.instance.removeRequestFromJury(forUserID: currentUserID ?? "", forApplicantID: applicant.applicantID)
        }

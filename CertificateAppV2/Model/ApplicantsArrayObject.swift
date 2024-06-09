@@ -171,7 +171,7 @@ class ApplicantsArrayObject: ObservableObject{
     func deleteApplicant(applicantID:String){
             ApplicantService.instance.deleteApplicant(forApplicantID: applicantID)
         }
-    
+    /*
     func getRequest(forUserID userID:String?){
         if userID != ""{
             if let user = userID {
@@ -207,7 +207,48 @@ class ApplicantsArrayObject: ObservableObject{
             }
         }
         
-    }
+    }*/
+    func getRequest(forUserID userID: String?, completion: @escaping () -> Void) {
+            if let user = userID, !user.isEmpty {
+                AuthService.instance.getJuryApplicants(forUserID: user) { [weak self] (returnedRequests) in
+                    guard let self = self else { return }
+                    if let requests = returnedRequests {
+                        let group = DispatchGroup()
+                        for item in requests {
+                            group.enter()
+                            self.getRequsetInfo(forRequsetID: item) {
+                                group.leave()
+                            }
+                        }
+                        group.notify(queue: .main) {
+                            completion()
+                        }
+                    } else {
+                        print("Sertifikalar alınamadı.")
+                        completion()
+                    }
+                }
+            } else {
+                print("User not found")
+                completion()
+            }
+        }
+        
+        func getRequsetInfo(forRequsetID requestID: String, completion: @escaping () -> Void) {
+            ApplicantService.instance.getApplicantInfo(forApplicantID: requestID) { [weak self] (certificateID, userID, applicantLink, sectionID) in
+                guard let self = self else { return }
+                if let certificateId = certificateID, let userId = userID, let link = applicantLink, let sectionId = sectionID {
+                    let applicant = ApplicantsModel(applicantID: requestID, userID: userId, sectionID: sectionId, link: link, certificateID: certificateId)
+                    DispatchQueue.main.async {
+                        self.requestArray.append(applicant)
+                        print("Eklenen applicant: \(applicant)")
+                        completion()
+                    }
+                } else {
+                    completion()
+                }
+            }
+        }
     func addRequest(_ applicant: ApplicantsModel) {
             requestArray.append(applicant)
         }
