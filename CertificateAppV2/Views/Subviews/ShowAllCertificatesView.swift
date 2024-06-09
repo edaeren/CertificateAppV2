@@ -38,33 +38,36 @@ struct ShowAllCertificatesView: View {
         }//hstack
 //        Spacer()
         NavigationView {
-                   VStack {
-                       Text("All Certificates In This Section")
-                           .font(.title)
-                           .fontWeight(.bold)
-                           .padding()
-                           .frame(width: 270)
-                           .padding(.leading,10)
-                       
-                       ScrollView {
-                           LazyVGrid(columns: columns, spacing: 10) {
-                               ForEach(dataArrayObject.dataArray.filter { $0.sectionID == sectionID }, id: \.self) { data in
-                                   NavigationLink(destination: CertificateView(certificates: data)) {
-                                       MiniCertificateView(data: data)
-                                           .frame(minWidth: 0, maxWidth: .infinity, minHeight: 150)
-                                           .background(Color(.clear))
-                                           .cornerRadius(10)
-                                           .shadow(radius: 5)
-                                   }
-                                   .buttonStyle(PlainButtonStyle())
-                               }
-                           }
-                           .padding()
-                       }
-                   }
-                   .navigationTitle("")
-                   .navigationBarHidden(true) // Hide the navigation bar
-               }
+            VStack {
+                Text("All Certificates In This Section")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding()
+                    .frame(width: 270)
+                    .padding(.leading,10)
+                if dataArrayObject.dataArray.isEmpty {
+                    ProgressView() // Show loading indicator if data is not yet available
+                } else{
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: 10) {
+                            ForEach(dataArrayObject.dataArray.filter { $0.sectionID == sectionID }, id: \.self) { data in
+                                NavigationLink(destination: CertificateView(certificates: data)) {
+                                    MiniCertificateView(data: data)
+                                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 150)
+                                        .background(Color(.clear))
+                                        .cornerRadius(10)
+                                        .shadow(radius: 5)
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                            }
+                        }
+                        .padding()
+                    }
+                }
+            }
+            .navigationTitle("")
+            .navigationBarHidden(true) // Hide the navigation bar
+        }
        
     } //body view
     
