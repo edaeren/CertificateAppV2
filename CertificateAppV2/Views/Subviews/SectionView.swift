@@ -1,5 +1,5 @@
 //
-//  SectionView.swift/Users/edaeren/bitirme/CertificateAppV4/CertificateAppV2/Views/Screens/CertificateView.swift
+//  SectionView
 //  CertificateAppV2
 //
 //  Created by Eda Eren on 14.03.2024.
@@ -12,6 +12,8 @@ struct SectionView: View {
     @ObservedObject var section2 : DataArrayObject
     @ObservedObject var section3 : DataArrayObject
     @ObservedObject var sectionUser: DataArrayObject
+    @State var showAll: Bool = false
+    @State var selectedSectionID: String? = nil
 
     var body: some View {
         
@@ -29,10 +31,29 @@ struct SectionView: View {
                        .padding(.leading,5)
 //                       .fontDesign(.)
                     Spacer()
-                Image(systemName: "ellipsis") //sagdaki uc nokta
-                        .font(.headline) //belki buraya tiklayarak geri kalan sertifikalara bakilabilir. tumunu gor gibi
+                    Button(action: {
+                        //bu sectiondaki tum sertifikalari listede
+                        selectedSectionID = "1"
+                        showAll.toggle()
+//
+                    }, label: {
+                        Image(systemName: "ellipsis")
+                            .font(.title3)
+                            .fontWeight(.heavy)
+
+                    })
+                    
+                    .foregroundColor(.primary)
+                    .padding(.leading,5)
+                    .padding(.trailing,20)
                     }
                     .padding(.all, 6)
+                    .fullScreenCover(isPresented: $showAll, content: {
+                        if let sectionID = selectedSectionID {
+                                               ShowAllCertificatesView(sectionID: sectionID, dataArrayObject: getSectionDataArrayObject(for: sectionID))
+                                           }
+                    })
+                    
                 // MARK: YEMEK SERTIFIKALARI SCROLLVIEWI
                 ScrollView(.horizontal){
                     HStack{
@@ -53,6 +74,7 @@ struct SectionView: View {
                          }*/
                     }
                 }
+                
                 // MARK: CİZİM SERTİFİKALAR
                 VStack{
                     HStack {
@@ -63,10 +85,29 @@ struct SectionView: View {
                            .padding(.leading,5)
     //                       .fontDesign(.)
                         Spacer()
-                    Image(systemName: "ellipsis") //sagdaki uc nokta
-                            .font(.headline) //belki buraya tiklayarak geri kalan sertifikalara bakilabilir. tumunu gor gibi
+                        Button(action: {
+                            //bu sectiondaki tum sertifikalari listede
+                            selectedSectionID = "2"
+                            showAll.toggle()
+    //
+                        }, label: {
+                            Image(systemName: "ellipsis")
+                                .font(.title3)
+                                .fontWeight(.heavy)
+
+                        })
+                        .foregroundColor(.primary)
+                        .padding(.leading,5)
+                        .padding(.trailing,20)
                         }
                         .padding(.all, 6)
+                        .fullScreenCover(isPresented: $showAll, content: {
+                            if let sectionID = selectedSectionID {
+                                                   ShowAllCertificatesView(sectionID: sectionID, dataArrayObject: getSectionDataArrayObject(for: sectionID))
+                                               }
+                        })
+                     
+                    
                 }
                 ScrollView(.horizontal){
                     HStack{
@@ -92,10 +133,27 @@ struct SectionView: View {
                            .padding(.leading,5)
     //                       .fontDesign(.)
                         Spacer()
-                    Image(systemName: "ellipsis") //sagdaki uc nokta
-                            .font(.headline) //belki buraya tiklayarak geri kalan sertifikalara bakilabilir. tumunu gor gibi
+                        Button(action: {
+                            //bu sectiondaki tum sertifikalari listede
+                            selectedSectionID = "3"
+                            showAll.toggle()
+    //
+                        }, label: {
+                            Image(systemName: "ellipsis")
+                                .font(.title3)
+                                .fontWeight(.heavy)
+
+                        })
+                        .foregroundColor(.primary)
+                        .padding(.leading,5)
+                        .padding(.trailing,20)
                         }
                         .padding(.all, 6)
+                        .fullScreenCover(isPresented: $showAll, content: {
+                            if let sectionID = selectedSectionID {
+                                                   ShowAllCertificatesView(sectionID: sectionID, dataArrayObject: getSectionDataArrayObject(for: sectionID))
+                                               }
+                        })
                 }
                 ScrollView(.horizontal){
                     HStack{
@@ -123,6 +181,18 @@ struct SectionView: View {
         //        })//vstackin
         
     }
+       private func getSectionDataArrayObject(for sectionID: String) -> DataArrayObject {
+           switch sectionID {
+           case "1":
+               return section1
+           case "2":
+               return section2
+           case "3":
+               return section3
+           default:
+               return sectionUser // Default case or handle as needed
+           }
+       }
 }
 
 
@@ -130,8 +200,6 @@ struct SectionView: View {
 struct SectionView_Previews: PreviewProvider{
     
     static var previews: some View{
-//        SectionView(section: <#T##CertificateModel#>, datas: DataArrayObject())
-      //    SectionView(datas: DataArrayObject(), section1: DataArrayObject())
         SectionView(section1: DataArrayObject(forUserID: ""), section2: DataArrayObject(forUserID: ""), section3: DataArrayObject(forUserID: ""), sectionUser: DataArrayObject(forUserID: ""))
             .previewLayout(.sizeThatFits)
     }
