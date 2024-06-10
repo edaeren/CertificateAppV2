@@ -106,9 +106,12 @@ struct GiveApprovalView: View {
     
     func rejectApplicant(_ applicant: ApplicantsModel) {
         buttonText = "REJECT".uppercased()
-        // Logic to handle rejection, such as removing the applicant from the list or database
+        // Logic to handle rejection, such as removing the applicant from the list or database,
+        ApplicantsArrayObject.shared.removeApplicant(userID: applicant.userID, certificateID: applicant.certificateID)
+        ApplicantsArrayObject.shared.deleteApplicant(applicantID: applicant.applicantID)
         AuthService.instance.removeRequestFromJury(forUserID: currentUserID ?? "", forApplicantID: applicant.applicantID)
         ApplicantsArrayObject.shared.removeRequest(userID: applicant.userID, applicantID: applicant.applicantID)
+     
     }
     
     // Helper function to extract video ID from YouTube link
