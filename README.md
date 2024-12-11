@@ -11,3 +11,4 @@ User Application: Users can search for certification areas, fill out forms with 
 Technical Details
 
 Platform: iOS Programming Language: Swift UI Framework: SwiftUI and UIKit Backend: Firebase
+<img width="410" alt="Screenshot 2024-05-05 at 14 48 11" src="https://github.com/user-attachments/assets/a5661137-6392-4440-898e-6c3c8aa97a11" />
