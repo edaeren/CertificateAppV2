@@ -1,4 +1,4 @@
-<img width="398" alt="Screenshot 2024-05-05 at 15 43 00" src="https://github.com/user-attachments/assets/213ee389-86e2-4c1b-9403-6f1f20ab9d0e" />Certification Mobile App
+Certification Mobile App
 
 Project Overview
 
@@ -11,6 +11,7 @@ User Application: Users can search for certification areas, fill out forms with 
 Technical Details
 
 Platform: iOS Programming Language: Swift UI Framework: SwiftUI and UIKit Backend: Firebase
+<img width="398" alt="Screenshot 2024-05-05 at 15 43 00" src="https://github.com/user-attachments/assets/213ee389-86e2-4c1b-9403-6f1f20ab9d0e" />
 <img width="410" alt="Screenshot 2024-05-05 at 14 48 11" src="https://github.com/user-attachments/assets/a5661137-6392-4440-898e-6c3c8aa97a11" />
 <img width="404" alt="Screenshot 2024-05-05 at 14 52 10" src="https://github.com/user-attachments/assets/54d6e7db-be18-4d93-9259-918506493011" />
 <img width="406" alt="Screenshot 2024-05-05 at 14 52 59" src="https://github.com/user-attachments/assets/125c9239-e1d7-4537-b12e-5ac7ad7c3655" />
