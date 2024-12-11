@@ -11,12 +11,18 @@ User Application: Users can search for certification areas, fill out forms with 
 Technical Details
 
 Platform: iOS Programming Language: Swift UI Framework: SwiftUI and UIKit Backend: Firebase
-<img width="410" alt="Screenshot 2024-05-05 at 14 48 11" src="https://github.com/user-attachments/assets/a5661137-6392-4440-898e-6c3c8aa97a11" />
-<img width="404" alt="Screenshot 2024-05-05 at 14 52 10" src="https://github.com/user-attachments/assets/54d6e7db-be18-4d93-9259-918506493011" />
-<img width="406" alt="Screenshot 2024-05-05 at 14 52 59" src="https://github.com/user-attachments/assets/125c9239-e1d7-4537-b12e-5ac7ad7c3655" />
-<img width="395" alt="Screenshot 2024-05-05 at 14 53 50" src="https://github.com/user-attachments/assets/8256f22d-377a-4a95-b7ce-6b6cf5587a0d" />
-<img width="407" alt="Screenshot 2024-05-05 at 14 55 24" src="https://github.com/user-attachments/assets/247d84e2-01e6-4e70-b49b-ead4dde8dc5c" />
-<img width="404" alt="Screenshot 2024-05-05 at 14 57 27" src="https://github.com/user-attachments/assets/27ef4755-47ff-4439-92df-7726b0e68fd5" />
-<img width="394" alt="Screenshot 2024-05-05 at 15 32 19" src="https://github.com/user-attachments/assets/afe729d9-2e48-4777-bb5a-c320599c1374" />
-<img width="390" alt="Screenshot 2024-05-05 at 15 42 10" src="https://github.com/user-attachments/assets/ce984c9c-5638-4320-a7a2-77c73ec293e2" />
-<img width="398" alt="Screenshot 2024-05-05 at 15 43 00" src="https://github.com/user-attachments/assets/44fc519a-9689-4ce7-959a-2198a4e19b71" />
+<img width="368" alt="Screenshot 2024-12-11 at 20 01 03" src="https://github.com/user-attachments/assets/fa30053f-631a-4042-9a70-c8659e7de80c" />
+<img width="354" alt="Screenshot 2024-12-11 at 20 01 20" src="https://github.com/user-attachments/assets/a2513f93-f4c0-4fde-851c-e90c620b6195" />
+<img width="356" alt="Screenshot 2024-12-11 at 20 01 53" src="https://github.com/user-attachments/assets/d0cf0bbb-2585-4009-896d-c084321908b7" />
+<img width="357" alt="Screenshot 2024-12-11 at 20 01 58" src="https://github.com/user-attachments/assets/9958c4f7-dedd-4ff4-b2df-f335fb19fca7" />
+<img width="354" alt="Screenshot 2024-12-11 at 20 02 01" src="https://github.com/user-attachments/assets/79ad92e7-9ee3-40c3-8706-ef8d22f36b31" />
+<img width="353" alt="Screenshot 2024-12-11 at 20 02 06" src="https://github.com/user-attachments/assets/f6f9ca55-e5cc-44da-88bd-3a59ccbc4737" />
+<img width="354" alt="Screenshot 2024-12-11 at 20 03 07" src="https://github.com/user-attachments/assets/5e1ac4f6-ba2e-4e4f-8941-387207a70e99" />
+<img width="354" alt="Screenshot 2024-12-11 at 20 03 11" src="https://github.com/user-attachments/assets/bf1c0224-cef7-42e9-b359-853da1e7e367" />
+<img width="357" alt="Screenshot 2024-12-11 at 20 03 21" src="https://github.com/user-attachments/assets/43ee5339-90f5-4489-9e2c-afceb367fbb3" />
+<img width="359" alt="Screenshot 2024-12-11 at 20 04 13" src="https://github.com/user-attachments/assets/7709a3b0-d1f8-40f6-b9fa-0c3c348268ea" />
+<img width="351" alt="Screenshot 2024-12-11 at 20 04 48" src="https://github.com/user-attachments/assets/c3fef990-55ba-4b51-8e8c-da9636e06a5b" />
+<img width="347" alt="Screenshot 2024-12-11 at 20 04 52" src="https://github.com/user-attachments/assets/caed2bf4-6fee-41b8-9672-7e6bfe319d9a" />
+<img width="345" alt="Screenshot 2024-12-11 at 20 05 04" src="https://github.com/user-attachments/assets/606d929e-7fde-4812-bf81-7e046666b6db" />
+<img width="362" alt="Screenshot 2024-12-11 at 20 05 09" src="https://github.com/user-attachments/assets/649bdb64-2a54-461c-9704-4b6948ebc3af" />
+<img width="342" alt="Screenshot 2024-12-11 at 20 05 14" src="https://github.com/user-attachments/assets/f5e4ae65-8b36-4a95-a971-f9b7f2538a21" />
