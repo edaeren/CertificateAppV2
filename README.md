@@ -26,3 +26,4 @@ Platform: iOS Programming Language: Swift UI Framework: SwiftUI and UIKit Backen
 <img width="345" alt="Screenshot 2024-12-11 at 20 05 04" src="https://github.com/user-attachments/assets/606d929e-7fde-4812-bf81-7e046666b6db" />
 <img width="362" alt="Screenshot 2024-12-11 at 20 05 09" src="https://github.com/user-attachments/assets/649bdb64-2a54-461c-9704-4b6948ebc3af" />
 <img width="342" alt="Screenshot 2024-12-11 at 20 05 14" src="https://github.com/user-attachments/assets/f5e4ae65-8b36-4a95-a971-f9b7f2538a21" />
+
